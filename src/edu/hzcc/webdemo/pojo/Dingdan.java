@@ -24,6 +24,11 @@ public class Dingdan {
 	private Cangku cangku;
 	private Kucun kucun;
 	
+	//采购收货查询使用
+	private Integer qishiZongjia;
+	private Integer jieshuZongjia;
+	
+	
 	public Integer getDingdanID() {
 		return dingdanID;
 	}
@@ -125,6 +130,18 @@ public class Dingdan {
 	}
 	public void setKucun(Kucun kucun) {
 		this.kucun = kucun;
+	}
+	public Integer getQishiZongjia() {
+		return qishiZongjia;
+	}
+	public void setQishiZongjia(Integer qishiZongjia) {
+		this.qishiZongjia = qishiZongjia;
+	}
+	public Integer getJieshuZongjia() {
+		return jieshuZongjia;
+	}
+	public void setJieshuZongjia(Integer jieshuZongjia) {
+		this.jieshuZongjia = jieshuZongjia;
 	}
 	
 }

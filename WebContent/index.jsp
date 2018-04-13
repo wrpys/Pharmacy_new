@@ -64,13 +64,7 @@
 						<b class="arrow fa fa-angle-down"></b>
 					</a> 
 					<b class="arrow"></b>
-					<ul class="submenu">
-						<li class="">
-							<a class="popstyle user-add" href="caigoudingdan.jsp" target="_blank"> 
-								<i class="menu-icon fa fa-caret-right"></i> 采购订单
-							</a> 
-							<b class="arrow"></b>
-						</li>
+					<ul class="main-content submenu">
 						<li class="">
 							<a class="popstyle user-add" href="caigoushouhuo.jsp" target="_blank"> 
 								<i class="menu-icon fa fa-caret-right"></i> 采购收货
@@ -343,7 +337,6 @@ $this 只是个变量名，加$是为说明其是个jquery对象。
 				});
 			});
 		});
-		alert();
 	</script>
 </body>
 </html>

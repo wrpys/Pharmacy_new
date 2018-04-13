@@ -22,7 +22,7 @@
                     <i class="ace-icon fa fa-plus-circle orange bigger-130 user-add"></i>
                 </a>
             </div>
-            <div>
+            <div class="row">
                 <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline no-footer">
                     <div class="row">
                         <div class="col-xs-6">
