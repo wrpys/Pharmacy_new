@@ -137,7 +137,7 @@
 					</ul></li>
 
 				<li class="laoban caiwu"><a href="#" class="dropdown-toggle"> <i
-						class="menu-icon fa menu-icon fa fa-flask "></i> <span
+						class="menu-icon fa fa-desktop"></i> <span
 						class="menu-text"> 基础信息</span> <b class="arrow fa fa-angle-down"></b>
 				</a> <b class="arrow"></b>
 
@@ -164,7 +164,7 @@
 					</ul></li>
 				
 				<li class="xiaoshouyuan caiwu caigourenyuan"><a href="#" class="dropdown-toggle"> <i
-						class="menu-icon fa menu-icon fa fa-flask "></i> <span
+						class="menu-icon fa fa-desktop"></i> <span
 						class="menu-text"> 统计决策</span> <b class="arrow fa fa-angle-down"></b>
 				</a> <b class="arrow"></b>
 
@@ -186,7 +186,7 @@
 					</ul></li>
 
 				<li class=""><a href="#" class="dropdown-toggle"> <i
-						class="menu-icon fa menu-icon fa fa-flask "></i> <span
+						class="menu-icon fa fa-desktop"></i> <span
 						class="menu-text"> 系统管理</span> <b class="arrow fa fa-angle-down"></b>
 				</a> <b class="arrow"></b>
 
@@ -219,14 +219,9 @@
 		</div>
 
 		<div class="main-content">
-			<iframe id="innerFrame" src="" width="99%" style="min-height: 768px;"></iframe>
+			<iframe id="innerFrame" src="" width="100%" style="min-height: 768px;"></iframe>
 		</div>
 		<!-- /.main-content -->
-
-		<a href="index.html#" id="btn-scroll-up"
-			class="btn-scroll-up btn btn-sm btn-inverse display"> <i
-			class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
-		</a>
 
 	</div>
 
@@ -347,8 +342,8 @@ $this 只是个变量名，加$是为说明其是个jquery对象。
 					}
 				});
 			});
-
 		});
+		alert();
 	</script>
 </body>
 </html>

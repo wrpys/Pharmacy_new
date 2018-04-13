@@ -157,7 +157,7 @@ $(function () {
 			},
             success: function (result) {
             	if(result.falseMe){
-           			window.location.href = "admin.jsp?nolook="+result.duties;
+           			window.location.href = "index.jsp?nolook="+result.duties;
             	}
             }
         });

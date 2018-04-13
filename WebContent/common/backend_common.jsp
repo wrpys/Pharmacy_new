@@ -39,7 +39,7 @@
 <script src="${pageContext.request.contextPath }/assets/js/jquery.gritter.min.js"></script>
 <script src="${pageContext.request.contextPath }/assets/js/chosen.jquery.min.js"></script>
 <script src="${pageContext.request.contextPath }/assets/js/mustache.js"></script>
-<script src="${pageContext.request.contextPath }/bootstrap3.3.5/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
     // 展示提示信息
