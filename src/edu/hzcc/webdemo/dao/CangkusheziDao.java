@@ -77,7 +77,7 @@ public class CangkusheziDao {
 				Cangkushezi.setId(rs.getInt("id"));
 				Cangkushezi.setZuishaoshuliang(rs.getInt("zuishaoshuliang"));
 				if(Cangkushezi.getCangkuID()>0) {
-					Cangkushezi.setCangkuMingzi(CangkuDao.findBycangkuID(Cangkushezi.getCangkuID()).getCangkuMingzi());
+					Cangkushezi.setCangkuMingzi(YaoxiangDao.findBycangkuID(Cangkushezi.getCangkuID()).getYaoxiangMingzi());
 				}
 				if(Cangkushezi.getYaopingID() > 0) {
 					Cangkushezi.setYaoping(YaopingDao.findByYaopingID(Cangkushezi.getYaopingID()));

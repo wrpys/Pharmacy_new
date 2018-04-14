@@ -17,8 +17,10 @@ public class KehuController extends ControllerBase{
 		System.out.println("kehuController.getALL()");
 		//定义一个空的Gongyingshang列表
 		List<Kehu> kehuList=new ArrayList<>();
+		Kehu kehuParam = new Kehu();
+		kehuParam.setKehuMingzi(getParameter("kehuMingzi"));
 		//在KehuDao中数据库操作 找出所有的Kehu列表
-		kehuList=KehuDao.findALL();
+		kehuList=KehuDao.findALL(kehuParam);
 		//定义一个json格式
 		JSONObject jsonObject = new JSONObject();
 		//把Kehu列表填入json

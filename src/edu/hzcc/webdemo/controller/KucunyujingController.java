@@ -5,10 +5,10 @@ import java.util.List;
 
 import edu.hzcc.webdemo.dao.CangkusheziDao;
 import edu.hzcc.webdemo.dao.DingdanDao;
-import edu.hzcc.webdemo.dao.YaoxiangDao;
+import edu.hzcc.webdemo.dao.Yaoxiang1Dao;
 import edu.hzcc.webdemo.pojo.Cangkushezi;
 import edu.hzcc.webdemo.pojo.Dingdan;
-import edu.hzcc.webdemo.pojo.Yaoxiang;
+import edu.hzcc.webdemo.pojo.Yaoxiang1;
 import edu.hzcc.webdemo.util.ControllerBase;
 import net.sf.json.JSONObject;
 /**
@@ -30,7 +30,7 @@ public class KucunyujingController extends ControllerBase{
 		//遍历cangkushezi列表信息
 		for (Cangkushezi cangkushezi2 : cangkushezi) {
 			//找到每个cangkushezi对应的kucun信息
-			Yaoxiang kucun = YaoxiangDao.findAllMinshuliang(cangkushezi2.getCangkuID(),cangkushezi2.getYaopingID());
+			Yaoxiang1 kucun = Yaoxiang1Dao.findAllMinshuliang(cangkushezi2.getCangkuID(),cangkushezi2.getYaopingID());
 			//如果存在库存和订单，并获取库存和订单，放到返回的cangkushezi列表中returnCangkushezi
 			if(0 != kucun.getYaoxiangID() || null != kucun){
 				Dingdan dingdan = new Dingdan();

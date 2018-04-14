@@ -34,6 +34,38 @@
 <script src="${pageContext.request.contextPath }/js/html5shiv.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/respond.min.js"></script>
 <![endif]-->
+<style>
+	#searchForm {
+	    padding-left: 12px;
+	}
+	.btn1 {
+	    display: inline-block;
+	    padding: 6px 12px;
+	    margin-bottom: 0;
+	    font-size: 14px;
+	    font-weight: 400;
+	    line-height: 1.42857143;
+	    text-align: center;
+	    white-space: nowrap;
+	    vertical-align: middle;
+	    -ms-touch-action: manipulation;
+	    touch-action: manipulation;
+	    cursor: pointer;
+	    -webkit-user-select: none;
+	    -moz-user-select: none;
+	    -ms-user-select: none;
+	    user-select: none;
+	    background-image: none;
+	    border: 1px solid transparent;
+	    border-radius: 4px;
+	}
+	.btn-primary1 {
+		margin-left: 10px;
+	    color: #fff;
+	    background-color: #337ab7;
+	    border-color: #2e6da4;
+	}
+</style>
 
 <script src="${pageContext.request.contextPath }/js/jquery-1.9.1.min.js"></script>
 <script src="${pageContext.request.contextPath }/assets/js/jquery-ui.min.js"></script>

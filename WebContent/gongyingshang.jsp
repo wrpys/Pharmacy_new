@@ -13,7 +13,7 @@
 <!--把文档分割为独立的、不同的部分-->
 <div class="page-header">
     <h1>
-       供应商管理
+       供应商信息管理
     </h1>
 </div>
 <div class="main-content-inner">

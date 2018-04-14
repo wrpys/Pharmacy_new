@@ -21,8 +21,8 @@ public class Dingdan {
 	private Yaoping yaoping;
 	private Gongyingshang gongyingshang;
 	private Kehu kehu;
-	private Cangku cangku;
-	private Yaoxiang kucun;
+	private Yaoxiang cangku;
+	private Yaoxiang1 kucun;
 	
 	//采购收货查询使用
 	private Integer qishiZongjia;
@@ -119,16 +119,16 @@ public class Dingdan {
 	public void setKehu(Kehu kehu) {
 		this.kehu = kehu;
 	}
-	public Cangku getCangku() {
+	public Yaoxiang getCangku() {
 		return cangku;
 	}
-	public void setCangku(Cangku cangku) {
+	public void setCangku(Yaoxiang cangku) {
 		this.cangku = cangku;
 	}
-	public Yaoxiang getKucun() {
+	public Yaoxiang1 getKucun() {
 		return kucun;
 	}
-	public void setKucun(Yaoxiang kucun) {
+	public void setKucun(Yaoxiang1 kucun) {
 		this.kucun = kucun;
 	}
 	public Integer getQishiZongjia() {

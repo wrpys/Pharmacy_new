@@ -76,12 +76,15 @@ public class YonghuDao {
 	}
 
 	// 查找所有
-	public static List<Yonghu> findALL(){
+	public static List<Yonghu> findALL(Yonghu yonghuParam){
 		try {
 			List<Yonghu> list = new ArrayList<>();
 			Connection connection = ProjectShare.getDbPool().getConnection();
 			
-			String sql = "select * from yonghu";
+			String sql = "select * from yonghu where 1=1 ";
+			if (yonghuParam.getYonghuMingzi() != null && !"".equals(yonghuParam.getYonghuMingzi())) {
+				sql += " and yonghuMingzi like '%" + yonghuParam.getYonghuMingzi() + "%'";
+			}
 			ResultSet rs = ProjectShare.getDbPool().query(connection, sql);
 			while(rs.next()){
 				Yonghu yonghu = converyonghu(rs);

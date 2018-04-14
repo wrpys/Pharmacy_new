@@ -9,9 +9,18 @@
 		class="ace ace-switch ace-switch-5" />
 
 	<div class="page-header">
-		<h1>客户管理</h1>
+		<h1>客户信息管理</h1>
 	</div>
 	<div class="main-content-inner">
+	
+		<form id="searchForm" class="form-inline" role="form" onsubmit="return false">
+            <div class="form-group">
+                <label class="form-label">客户姓名:</label>
+                <input type="text" class="form-control" name="kehuMingzi">
+            </div>
+            <button id="search" class="btn1 btn-primary1">查询</button>
+        </form>
+	
 		<div class="col-xs-12">
 			<div class="table-header">
 				客户列表&nbsp;&nbsp; <a class="green" href="#"> <i
@@ -127,9 +136,13 @@
 	<script type="text/javascript">
 $(function () {
     
-    
     var userListTemplate = $('#userListTemplate').html();
     Mustache.parse(userListTemplate);
+    
+    $("#search").click(function(){
+    	loadUserList();
+	});
+    
     loadUserList();   
     $(".user-add").click(function () {
         $("#dialog-usersave-form").dialog({
@@ -152,10 +165,16 @@ $(function () {
     });
 
     function loadUserList() {
+    	var searchForm = $("#searchForm");
+		var searchParam = {
+			kehuMingzi: searchForm.find("input[name='kehuMingzi']").val()
+		};
+		var mtd = {cls:'KehuController',mtd:'findAll'};
+		var params = $.extend({},searchParam,mtd);
         var url = "${pageContext.request.contextPath }/cs";
         $.ajax({
             url: url,
-            data:{cls:'KehuController',mtd:'findAll'},
+            data: params,
             success: function (result) {
                 renderUserListAndPage(result);
             }

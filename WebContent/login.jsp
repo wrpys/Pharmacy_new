@@ -32,7 +32,7 @@ body {
 
   
 #image_logo {  
-    margin-top: 22px;  
+    margin-top: 10px;  
 }  
   
 .label_input {  
@@ -45,35 +45,40 @@ body {
     text-align: center;  
   
     color: white;  
-    background-color: #3CD8FF;  
+    background-color: #CCC;  /* 文字背景 改了颜色 */
+    border: 1px solid #382f2f;/* 文字背景 加了边框和颜色 */
+    float: left;
+    
     border-top-left-radius: 5px;  
     border-bottom-left-radius: 5px;  
 }  
-  
+
 .text_field {  
     width: 278px;  
     height: 28px;  
     border-top-right-radius: 5px;  
     border-bottom-right-radius: 5px;  
-    border: 0;  
+  
+  	float: left;
+  	border: 1px solid #382f2f;/* 文本框 加了边框和颜色 */
 }  
   
 #btn_login {  
     font-size: 14px;  
     font-family: 瀹嬩綋;  
   
-    width: 120px;  
+    width: 215px;  
     height: 28px;  
     line-height: 28px;  
     text-align: center;  
-  
+  	margin-left:12px;
     color:white;  
      
     border-radius: 6px;  
     border: 0;  
   
     float: left; 
-        background-color:#3CD8FF;
+    background-color:#3CD8FF;
    
 }  
 #btn_login:hover {  
@@ -98,8 +103,16 @@ body {
 }  
   
 #login_control {  
-    padding: 0 16px;  
+    padding: 0 65px;  
 }
+
+.p-style {
+	width: 220px;
+    margin-left: auto;
+    height: 30px;
+    margin-right: auto;
+}
+
 </style>
 </head>
 <body>
@@ -109,21 +122,21 @@ body {
 			<p id="image_logo">
 				<img src="images/1.png" style="width:60px;height:60px;">
 			</p>
-			<p>
+			<p class="p-style">
 				<label for="username" class="label_input">账号</label><input
 					type="text" class="text_field" id="yonghuname" name="yonghuname"
-					placeholder="请输入账号" />
+					style="border: 1px solid #382f2f;border-left:0; background-color: #CCC;width: 150px;" placeholder="请输入账号" />
 			</p>
-			<p>
+			<p class="p-style">
 				<label for="password" class="label_input">密码</label><input
 					type="password" class="text_field" id="password" name="password"
-					placeholder="请输入密码" />
+					style="border: 1px solid #382f2f;border-left:0; background-color: #CCC;width: 150px;" placeholder="请输入密码" />
 			</p>
-
 			<input type="hidden" name="cls" value="UserController" /> <input
 				type="hidden" name="mtd" value="login" />
+			<p class="p-style" style="margin-bottom: 0;color: #FF0000;" id="errorMsg"></p>
 			<div id="login_control">
-				<input type="button" id="btn_login" class="user-add" value="登录" />
+				<input type="button" id="btn_login" class="user-add" value="登 录" />
 			</div>
 		</form>
 	</div>
@@ -158,6 +171,8 @@ $(function () {
             success: function (result) {
             	if(result.falseMe){
            			window.location.href = "index.jsp?nolook="+result.duties;
+            	} else {
+            		$("#errorMsg").html(result.msg);
             	}
             }
         });

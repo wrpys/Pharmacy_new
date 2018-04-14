@@ -9,7 +9,7 @@
 
 <div class="page-header">
     <h1>
-        药品管理
+        药品信息管理
     </h1>
 </div>
 <div class="main-content-inner">

@@ -9,132 +9,26 @@ import edu.hzcc.webdemo.pojo.Yaoxiang;
 import edu.hzcc.webdemo.sys.ProjectShare;
 
 /**
- * 库存数据库操作
- * 
+ * 药箱的数据库操作 以下方法都是由yaoxiangController调用，值返回给yaoxiangController
  */
 public class YaoxiangDao {
 
-	private static Yaoxiang converyaoxiang(ResultSet rs) throws Exception {
-		Yaoxiang yaoxiang = new Yaoxiang();
-		yaoxiang.setYaoxiangID(rs.getInt("yaoxiangID"));
-		yaoxiang.setYaopingID(rs.getInt("yaopingID"));
-		yaoxiang.setCangKuID(rs.getInt("cangKuID"));
-		yaoxiang.setDingdanID(rs.getInt("dingdanID"));
-		yaoxiang.setShuliang(rs.getInt("shuliang"));
-		yaoxiang.setRiqi(rs.getString("riqi"));
-		yaoxiang.setZhuangtai(rs.getInt("zhuangtai"));
-		// 药品详情
-		if(yaoxiang.getYaopingID() > 0) {
-			yaoxiang.setYaoping(YaopingDao.findByYaopingID(yaoxiang.getYaopingID()));
-		}
-		// 仓库详情
-		if (yaoxiang.getCangKuID() > 0 ) {
-			yaoxiang.setCangku(CangkuDao.findBycangkuID(yaoxiang.getCangKuID()));
-		}
-//		//库存详情
-//		if (kucun.getDingdanID() > 0) {
-//			Dingdan dingdan = new Dingdan();
-//			dingdan.setDingdanID(kucun.getDingdanID());
-//			kucun.setDingdan(DingdanDao.findDingdanByPK(dingdan));
-//		}
-		return yaoxiang;
-	}
-	
-	
-	
-	// 查找所有
-	public static List<Yaoxiang> findALLYaoxiang(){
-		try {
-			List<Yaoxiang> list = new ArrayList<>();
-			//开启数据库链接
-			Connection connection = ProjectShare.getDbPool().getConnection();
-			
-			String sql = "select * from yaoxiang where 1=1";
-			//返回数据库结果集
-			ResultSet rs = ProjectShare.getDbPool().query(connection, sql);
-			//循环结果集，一个个填充入List<Dingdan>
-			while(rs.next()){
-				//把结果集填入Dingdan对象
-				Yaoxiang Kucun = converyaoxiang(rs);
-				list.add(Kucun);
-			}
-			//结果集关闭
-			rs.close();
-			//数据量链接关闭
-			ProjectShare.getDbPool().closeConnection(connection);
-			
-			return list;
-			//异常
-		} catch (Exception e) {
-			// TODO: handle exception
-			ProjectShare.log("dingdan.findALL error: "+e.getMessage());
-			return null;
-		}
-	}
-	
-	/**
-	 * 
-	 * @param yaoping 
-	 * @param cangkuID 
-	 * @return 数据少于预警设置数量的库存列表
-	 */
-	//详细写一下？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？-->每一句注解我都写出来：主要是根据仓库ID和yaopingID获取库存中对应的信息
-	public static  Yaoxiang findAllMinshuliang(int cangkuID, int yaopingID){
-		try {
-			//创建yaoxiang实例
-			Yaoxiang yaoxiang = new Yaoxiang();
-			//创建数据库链接
-			Connection connection = ProjectShare.getDbPool().getConnection();
-			//创建sql语句--->select * from yaoxiang where cangkuID=传进来的cangkuID and yaopingID = 传进来的yaopingID
-			String sql = "select * from yaoxiang where cangkuID='"+cangkuID+"'" + " and yaopingID=" + yaopingID;
-			//执行sql语句，并发挥resultset数据集
-			ResultSet rs = ProjectShare.getDbPool().query(connection, sql);
-			//遍历rs数据集中的对象
-			while(rs.next()){
-				//讲获取出来的数据设置到yaoxiang对象中
-				yaoxiang = converyaoxiang(rs);
-				
-			}
-			//关闭rs对象流
-			rs.close();
-			//关闭数据库链接对象
-			ProjectShare.getDbPool().closeConnection(connection);
-			//返回库存信息
-			return yaoxiang;
-			
-		} catch (Exception e) {
-			//如果执行错误，会执行到这里，并记录日志
-			ProjectShare.log("yaoxiang.findALL error: "+e.getMessage());
-			return null;
-		}
-	
-	}
-	
-	// 没有实现数据库数量操作以及状态？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？
-	public static boolean save(Yaoxiang yaoxiang) {
+	// 新增或者修改。当药箱ID已经存在，说明记录在表中存在就应该执行更新
+	public static boolean save(Yaoxiang cangku) {
 		try {
 			String sql = null;
-			if (yaoxiang.getYaoxiangID() > 0) {
+			if (cangku.getYaoxiangID() > 0) {
 				// 执行修改
-				sql = "update yaoxaing set yaopingID= '" + yaoxiang.getYaopingID()
-						+ "',cangkuID='" + yaoxiang.getCangKuID()
-						/*+ "',dingdanID='" + yaoxiang.getDingdanID()*/
-						+ "',shuliang='" + yaoxiang.getShuliang() + "',riqi='"
-						+ yaoxiang.getRiqi() + "',zhuangtai="
-						+ yaoxiang.getZhuangtai() + " where yaoxiangID="
-						+ yaoxiang.getYaoxiangID();
+				sql = "update yaoxiang set yaoxiangMingzi= '"
+						+ cangku.getYaoxiangMingzi() + "' where yaoxiangID="
+						+ cangku.getYaoxiangID();
 			} else {
 				// 执行新增
-				sql = "insert into yaoxaing(yaopingID,cangkuID,dingdanID,shuliang,riqi,zhuangtai)";
-				sql += " values('" + yaoxiang.getYaopingID() + "','"
-						+ yaoxiang.getCangKuID() + "','"
-						+ yaoxiang.getDingdanID() + "','"
-						+ yaoxiang.getShuliang() + "','"
-						+ yaoxiang.getRiqi() + "','"
-						+ yaoxiang.getZhuangtai() + "')";
+				sql = "insert into yaoxiang(yaoxiangMingzi)";
+				sql += " values('" + cangku.getYaoxiangMingzi() + "')";
 
 			}
-			System.out.print(sql);
+			// System.out.print(sql);
 			Connection connection = ProjectShare.getDbPool().getConnection();
 			ProjectShare.getDbPool().transaction(connection, true);
 			ProjectShare.getDbPool().update(connection, sql);
@@ -151,86 +45,8 @@ public class YaoxiangDao {
 			return false;
 		}
 	}
-	
-	/*
-	 * 根据订单ID获取库存
-	 */
-	public static Yaoxiang findYaoxiangBydingdanID(int dingdanID){
-		try {
-			Yaoxiang yaoxiang = new Yaoxiang();
-			Connection connection = ProjectShare.getDbPool().getConnection();
-			String sql = "select * from yaoxiang where dingdanID='"+dingdanID+"'";
-			ResultSet rs = ProjectShare.getDbPool().query(connection, sql);
-			while(rs.next()){
-				yaoxiang = converyaoxiang(rs);
-				
-			}
-			rs.close();
-			
-			ProjectShare.getDbPool().closeConnection(connection);
-			
-			return yaoxiang;
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			ProjectShare.log("yaoxiang.findALL error: "+e.getMessage());
-			return null;
-		}
-	}
 
-	/*
-	 * 根据主键ID获取库存
-	 */
-	public static Yaoxiang findYaoxiangByPK(int yaoxiangID){
-		try {
-			Yaoxiang yaoxiang = new Yaoxiang();
-			Connection connection = ProjectShare.getDbPool().getConnection();
-			String sql = "select * from yaoxiang where yaoxiang='"+yaoxiangID+"'";
-			ResultSet rs = ProjectShare.getDbPool().query(connection, sql);
-			while(rs.next()){
-				yaoxiang = converyaoxiang(rs);
-				
-			}
-			rs.close();
-			
-			ProjectShare.getDbPool().closeConnection(connection);
-			
-			return yaoxiang;
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			ProjectShare.log("yaoxiang.findALL error: "+e.getMessage());
-			return null;
-		}
-	}
-	
-	
-	/*
-	 * 根据yaopingID,cangkuID,dingdanID获取库存
-	 */
-	public static Yaoxiang findYaoxiangByYaopingkuCunID(int yaopingID,int cangkuID){
-		try {
-			Yaoxiang yaoxiang = new Yaoxiang();
-			Connection connection = ProjectShare.getDbPool().getConnection();
-			String sql = "select * from yaoxiang where yaopingID='"+yaopingID+"' and cangkuID='" +cangkuID + "'";
-			ResultSet rs = ProjectShare.getDbPool().query(connection, sql);
-			while(rs.next()){
-				yaoxiang = converyaoxiang(rs);
-				
-			}
-			rs.close();
-			
-			ProjectShare.getDbPool().closeConnection(connection);
-			
-			return yaoxiang;
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			ProjectShare.log("yaoxiang.findALL error: "+e.getMessage());
-			return null;
-		}
-	}
-	
+	// 删除
 	public static boolean delete(int yaoxiangID) {
 		try {
 			Connection connection = ProjectShare.getDbPool().getConnection();
@@ -244,75 +60,66 @@ public class YaoxiangDao {
 
 		} catch (Exception e) {
 			// TODO: handle exception
-			ProjectShare.log("yaoxiang .delete error: " + e.getMessage());
+			ProjectShare.log("yaoxiang.delete error: " + e.getMessage());
 			return false;
 		}
 	}
 
-	/*
-	 * 总入出库明细
-	 */
+	// 查找所有
 	public static List<Yaoxiang> findALL() {
-		List<Yaoxiang> list = new ArrayList<>();
 		try {
+			List<Yaoxiang> list = new ArrayList<>();
+			// 开启数据库链接
 			Connection connection = ProjectShare.getDbPool().getConnection();
-			// 主要是状态是怎么，下面这句话解释下？？？？？？？？1入库2出库 数据库中zhuangtai 1是入库 2是出库 在保存的时候 生成
 
-			String sql = "select * from yaoxiang where zhuangtai in (1,2)";
+			String sql = "select * from yaoxiang";
+			// 返回数据库结果集
 			ResultSet rs = ProjectShare.getDbPool().query(connection, sql);
+			// 循环结果集，一个个填充入List<cangku>
 			while (rs.next()) {
-				Yaoxiang yaoxiang = converyaoxiang(rs);
+				Yaoxiang yaoxiang = new Yaoxiang();
+				yaoxiang.setYaoxiangID(rs.getInt("yaoxiangID"));
+				yaoxiang.setYaoxiangMingzi(rs.getString("yaoxiangMingzi"));
+				// list添加然后去了哪？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？
 				list.add(yaoxiang);
-				System.out.println(yaoxiang.toString());
 			}
+			// 结果集关闭
 			rs.close();
-
+			// 数据量链接关闭
 			ProjectShare.getDbPool().closeConnection(connection);
 
-			return list;
-
+			return list;// 找到所有供应商列表，返回给cangkuController
+			// 异常
 		} catch (Exception e) {
 			// TODO: handle exception
 			ProjectShare.log("yaoxiang.findALL error: " + e.getMessage());
-			return list;
+			return null;
 		}
 	}
 
-
-	/*
-	 * 汇总表
-	 */
-	// 为什么库存调拨单里面有汇总，分开写？？汇总表和挑拨单都是在yaoxiang这张表操作的
-	/*public static List<KucunJisuang> findSum() {
+	// caigoudingdan
+	// xiaoshoudingdan，cangkushezhi表没有仓库名字，只有cangkuID，用cangkuID获取cangku，再获取名字，返回到这三表的DAO，用于显示名字
+	// 订单列表，需要展示仓库，所以到这边查找
+	public static Yaoxiang findBycangkuID(int yaoxiangID) {
+		Yaoxiang yaoxiang = null;
 		try {
-			List<KucunJisuang> list = new ArrayList<>();
 			Connection connection = ProjectShare.getDbPool().getConnection();
-
-			String sql = "SELECT ininven.yaopingID,ininven.yaopingMingzi,ininven.yaopingDanwei,ininven.ininvensum,outinven.outinvensum,ininven.ininvensum-outinven.outinvensum as inoutinven FROM "
-					+ "(SELECT yaoxiang.yaopingID,yaoxiang.yaopingMingzi,yaoxiang.yaopingDanwei,SUM(yaoxiang.shuliang) as ininvensum FROM yaoxiang WHERE yaoxiang.zhuangtai=1 group by yaoxiang.yaopingID) as ininven "
-					+ "JOIN (SELECT yaoxiang.yaopingID, SUM(yaoxiang.shuliang)  as outinvensum FROM yaoxiang WHERE yaoxiang.zhuangtai=2 group by yaoxiang.yaopingID) as outinven ON outinven.yaopingID=ininven.yaopingID";
+			String sql = "select * from yaoxiang where yaoxiangID="
+					+ yaoxiangID;
 			ResultSet rs = ProjectShare.getDbPool().query(connection, sql);
-			while (rs.next()) {
-				KucunJisuang kucunSum = new KucunJisuang();
-				kucunSum.setYaopingID(rs.getInt("yaopingID"));
-				kucunSum.setYaopingMingzi(rs.getString("yaopingMingzi"));
-				kucunSum.setYaopingDanwei(rs.getString("yaopingDanwei"));
-				kucunSum.setZongruku(rs.getInt("ininvensum"));
-				kucunSum.setZongchuku(rs.getInt("outinvensum"));
-				kucunSum.setShengyushu(rs.getInt("inoutinven"));
-				list.add(kucunSum);
+			if (rs.next()) {
+				yaoxiang = new Yaoxiang();
+				yaoxiang.setYaoxiangID(rs.getInt("yaoxiangID"));
+				yaoxiang.setYaoxiangMingzi(rs.getString("yaoxiangMingzi"));
+
 			}
 			rs.close();
-
 			ProjectShare.getDbPool().closeConnection(connection);
-
-			return list;
-
+			return yaoxiang;
 		} catch (Exception e) {
 			// TODO: handle exception
-			ProjectShare.log("kucun.findSum error: " + e.getMessage());
+			ProjectShare.log("cangku findBycangkuID error: " + e.getMessage());
 			return null;
 		}
-	}*/
-
+	}
 }

@@ -34,7 +34,7 @@ public class YaopingDao {
 		yaoping.setGongyingshangMingzi(rs.getString("gongyingshangMingzi"));
 		yaoping.setShuliang(rs.getInt("shuliang"));
 		yaoping.setCangkuID(rs.getInt("cangkuID"));
-		yaoping.setCangku(CangkuDao.findBycangkuID(yaoping.getCangkuID()));
+		yaoping.setCangku(YaoxiangDao.findBycangkuID(yaoping.getCangkuID()));
 		return yaoping;
 		//把数据库查到的数据填充到yaoping这个对象中  返回给使用对象，与findALL()有关吗，findALL()中也返回给yaopingController
 	}

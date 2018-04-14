@@ -12,7 +12,14 @@
 		<h1>用户管理</h1>
 	</div>
 	<div class="main-content-inner">
-
+		
+		<form id="searchForm" class="form-inline" role="form" onsubmit="return false">
+            <div class="form-group">
+                <label class="form-label">用户名:</label>
+                <input type="text" class="form-control" name="yonghuMingzi">
+            </div>
+            <button id="search" class="btn1 btn-primary1">查询</button>
+        </form>
 
 		<div class="col-xs-12">
 			<div class="table-header">
@@ -57,21 +64,11 @@
 				class="table table-striped table-bordered table-hover dataTable no-footer"
 				role="grid">
 				<tr>
-					<td style="width: 80px;"><label for="zhiwu">职务</label></td>
-					<td><select id="yonghuupdateyonghuZhiwu" name="zhiwu"
-						data-placeholder="选择职务" style="width: 170px;">
-							<option value="0">老板</option>
-							<option value="1">采购员</option>
-							<option value="2">销售员</option>
-							<option value="3">财务</option>
-							<option value="4">仓管员</option>
-					</select></td>
-				</tr>
-				<tr>
 					<td><label for="yonghuMingzi">名称</label></td>
 					<input type="hidden" name="yonghuID" id="yonghuID" />
 					<input type="hidden" name="cls" id="cls" value="YonghuController" />
 					<input type="hidden" name="mtd" id="mtd" value="update" />
+					<input type="hidden" name="zhiwu" id="zhiwu" value="0" />
 					<td><input type="text" name="yonghuMingzi"
 						id="yonghuupdateyonghuMingzi" value=""
 						class="text ui-widget-content ui-corner-all"></td>
@@ -102,19 +99,10 @@
 				class="table table-striped table-bordered table-hover dataTable no-footer"
 				role="grid">
 				<tr>
-					<td style="width: 80px;"><label for="zhiwu">职务</label></td>
-					<td><select id="deptSelectId" name="zhiwu" data-placeholder="选择职务" style="width: 170px;">
-							<option value="0">老板</option>
-							<option value="1">采购员</option>
-							<option value="2">销售员</option>
-							<option value="3">财务</option>
-							<option value="4">仓管员</option>
-					</select></td>
-				</tr>
-				<tr>
 					<td><label for="yonghuMingzi">名称</label></td>
 					<input type="hidden" name="cls" id="cls" value="YonghuController" />
 					<input type="hidden" name="mtd" id="mtd" value="save" />
+					<input type="hidden" name="zhiwu" id="zhiwu" value="0" />
 					<td><input type="text" name="yonghuMingzi" id="yonghuMingzi"
 						value="" class="text ui-widget-content ui-corner-all"></td>
 				</tr>
@@ -173,6 +161,10 @@
 			Mustache.parse(yonghuListTemplate);
 
 			loadyonghuList();
+			
+			$("#search").click(function(){
+				loadyonghuList();
+			});
 
 			// 添加用户
 			$(".yonghu-add").click(function() {
@@ -197,13 +189,19 @@
 			});
 			
 			function loadyonghuList() {
+				var searchForm = $("#searchForm");
+				var searchParam = {
+					yonghuMingzi: searchForm.find("input[name='yonghuMingzi']").val()
+				};
+				var mtd = {
+					cls : 'YonghuController',
+					mtd : 'getAll'
+				}
+				var params = $.extend({},searchParam,mtd);
 				var url = "${pageContext.request.contextPath }/cs";
 				$.ajax({
 					url : url,
-					data : {
-						cls : 'YonghuController',
-						mtd : 'getAll'
-					},
+					data : params,
 					success : function(result) {
 						renderyonghuListAndPage(result);
 					}
