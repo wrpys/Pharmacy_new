@@ -142,11 +142,11 @@
 				</a> <b class="arrow"></b>
 
 					<ul class="submenu">
-						<li class="xiaoshouyuan caiwu cangguanyuan caigourenyuan"><a class="popstyle" href="caigouhuizongshenhe.jsp"
+						<li class="xiaoshouyuan caiwu cangguanyuan caigourenyuan"><a class="popstyle" href="caigouhuizong.jsp"
 							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
 								采购汇总
 						</a> <b class="arrow"></b></li>
-						<li class="xiaoshouyuan caiwu cangguanyuan caigourenyuan"><a class="popstyle" href="xiaoshouhuizongshenhe.jsp"
+						<li class="xiaoshouyuan caiwu cangguanyuan caigourenyuan"><a class="popstyle" href="xiaoshouhuizong.jsp"
 							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
 								销售汇总
 						</a> <b class="arrow"></b></li>

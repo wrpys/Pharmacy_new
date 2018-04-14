@@ -117,7 +117,7 @@ $(function () {
     $(".yaoxiang-add").click(function() {
     	$("#dialog-yonghusave-form").dialog({
             modal: true,
-            title: "新增仓库",
+            title: "新增药箱",
             open: function (event, ui) {
                 $("#yonghusaveForm")[0].reset();
                 $(".ui-dialog-titlebar-close", $(this).parent()).hide(); // 点开时隐藏关闭按钮 
@@ -140,7 +140,7 @@ $(function () {
 			var yaoxiangMingzi = $(this).attr("data-yaoxiangMingzi"); 
             $("#dialog-yonghuupdate-form").dialog({
                 modal: true,
-                title: "编辑仓库",
+                title: "编辑药箱",
                 open: function (event, ui) {
                     $("#yonghuupdateForm")[0].reset();
                     $(".ui-dialog-titlebar-close", $(this).parent()).hide(); // 点开时隐藏关闭按钮                 

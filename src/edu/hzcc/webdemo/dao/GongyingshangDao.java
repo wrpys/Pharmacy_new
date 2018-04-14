@@ -51,7 +51,7 @@ public class GongyingshangDao {
 				sql = "insert into gongyingshang(gongyingshangMingzi,mingzi,dianhua)";
 				sql += " values('" + gongyingshang.getGongyingshangMingzi()
 						+ "','" + gongyingshang.getMingzi() + "','"
-						+ gongyingshang.getMingzi() + "')";
+						+ gongyingshang.getDianhua() + "')";
 
 			}
 			System.out.print(sql);

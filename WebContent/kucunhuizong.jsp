@@ -9,7 +9,7 @@
 
 <div class="page-header">
     <h1>
-       	仓库管理
+       	仓库汇总查询
     </h1>
 </div>
 <div class="main-content-inner">
@@ -17,7 +17,7 @@
     
         <div class="col-xs-12">
             <div class="table-header">
-              仓库汇总表&nbsp;&nbsp;
+              仓库汇总列表&nbsp;&nbsp;
                 
             </div>
             <div>

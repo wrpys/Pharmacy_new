@@ -61,7 +61,7 @@
 							<th tabindex="0" aria-controls="dynamic-table" rowspan="1"
 								colspan="1">客户</th>
 							<th tabindex="0" aria-controls="dynamic-table" rowspan="1"
-								colspan="1">仓库</th>
+								colspan="1">药箱</th>
 							<th tabindex="0" aria-controls="dynamic-table" rowspan="1"
 								colspan="1">日期</th>
 							<th tabindex="0" aria-controls="dynamic-table" rowspan="1"
@@ -103,9 +103,9 @@
 						data-placeholder="选择药品" style="width: 170px;"></select></td>
 				</tr>
 				<tr>
-					<td><label for="yaoxiangID">仓库</label></td>
+					<td><label for="yaoxiangID">药箱</label></td>
 					<td><select class="yaoxiang-list" name="yaoxiangID"
-						data-placeholder="选择仓库" style="width: 170px;"></select></td>
+						data-placeholder="选择药箱" style="width: 170px;"></select></td>
 				</tr>
 				<tr>
 					<td><label for="danjia">单价</label></td>
@@ -148,10 +148,10 @@
 						data-placeholder="选择药品" style="width: 170px;"></select></td>
 				</tr>
 				<tr>
-					<td><label for="yaoxiangID">仓库</label></td>
+					<td><label for="yaoxiangID">药箱</label></td>
 					<td><select class="yaoxiang-list"
 						id="dialog-updateuser-formyaoxiangID" name="yaoxiangID"
-						data-placeholder="选择仓库" style="width: 170px;"></select></td>
+						data-placeholder="选择药箱" style="width: 170px;"></select></td>
 				</tr>
 				<tr>
 					<td><label for="danjia">单价</label></td>
@@ -217,7 +217,7 @@
 {{/kehuList}}
 </script>
 
-<!-- 仓库下拉列表 -->
+<!-- 药箱下拉列表 -->
 <script id="yaoxiangTemplate" type="x-tmpl-mustache">
 {{#yaoxiangList}}
 <option value="{{yaoxiangID}}">{{yaoxiangMingzi}}</option>
@@ -465,7 +465,7 @@
 					}
 				});
 			}
-			//加载保存和修改弹出框的仓库下拉信息 
+			//加载保存和修改弹出框的药箱下拉信息 
 			function yaoxiangSelect() {
 				$.ajax({
 					url : "${pageContext.request.contextPath }/cs",

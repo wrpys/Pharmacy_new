@@ -12,7 +12,7 @@
 
 <div class="page-header">
     <h1>
-       	库存管理
+       	药箱库存查询
     </h1>
 </div>
 <div class="main-content-inner">
@@ -20,7 +20,7 @@
     
         <div class="col-xs-12">
             <div class="table-header">
-                库存列表&nbsp;&nbsp;
+                药箱库存列表&nbsp;&nbsp;
                 <!-- <a class="green" href="#">
                     <i class="ace-icon fa fa-plus-circle orange bigger-130 user-add"></i>
                 </a> -->
@@ -43,19 +43,13 @@
                                  药品单位
                             </th>
                             <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
-                                 仓库名
+                                 药箱
                             </th>
                             <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
                                  库存
                             </th>
                             <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
                                日期
-                            </th>
-<!--                             <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
-                                状态
-                            </th> -->
-                            <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="">
-                               操作
                             </th>
                         </tr>
                         </thead>
@@ -78,7 +72,7 @@
             </tr>
             
             <tr>
-                <td><label for="yaoxiangMingzi">仓库名字</label></td>
+                <td><label for="yaoxiangMingzi">药箱名字</label></td>
                 <input type="hidden" name="cls" id="cls" value="KucunController"/>
                 <input type="hidden" name="mtd" id="mtd" value="update"/>
                 <input type="hidden" name="yaoxiangID" id="yaoxiangID"/>
@@ -153,25 +147,6 @@
 	<td>{{yaoxiang.yaoxiangMingzi}}</td>
     <td>{{shuliang}}</td>
 	<td>{{riqi}}</td>
-	<!-- <td>{{#bold}}{{complete}}{{/bold}}</td>	 -->
-    <td>
-        <div class="hidden-sm hidden-xs action-buttons">
-            <a class="green user-edit" href="#" data-yaopingID="{{yaopingID}}"
- 												data-yaopingMingzi="{{yaoping.yaopingMingzi}}"
- 												data-yaopingBianhao="{{yaoping.yaopingBianhao}}"
- 												data-yaopingDanwei="{{yaoping.yaopingDanwei}}"
- 												data-shuliang="{{shuliang}}"
- 												data-riqi="{{riqi}}"
-												data-complete="{{complete}}"
-												data-yaoxiangMingzi="{{yaoxiang.yaoxiangMingzi}}"
-												data-yaoxiangID="{{yaoxiang.yaoxiangID}}"
-												data-dingdanID="{{dingdanID}}"
-												data-kucunID="{{kucun.kucunID}}"
-												data-dingdanleixing="{{dingdanleixing}}">
-                <i class="ace-icon fa fa-pencil bigger-100"></i> 
-            </a>
-        </div>
-    </td>
 </tr>
 {{/userList}}
 </script>

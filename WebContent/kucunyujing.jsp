@@ -9,7 +9,7 @@
 
 <div class="page-header">
     <h1>
-       	库存预警
+       	药箱预警
     </h1>
 </div>
 <div class="main-content-inner">
@@ -17,7 +17,7 @@
     
         <div class="col-xs-12">
             <div class="table-header">
-              库存预警表&nbsp;&nbsp;
+              药箱预警列表&nbsp;&nbsp;
                 
             </div>
             <div>
@@ -38,7 +38,6 @@
                             <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
                                  库存数
                             </th>
-                            <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="">操作</th>
                         </tr>
                         </thead>
                         <tbody id="userList"></tbody>
@@ -60,17 +59,6 @@
     <td>{{yaoping.yaopingMingzi}}</td>
     <td>{{yaoping.yaopingDanwei}}</td>
 	<td>{{kucun.shuliang}}</td>
-	<td>
-        <div class="hidden-sm hidden-xs action-buttons">
-            <a class="green user-edit" href="#" data-yaopingID="{{yaopingID}}"
- 												data-yaopingBianhao="{{yaoping.yaopingBianhao}}"
- 												data-yaopingMingzi="{{yaoping.yaopingMingzi}}"
- 												data-yaopingDanwei="{{yaoping.yaopingDanwei}}"
- 												data-shuliang="{{shuliang}}"
-                <i class="ace-icon fa fa-pencil bigger-100"></i> 
-            </a>
-        </div>
-    </td>
 </tr>
 {{/userList}}
 </script>
@@ -117,7 +105,7 @@ $(function () {
     			var zuishaoshuliang = $(this).attr("data-zuishaoshuliang"); 
                 $("#dialog-updateuser-form").dialog({
                     modal: true,
-                    title: "编辑用户",
+                    title: "编辑药箱预警",
                     open: function (event, ui) {
                          
                         

@@ -22,53 +22,50 @@
                     <i class="ace-icon fa fa-plus-circle orange bigger-130 user-add"></i>
                 </a>
             </div>
-            <div class="row">
-                <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline no-footer">
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <div id="dynamic-table_filter" class="dataTables_filter"><label>
-                                搜索/药品名字:
-                                <input type="search" class="form-control input-sm searchID" placeholder="" aria-controls="dynamic-table"></label></div>
-                        </div>
+            <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline no-footer">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div id="dynamic-table_filter" class="dataTables_filter"><label>
+                            搜索/药品名字:
+                            <input type="search" class="form-control input-sm searchID" placeholder="" aria-controls="dynamic-table"></label></div>
                     </div>
-                    <table id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid"
-                           aria-describedby="dynamic-table_info" style="font-size:14px">
-                        <thead>
-                        <tr role="row">
-                            <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
-          		药品编号
-                            </th>
-                            <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
-                                名称
-                            </th>
-                            <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
-                               单位 
-                            </th>
+                </div>
+                <table id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid"
+                       aria-describedby="dynamic-table_info" style="font-size:14px">
+                    <thead>
+                    <tr role="row">
+                        <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
+      		药品编号
+                        </th>
+                        <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
+                            名称
+                        </th>
+                        <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
+                           单位 
+                        </th>
 
-                            <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
-                                 有效期/天
-                            </th>
-                           <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
-                                进价
-                            </th>
+                        <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
+                             有效期/天
+                        </th>
+                       <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
+                            进价
+                        </th>
 
-                              <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
-                                供应商
-                            </th>
-                            <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
-                                药箱
-                            </th>
-                            <th class="sorting_disabled" rowspan="1" colspan="1" aria-label=""></th>
-                        </tr>
-                        </thead>
-                        <tbody id="userList"></tbody>
-                    </table>
-                    <div class="row" id="userPage">
-                    </div>
+                          <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
+                            供应商
+                        </th>
+                        <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
+                            药箱
+                        </th>
+                        <th class="sorting_disabled" rowspan="1" colspan="1" aria-label=""></th>
+                    </tr>
+                    </thead>
+                    <tbody id="userList"></tbody>
+                </table>
+                <div class="row" id="userPage">
                 </div>
             </div>
         </div>
-    
 </div>
 
 <div id="dialog-saveuser-form" style="display: none;">
@@ -153,7 +150,7 @@
             <tr>
                 <td><label for="yaoxiangMingzi"> 药箱</label></td>
                 <td><select class="yaoxiang-list" id="updateuseryaoxiangMingzi" name="yaoxiangID"
-						data-placeholder="选择仓库" style="width: 170px;">
+						data-placeholder="选择药箱" style="width: 170px;">
 					</select></td>
             </tr>
         </table>
@@ -193,7 +190,7 @@
 {{/userList}}
 </script>
 
-<!-- 仓库下拉列表 -->
+<!-- 药箱下拉列表 -->
 <script id="yaoxiangTemplate" type="x-tmpl-mustache">
 {{#yaoxiangList}}
 <option value="{{yaoxiangID}}">{{yaoxiangMingzi}}</option>
@@ -399,7 +396,7 @@ $(function () {
         bindUserClick()
     } 
      
-  //加载保存和修改弹出框的仓库下拉信息 
+  //加载保存和修改弹出框的药箱下拉信息 
     function yaoxiangSelect() {
 		$.ajax({
 			url: "${pageContext.request.contextPath }/cs",

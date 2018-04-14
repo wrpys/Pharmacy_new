@@ -9,7 +9,7 @@
 
 <div class="page-header">
     <h1>
-       预警设置
+       药箱预警设置
     </h1>
 </div>
 <div class="main-content-inner">
@@ -17,7 +17,7 @@
     
         <div class="col-xs-12">
             <div class="table-header">
-                预警设置列表&nbsp;&nbsp;
+                药箱预警设置列表&nbsp;&nbsp;
                 <a class="green" href="#">
                     <i class="ace-icon fa fa-plus-circle orange bigger-130 user-add"></i>
                 </a>
@@ -33,7 +33,7 @@
          ID
                             </th> -->
                            <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
-        仓库
+        药箱
                             </th>
                             <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
          药品名称
@@ -59,9 +59,9 @@
     <form id="saveuserForm">
         <table class="table table-striped table-bordered table-hover dataTable no-footer" role="grid">
             <tr>
-                <td style="width: 80px;"><label for="duties">仓库</label></td>
+                <td style="width: 80px;"><label for="duties">药箱</label></td>
                 <td>
-                    <div id="dialog-saveuser-formselete"></div>
+                	<select id="dialog-saveuser-formselete" name="yaoxiangID" data-placeholder="选择" style="width: 200px;"></select>
                 </td>
             </tr>
 	
@@ -84,9 +84,9 @@
     <form id="updateuserForm">
                     <table class="table table-striped table-bordered table-hover dataTable no-footer" role="grid">
             <tr>
-                <td style="width: 80px;"><label for="duties">仓库</label></td>
+                <td style="width: 80px;"><label for="duties">药箱</label></td>
                 <td>
-                    <div id="dialog-updateuser-formselete"></div>
+                	<select id="dialog-updateuser-formselete" name="yaoxiangID" data-placeholder="选择药箱" style="width: 170px;"></select>
                 </td>
             </tr>
 	
@@ -121,6 +121,7 @@
 			data-yaopingID="{{yaopingID}}"
 			data-yaopingMingzi="{{yaoping.yaopingMingzi}}"
 			data-yaopingBianhao="{{yaoping.yaopingBianhao}}"
+			data-yaoxiangID="{{yaoxiangID}}"
 			data-zuishaoshuliang="{{zuishaoshuliang}}">
                 <i class="ace-icon fa fa-pencil bigger-100"></i>
             </a>
@@ -133,13 +134,10 @@
 {{/userList}}
 </script>
 
-
 <script id="Template" type="x-tmpl-mustache">
-<select id="deptSelectId" name="yaoxiangID" data-placeholder="选择" style="width: 200px;">
 {{#yaoxiang}}
 <option value="{{yaoxiangID}}">{{yaoxiangMingzi}}</option>
 {{/yaoxiang}}
-</select>
 </script>
 
 <!-- 药品下拉列表 -->
@@ -185,7 +183,7 @@ $(function () {
     $(".user-add").click(function () {
         $("#dialog-saveuser-form").dialog({
             modal: true,
-            title: "新增",
+            title: "新增药箱预警设置",
             open: function (event, ui) {
                 $(".ui-dialog-titlebar-close", $(this).parent()).hide(); // 点开时隐藏关闭按钮
                 $("#saveuserForm")[0].reset();
@@ -213,21 +211,19 @@ $(function () {
             var yaoxiangsheziid = $(this).attr("data-id"); // 选中的部门id
 			var yaopingID = $(this).attr("data-yaopingID"); 
 			var zuishaoshuliang = $(this).attr("data-zuishaoshuliang"); 
+			var yaoxiangID = $(this).attr("data-yaoxiangID"); 
             $("#dialog-updateuser-form").dialog({
                 modal: true,
-                title: "编辑用户",
+                title: "编辑药箱预警设置",
                 open: function (event, ui) {
-                     
-                    
                     $(".ui-dialog-titlebar-close", $(this).parent()).hide(); // 点开时隐藏关闭按钮
 					$("#updateuserForm")[0].reset();
 					updateuserrecursiveRenderDeptSelect();
 					yaopingSelect();
                    $("#yaoxiangsheziid").val(yaoxiangsheziid); 
-                   		$("#updateuseryaopingID").val(yaopingID);
-					 $("#updateuserzuishaoshuliang").val(zuishaoshuliang);
-		
-                    
+                   $("#updateuseryaopingID").val(yaopingID);
+					$("#updateuserzuishaoshuliang").val(zuishaoshuliang);
+                   	$("#dialog-updateuser-formselete").val(yaoxiangID);
                 },
                 buttons: {
                     "更新": function (e) {
@@ -292,28 +288,28 @@ $(function () {
             }
         });
     }
-        //获取所有仓库，并给在保存弹出框的仓库的下拉框赋值
+        //获取所有药箱，并给在保存弹出框的药箱的下拉框赋值
     function saveuserrecursiveRenderDeptSelect() {
 		$.ajax({
 			url: "${pageContext.request.contextPath }/cs",
 			data:{cls:'YaoxiangController',mtd:'findAll'},
 			type: 'POST',
+			async : false,
 			success: function (result) {
-				
 				var rendered = Mustache.render(Template, {"yaoxiang": result.yaoxiang});
 		         $('#dialog-saveuser-formselete').html(rendered);
 			}
 		});
 	   
     }    
-  //获取所有仓库，并给在更新弹出框的仓库的下拉框赋值
+  //获取所有药箱，并给在更新弹出框的药箱的下拉框赋值
 	function updateuserrecursiveRenderDeptSelect() {
 		$.ajax({
 			url: "${pageContext.request.contextPath }/cs",
-			data:{cls:'YoxiangController',mtd:'findAll'},
+			data:{cls:'YaoxiangController',mtd:'findAll'},
 			type: 'POST',
+			async : false,
 			success: function (result) {
-				
 				var rendered = Mustache.render(Template, {"yaoxiang": result.yaoxiang});
 		         $('#dialog-updateuser-formselete').html(rendered);
 			}
