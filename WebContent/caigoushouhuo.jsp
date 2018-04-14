@@ -69,8 +69,8 @@
 									colspan="1">日期</th>
 								<th tabindex="0" aria-controls="dynamic-table" rowspan="1"
 									colspan="1">状态</th>
-								<th class="sorting_disabled" rowspan="1" colspan="1"
-									aria-label="">操作</th>
+								<!-- <th class="sorting_disabled" rowspan="1" colspan="1"
+									aria-label="">操作</th> -->
 							</tr>
 						</thead>
 						<tbody id="userList"></tbody>
@@ -185,7 +185,7 @@
 	<td>{{yaoxiang.yaoxiangMingzi}}</td>
 	<td>{{riqi}}</td>
 	<td>{{#bold}}{{complete}}{{/bold}}</td>	
-    <td>
+    <!--<td>
         <div class="hidden-sm hidden-xs action-buttons">
             <a class="green user-edit" href="#" data-id="{{dingdanID}}"
 												data-dingdanBianhao="{{dingdanBianhao}}"
@@ -201,7 +201,7 @@
                     <i class="ace-icon fa fa-trash-o bigger-100"></i>
              </a>
         </div>
-    </td>
+    </td> -->
 </tr>
 {{/userList}}
 </script>

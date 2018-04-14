@@ -92,8 +92,6 @@ public class XiaoshouchuhuoController extends ControllerBase{
 		Kuncun kucun=new Kuncun();
 		//获取yaopingID
 		int yaopingID=getParameterInt("yaopingID");
-		// 在DingdanDao中数据库操作 新增一个订单,返回dingdanID
-		int dingdanID = DingdanDao.saveAndReturnPK(caigoudingdan);
 		//获取yaoxiangId
 		int yaoxiangID=getParameterInt("yaoxiangID");
 		//根据库存ID获取库存实体信息
@@ -116,6 +114,8 @@ public class XiaoshouchuhuoController extends ControllerBase{
 			writeJson(jsonObject.toString());
 			return;
 		}
+		// 在DingdanDao中数据库操作 新增一个订单,返回dingdanID
+		int dingdanID = DingdanDao.saveAndReturnPK(caigoudingdan);
 		kucun.setYaopingID(getParameterInt("yaopingID"));
 		kucun.setYaoxiangID(getParameterInt("yaoxiangID"));
 		kucun.setDingdanID(dingdanID);

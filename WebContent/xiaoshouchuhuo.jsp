@@ -66,8 +66,8 @@
 								colspan="1">日期</th>
 							<th tabindex="0" aria-controls="dynamic-table" rowspan="1"
 								colspan="1">状态</th>
-							<th class="sorting_disabled" rowspan="1" colspan="1"
-								aria-label="">操作</th>
+							<!-- <th class="sorting_disabled" rowspan="1" colspan="1"
+								aria-label="">操作</th> -->
 						</tr>
 					</thead>
 					<tbody id="userList"></tbody>
@@ -182,7 +182,7 @@
 	<td>{{yaoxiang.yaoxiangMingzi}}</td>
 	<td>{{riqi}}</td>
 	<td>{{#bold}}{{complete}}{{/bold}}</td>	
-    <td>
+    <!--  <td>
         <div class="hidden-sm hidden-xs action-buttons">
             <a class="green user-edit" href="#" data-id="{{dingdanID}}"
 												data-dingdanBianhao="{{dingdanBianhao}}"
@@ -194,11 +194,11 @@
 												data-kehuID="{{yaoxiangID}}">
                 <!-- <i class="ace-icon fa fa-pencil bigger-100"></i> -->
             </a>
-             <a class="red user-delete" href="#" data-id="{{dingdanID}}" data-complete="{{complete}}" >
+            <a class="red user-delete" href="#" data-id="{{dingdanID}}" data-complete="{{complete}}" >
                     <i class="ace-icon fa fa-trash-o bigger-100"></i>
-             </a>
+             </a> 
         </div>
-    </td>
+    </td>-->
 </tr>
 {{/userList}}
 </script>
@@ -431,8 +431,8 @@
 		            url: "${pageContext.request.contextPath }/cs",
 		            data: $("#saveuserForm").serializeArray(),
 		            type: 'POST',
-		            success: function () {
-		            	alert("添加成功！");
+		            success: function (result) {
+		            	alert(result.message);
 		           	   $("#dialog-saveuser-form").dialog("close");
 		           	   loadUserList();
 		            }
