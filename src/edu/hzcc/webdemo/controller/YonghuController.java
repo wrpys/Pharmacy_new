@@ -24,8 +24,10 @@ public class YonghuController extends ControllerBase {
 		System.out.println("yonghuController.getALL()");
 		//创建Yonghu空列表实例
 		List<Yonghu> yonghuList = new ArrayList<>();
+		Yonghu yonghuParam = new Yonghu();
+		yonghuParam.setYonghuMingzi(getParameter("yonghuMingzi"));
 		//查找所有honghu信息放到列表中
-		yonghuList = YonghuDao.findALL();
+		yonghuList = YonghuDao.findALL(yonghuParam);
 		//创建json实例对象
 		JSONObject jsonObject = new JSONObject();
 		//将查询到的列表信息放到json对象中
@@ -104,6 +106,13 @@ public class YonghuController extends ControllerBase {
 			// 保存日志
 			RizhiDao.save(rizhi);
 			// 返回登录页面，然后在登录页面跳到主页
+			writeJson(jsonObject.toString());
+			return;
+		} else {
+			JSONObject jsonObject = new JSONObject();
+			// 告诉页面登录失败，账号或密码错误
+			jsonObject.put("falseMe", false);
+			jsonObject.put("msg", "账号或密码错误.");
 			writeJson(jsonObject.toString());
 			return;
 		}
