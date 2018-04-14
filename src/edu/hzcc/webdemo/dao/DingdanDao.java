@@ -429,9 +429,13 @@ public class DingdanDao {
 			String sql = "select * from dingdan t1  " + 
 					"left join yaoping t2 on t1.yaopingID = t2.yaopingID " + 
 					"left join gongyingshang t3 on t1.gongyingshangID = t3.gongyingshangID " + 
-					"left join yaoxiang t4 on t1.yaoxiangID = t4.yaoxiangID  where 1=1 and t1.dingdanleixing='" +params.get("dingdanleixing")+"' ";
+					"left join yaoxiang t4 on t1.yaoxiangID = t4.yaoxiangID  " +
+					"left join kehu t5 on t1.kehuID = t5.kehuID where 1=1 and t1.dingdanleixing='" +params.get("dingdanleixing")+"' ";
 			if(params.get("yaopingMingzi") != null && !params.get("yaopingMingzi").equals("")) {
 				sql += " and t2.yaopingMingzi like '%" + params.get("yaopingMingzi")+"%' ";
+			}
+			if(params.get("kehuMingzi") != null && !params.get("kehuMingzi").equals("")) {
+				sql += " and t5.kehuMingzi like '%" + params.get("kehuMingzi")+"%' ";
 			}
 			if(params.get("gongyingshangMingzi") != null && !params.get("gongyingshangMingzi").equals("")) {
 				sql += " and t3.gongyingshangMingzi like '%" + params.get("gongyingshangMingzi")+"%' ";
