@@ -22,7 +22,7 @@ public class Cangkushezi {
 	private Yaoping yaoping;
 	
 	private Dingdan dingdan;
-	private Yaoxiang kucun;
+	private Yaoxiang1 kucun;
 	
 	public int getId() {
 		return id;
@@ -60,10 +60,10 @@ public class Cangkushezi {
 	public void setDingdan(Dingdan dingdan) {
 		this.dingdan = dingdan;
 	}
-	public Yaoxiang getKucun() {
+	public Yaoxiang1 getKucun() {
 		return kucun;
 	}
-	public void setKucun(Yaoxiang kucun) {
+	public void setKucun(Yaoxiang1 kucun) {
 		this.kucun = kucun;
 	}
 	

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.sf.json.JSONObject;
-import edu.hzcc.webdemo.dao.YaoxiangDao;
+import edu.hzcc.webdemo.dao.Yaoxiang1Dao;
 import edu.hzcc.webdemo.dao.RukuandanDao;
 import edu.hzcc.webdemo.dao.ZhanghuDao;
-import edu.hzcc.webdemo.pojo.Yaoxiang;
+import edu.hzcc.webdemo.pojo.Yaoxiang1;
 import edu.hzcc.webdemo.pojo.Rukuandan;
 import edu.hzcc.webdemo.util.ControllerBase;
 /**
@@ -65,7 +65,7 @@ public class RukuandanController extends ControllerBase{
 			if(rukuandan.getZhuantai()>0){
 //				Xiaoshoufahuo xiaoshoufahuo=XiaoshoufahuoDao.findOne(rukuandan.getXiaoshoufahuoID());//TODO
 		
-			Yaoxiang kucun=new Yaoxiang();
+			Yaoxiang1 kucun=new Yaoxiang1();
 			kucun.setZhuangtai(2);
 //			kucun.setRiqi(xiaoshoufahuo.getRiqi());
 //			kucun.setShuliang(xiaoshoufahuo.getShuliang());
@@ -73,7 +73,7 @@ public class RukuandanController extends ControllerBase{
 //			kucun.setDingdanhao(xiaoshoufahuo.getXiaoshoudingdangID());
 //			kucun.setYaopingMingzi(xiaoshoufahuo.getGongyingshangMingzi());
 //			kucun.setYaopingID(xiaoshoufahuo.getYaopingID());
-			YaoxiangDao.save(kucun);
+			Yaoxiang1Dao.save(kucun);
 			//结算更新，账户余额+收款数，再更新账户
 			ZhanghuDao.updatezhanghuQianshu(1, ZhanghuDao.findOne(1).getQianshu()+rukuandan.getQianshu());
 

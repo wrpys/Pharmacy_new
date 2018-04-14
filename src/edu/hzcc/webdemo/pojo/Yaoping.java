@@ -41,7 +41,7 @@ public class Yaoping {
 	
 	private Integer cangkuID; 
 	
-	private Cangku cangku;
+	private Yaoxiang cangku;
 	
 	public int getYaopingID() {
 		return yaopingID;
@@ -97,10 +97,10 @@ public class Yaoping {
 	public void setCangkuID(Integer cangkuID) {
 		this.cangkuID = cangkuID;
 	}
-	public Cangku getCangku() {
+	public Yaoxiang getCangku() {
 		return cangku;
 	}
-	public void setCangku(Cangku cangku) {
+	public void setCangku(Yaoxiang cangku) {
 		this.cangku = cangku;
 	}
 	@Override

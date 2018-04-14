@@ -92,13 +92,16 @@ public class KehuDao {
 	}
 	
 	// 查找所有
-	public static List<Kehu> findALL(){
+	public static List<Kehu> findALL(Kehu kehuParam){
 		try {
 			List<Kehu> list = new ArrayList<>();
 			//开启数据库链接
 			Connection connection = ProjectShare.getDbPool().getConnection();
 			
-			String sql = "select * from kehu";
+			String sql = "select * from kehu where 1=1 ";
+			if(kehuParam.getKehuMingzi() != null && !"".equals(kehuParam.getKehuMingzi())) {
+				sql += " and kehuMingzi like '%" + kehuParam.getKehuMingzi() + "%'";
+			}
 			//返回数据库结果集
 			ResultSet rs = ProjectShare.getDbPool().query(connection, sql);
 			//循环结果集，一个个填充入List<Kehu>

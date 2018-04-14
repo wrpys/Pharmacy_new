@@ -9,14 +9,14 @@
 
 <div class="page-header">
     <h1>
-        仓库管理
+        药箱信息管理
     </h1>
 </div>
 <div class="main-content-inner">
         <div class="col-xs-12">
             <div class="table-header">
-                  仓库列表&nbsp;&nbsp;<a class="green" href="#"> <i
-					class="ace-icon fa fa-plus-circle orange bigger-130 cangku-add"></i>
+                  药箱列表&nbsp;&nbsp;<a class="green" href="#"> <i
+					class="ace-icon fa fa-plus-circle orange bigger-130 yaoxiang-add"></i>
 				</a>
             </div>
             <div>
@@ -46,9 +46,9 @@
         <table class="table table-striped table-bordered table-hover dataTable no-footer" role="grid">
             <tr>
                 <td><label for="yaopingMingzi">名称</label></td>
-                <input type="hidden" name="cls" id="cls" value="CangkuController"/>
+                <input type="hidden" name="cls" id="cls" value="YaoxiangController"/>
                 <input type="hidden" name="mtd" id="mtd" value="save"/>
-                <td><input type="text" name="cangkuMingzi" id="savecangkuMingzi" value="" class="text ui-widget-content ui-corner-all"></td>
+                <td><input type="text" name="yaoxiangMingzi" id="saveyaoxiangMingzi" value="" class="text ui-widget-content ui-corner-all"></td>
             </tr>
         </table>
     </form>
@@ -59,10 +59,10 @@
         <table class="table table-striped table-bordered table-hover dataTable no-footer" role="grid">
             <tr>
                 <td><label for="yaopingMingzi">名称</label></td>
-                <input type="hidden" name="cls" id="cls" value="CangkuController"/>
+                <input type="hidden" name="cls" id="cls" value="YaoxiangController"/>
                 <input type="hidden" name="mtd" id="mtd" value="update"/>
-                <input type="hidden" name="cangkuID" id="cangkuID" value=""/>                  
-                <td><input type="text" name="cangkuMingzi" id="cangkuMingzi" value="" class="text ui-widget-content ui-corner-all"></td>
+                <input type="hidden" name="yaoxiangID" id="yaoxiangID" value=""/>                  
+                <td><input type="text" name="yaoxiangMingzi" id="yaoxiangMingzi" value="" class="text ui-widget-content ui-corner-all"></td>
             </tr>
         </table>
     </form>
@@ -70,15 +70,15 @@
 
 <script id="userListTemplate" type="x-tmpl-mustache">
 {{#userList}}
-<tr role="row" class="user-name odd" data-id="{{cangkuID}}"><!--even -->
-    <td>{{cangkuMingzi}}</td>
+<tr role="row" class="user-name odd" data-id="{{yaoxiangID}}"><!--even -->
+    <td>{{yaoxiangMingzi}}</td>
     
 	<td>
         <div class="hidden-sm hidden-xs action-buttons">
-            <a class="green yonghu-edit" href="#" data-id="{{cangkuID}}" data-cangkuMingzi="{{cangkuMingzi}}">
+            <a class="green yonghu-edit" href="#" data-id="{{yaoxiangID}}" data-yaoxiangMingzi="{{yaoxiangMingzi}}">
                 <i class="ace-icon fa fa-pencil bigger-100"></i>
             </a>
-             <a class="red yonghu-delete" href="#" data-id="{{cangkuID}}" data-cangkuMingzi="{{cangkuMingzi}}">
+             <a class="red yonghu-delete" href="#" data-id="{{yaoxiangID}}" data-yaoxiangMingzi="{{yaoxiangMingzi}}">
                     <i class="ace-icon fa fa-trash-o bigger-100"></i>
              </a>
         </div>
@@ -97,7 +97,7 @@ $(function () {
         var url = "${pageContext.request.contextPath }/cs";
         $.ajax({
         	 url: url,
-        	data:{cls:'CangkuController',mtd:'findAll'},
+        	data:{cls:'YaoxiangController',mtd:'findAll'},
             
             success: function (result) {
             	
@@ -108,13 +108,13 @@ $(function () {
 
     function renderUserListAndPage(result) {            
         var rendered = Mustache.render(userListTemplate, {
-            "userList": result.cangku,
+            "userList": result.yaoxiang,
         });
         $('#userList').html(rendered);
         bindyonghuClick()
     }
     
-    $(".cangku-add").click(function() {
+    $(".yaoxiang-add").click(function() {
     	$("#dialog-yonghusave-form").dialog({
             modal: true,
             title: "新增仓库",
@@ -136,16 +136,16 @@ $(function () {
     function bindyonghuClick() {    	
         // 处理点击[编辑用户]按钮
         $(".yonghu-edit").click(function (e) {
-            var cangkuID = $(this).attr("data-id"); 
-			var cangkuMingzi = $(this).attr("data-cangkuMingzi"); 
+            var yaoxiangID = $(this).attr("data-id"); 
+			var yaoxiangMingzi = $(this).attr("data-yaoxiangMingzi"); 
             $("#dialog-yonghuupdate-form").dialog({
                 modal: true,
                 title: "编辑仓库",
                 open: function (event, ui) {
                     $("#yonghuupdateForm")[0].reset();
                     $(".ui-dialog-titlebar-close", $(this).parent()).hide(); // 点开时隐藏关闭按钮                 
-                    $("#cangkuID").val(cangkuID);   
-					 $("#cangkuMingzi").val(cangkuMingzi); 
+                    $("#yaoxiangID").val(yaoxiangID);   
+					 $("#yaoxiangMingzi").val(yaoxiangMingzi); 
                 },
                 buttons: {
                     "更新": function (e) {
@@ -162,15 +162,15 @@ $(function () {
 		$(".yonghu-delete") .click(function(e) {
 				e.preventDefault();
 				e.stopPropagation(); // 此处必须要取消冒泡,因为是个递归结构,冒泡的话会让一个点击被响应多个
-				var cangkuID = $(this).attr("data-id");
-				var cangkuMingzi = $(this).attr("data-cangkuMingzi");
-				if (confirm("确定要删除[" + cangkuMingzi + "]吗?")) {
+				var yaoxiangID = $(this).attr("data-id");
+				var yaoxiangMingzi = $(this).attr("data-yaoxiangMingzi");
+				if (confirm("确定要删除[" + yaoxiangMingzi + "]吗?")) {
 					$.ajax({
 						url : "${pageContext.request.contextPath }/cs",
 						data : {
-							cls : 'CangkuController',
+							cls : 'YaoxiangController',
 							mtd : 'delete',
-							cangkuID : cangkuID
+							yaoxiangID : yaoxiangID
 						},
 						success : function() {
 							loadUserList();

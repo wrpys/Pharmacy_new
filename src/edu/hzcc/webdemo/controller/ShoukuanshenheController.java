@@ -7,10 +7,10 @@ import java.util.List;
 
 import net.sf.json.JSONObject;
 import edu.hzcc.webdemo.dao.DingdanDao;
-import edu.hzcc.webdemo.dao.YaoxiangDao;
+import edu.hzcc.webdemo.dao.Yaoxiang1Dao;
 import edu.hzcc.webdemo.dao.ZhanghuDao;
 import edu.hzcc.webdemo.pojo.Dingdan;
-import edu.hzcc.webdemo.pojo.Yaoxiang;
+import edu.hzcc.webdemo.pojo.Yaoxiang1;
 import edu.hzcc.webdemo.pojo.Zhanghu;
 import edu.hzcc.webdemo.util.ControllerBase;
 
@@ -64,7 +64,7 @@ public class ShoukuanshenheController extends ControllerBase {
 	//新增库存
 	private boolean saveKucun() {
 		boolean isSaveKucun = false;
-		Yaoxiang kucun=new Yaoxiang();
+		Yaoxiang1 kucun=new Yaoxiang1();
 		//获取yaopingID
 		int yaopingID=getParameterInt("yaopingID");
 		//获取dingdanID
@@ -72,7 +72,7 @@ public class ShoukuanshenheController extends ControllerBase {
 		//获取cangkuId
 		int cangkuID=getParameterInt("cangkuID");
 		//根据库存ID获取库存实体信息
-		Yaoxiang cunzaiKucun = YaoxiangDao.findYaoxiangByYaopingkuCunID(yaopingID, cangkuID);
+		Yaoxiang1 cunzaiKucun = Yaoxiang1Dao.findYaoxiangByYaopingkuCunID(yaopingID, cangkuID);
 		//获取入库出库的药品数量
 		int shuliang = getParameterInt("shuliang");
 		//定义现在要更新库存的药品数量
@@ -100,7 +100,7 @@ public class ShoukuanshenheController extends ControllerBase {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		kucun.setRiqi(sdf.format(date));
 		kucun.setZhuangtai(1);//0未完成 1已完成
-		YaoxiangDao.save(kucun);
+		Yaoxiang1Dao.save(kucun);
 		Dingdan dingdan = new Dingdan();
 		dingdan.setDingdanID(dingdanID);
 		Dingdan temp = DingdanDao.findDingdanByPK(dingdan);

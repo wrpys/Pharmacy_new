@@ -139,9 +139,9 @@
 								客户信息管理
 
 						</a> <b class="arrow"></b></li>
-						<li class="laoban xiaoshouyuan caiwu caigourenyuan"><a class="popstyle" href="cangku.jsp"
+						<li class="laoban xiaoshouyuan caiwu caigourenyuan"><a class="popstyle" href="yaoxiang.jsp"
 							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
-								仓库管理
+								药箱信息管理
 						</a> <b class="arrow"></b></li>
 						<li class="laoban xiaoshouyuan caiwu cangguanyuan"><a class="popstyle" href="gongyingshang.jsp"
 							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>

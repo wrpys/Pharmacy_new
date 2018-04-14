@@ -52,11 +52,11 @@ public class DingdanDao {
 		}
 		// 仓库详情
 		if (dingdan.getCangkuID() != null) {
-			dingdan.setCangku(CangkuDao.findBycangkuID(dingdan.getCangkuID()));
+			dingdan.setCangku(YaoxiangDao.findBycangkuID(dingdan.getCangkuID()));
 		}
 		// 库存详情
 		if (dingdan.getDingdanID() != null) {
-			dingdan.setKucun(YaoxiangDao.findYaoxiangBydingdanID(dingdan.getDingdanID()));
+			dingdan.setKucun(Yaoxiang1Dao.findYaoxiangBydingdanID(dingdan.getDingdanID()));
 		}
 		return dingdan;
 	}
