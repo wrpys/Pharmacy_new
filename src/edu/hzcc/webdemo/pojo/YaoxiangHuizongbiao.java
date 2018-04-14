@@ -9,10 +9,16 @@ public class YaoxiangHuizongbiao {
 	private String yaopingMingzi;
 	private String yaopingDanwei;
 	private Integer dingdanleixing;
-	private Integer shuliang;
+	private Integer shuliang;//采购数量
 	
 	private Integer rukuzongshu;
 	private Integer chukuzongshu;
+	
+	
+	private String dingdanbianhao;
+	private String yaopingbianhao;
+	private String danjia;//单价
+	private String zongjia;//总价
 	
 	public Integer getShuliang() {
 		return shuliang;
@@ -62,5 +68,29 @@ public class YaoxiangHuizongbiao {
 	}
 	public void setKucun(Integer kucun) {
 		this.kucun = kucun;
+	}
+	public String getDingdanbianhao() {
+		return dingdanbianhao;
+	}
+	public void setDingdanbianhao(String dingdanbianhao) {
+		this.dingdanbianhao = dingdanbianhao;
+	}
+	public String getYaopingbianhao() {
+		return yaopingbianhao;
+	}
+	public void setYaopingbianhao(String yaopingbianhao) {
+		this.yaopingbianhao = yaopingbianhao;
+	}
+	public String getZongjia() {
+		return zongjia;
+	}
+	public void setZongjia(String zongjia) {
+		this.zongjia = zongjia;
+	}
+	public String getDanjia() {
+		return danjia;
+	}
+	public void setDanjia(String danjia) {
+		this.danjia = danjia;
 	}
 }
