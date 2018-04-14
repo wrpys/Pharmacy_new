@@ -9,7 +9,7 @@
 
 <div class="page-header">
     <h1>
-        采购订单审核管理
+        采购汇总
     </h1>
 </div>
 <div class="main-content-inner">

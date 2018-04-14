@@ -157,22 +157,17 @@
 				
 				<li class="xiaoshouyuan caiwu caigourenyuan"><a href="#" class="dropdown-toggle"> <i
 						class="menu-icon fa fa-desktop"></i> <span
-						class="menu-text"> 统计决策</span> <b class="arrow fa fa-angle-down"></b>
+						class="menu-text"> 统计汇总</span> <b class="arrow fa fa-angle-down"></b>
 				</a> <b class="arrow"></b>
 
 					<ul class="submenu">
 						<li class="xiaoshouyuan caiwu cangguanyuan caigourenyuan"><a class="popstyle" href="caigouhuizongshenhe.jsp"
 							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
-								采购汇总审核
+								采购汇总
 						</a> <b class="arrow"></b></li>
 						<li class="xiaoshouyuan caiwu cangguanyuan caigourenyuan"><a class="popstyle" href="xiaoshouhuizongshenhe.jsp"
 							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
-								销售汇总审核
-						</a> <b class="arrow"></b></li>
-
-						<li class="laoban xiaoshouyuan caiwu caigourenyuan"><a class="popstyle" href="kucunhuizong.jsp"
-							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
-								仓库汇总表
+								销售汇总
 						</a> <b class="arrow"></b></li>
 						
 					</ul></li>
