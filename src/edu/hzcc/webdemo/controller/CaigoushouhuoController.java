@@ -38,12 +38,12 @@ public class CaigoushouhuoController extends ControllerBase{
 	//获取参数并且构造成map形式
 	private Map<String,Object> getParams(){
 		String yaopingMingzi = getParameter("yaopingMingzi");
-		String gongyingshangMingzi = getParameter("gongyingshangMingzi");
+		String gongyingshangID = getParameter("gongyingshangID");
 		int qishiZongjia = getParameterInt("qishiZongjia");
 		int jieshuZongjia = getParameterInt("jieshuZongjia");
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("yaopingMingzi", yaopingMingzi);
-		params.put("gongyingshangMingzi", gongyingshangMingzi);
+		params.put("gongyingshangID", gongyingshangID);
 		params.put("qishiZongjia", qishiZongjia);
 		params.put("jieshuZongjia", jieshuZongjia);
 		params.put("dingdanleixing", 2);

@@ -432,8 +432,8 @@ public class DingdanDao {
 			if(params.get("yaopingMingzi") != null && !params.get("yaopingMingzi").equals("")) {
 				sql += " and t2.yaopingMingzi like '%" + params.get("yaopingMingzi")+"%' ";
 			}
-			if(params.get("gongyingshangMingzi") != null && !params.get("gongyingshangMingzi").equals("")) {
-				sql += " and t3.gongyingshangMingzi like '%" + params.get("gongyingshangMingzi")+"%' ";
+			if(params.get("gongyingshangID") != null && !params.get("gongyingshangID").equals("")) {
+				sql += " and t1.gongyingshangID = '" + params.get("gongyingshangID")+"' ";
 			}
 			if(Integer.parseInt(params.get("qishiZongjia").toString()) > 0 
 					&&Integer.parseInt(params.get("qishiZongjia").toString()) > 0) {

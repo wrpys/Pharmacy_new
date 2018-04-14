@@ -21,7 +21,7 @@
             </div>
             <div class="form-group">
                 <label class="form-label">供应商:</label>
-                <select class="gongyingshang-list" name="gongyingshangID" data-placeholder="选择供应商" style="width: 170px;"></select>
+                <select class="gongyingshang-list2" name="gongyingshangID" data-placeholder="选择供应商" style="width: 170px;"></select>
             </div>
             <div class="form-group">
                 <label class="form-label">总价:</label>
@@ -235,9 +235,29 @@ $(function () {
     Mustache.parse(yaopingTemplate);
     var yaoxiangTemplate = $('#yaoxiangTemplate').html();
     Mustache.parse(yaoxiangTemplate);
+    gongyingshangSelect(1);
     loadUserList();
+    
+    $("#search").click(function(){
+    	loadUserList();
+	});
+    
     // 加载信息,并渲染
     function loadUserList() {
+    	
+    	var searchForm = $("#searchForm");
+		var searchParam = {
+				yaopingMingzi: searchForm.find("input[name='yaopingMingzi']").val(),
+				gongyingshangID: searchForm.find("input[name='gongyingshangID']").val(),
+				qishiZongjia: searchForm.find("input[name='qishiZongjia']").val(),
+				jieshuZongjia: searchForm.find("input[name='jieshuZongjia']").val()
+		};
+		var mtd = {
+			cls : 'CaigoushouhuoController',
+			mtd : 'findAll'
+		}
+		var params = $.extend({},searchParam,mtd);
+    	
         var url = "${pageContext.request.contextPath }/cs";
         $.ajax({
         	url: url,
@@ -272,7 +292,7 @@ $(function () {
             title: "新增采购收货订单",
             open: function (event, ui) {
                 $(".ui-dialog-titlebar-close", $(this).parent()).hide(); // 点开时隐藏关闭按钮
-                gongyingshangSelect();
+                gongyingshangSelect(2);
                 yaopingSelect();
                 yaoxiangSelect();
                 $("#saveuserForm")[0].reset();
@@ -312,7 +332,7 @@ $(function () {
                 modal: true,
                 title: "修改采购收货订单",
                 open: function (event, ui) {
-                	gongyingshangSelect();
+                	gongyingshangSelect(2);
                 	yaopingSelect();
                 	yaoxiangSelect();
                     $("#updateuserForm")[0].reset();
@@ -395,15 +415,24 @@ $(function () {
     } 
   
   	//加载保存和修改弹出框的供应商下拉信息 
-    function gongyingshangSelect() {
+    function gongyingshangSelect(type) {
 		$.ajax({
 			url: "${pageContext.request.contextPath }/cs",
 			data:{cls:'GongyingshangController',mtd:'findAll'},
 			type: 'POST',
 			async: false,
 			success: function (result) {
-				var rendered = Mustache.render(Template, {"businessList": result.gongyingshang});
-		         $('.gongyingshang-list').html(rendered);
+				if(type == 1) {
+					var list = [{gongyingshangID: "", gongyingshangMingzi: "请选择"}];
+					for(var i=0;i<result.gongyingshang.length;i++){
+						list.push(result.gongyingshang[i]);
+					}
+					var rendered = Mustache.render(Template, {"businessList": list});
+					$('.gongyingshang-list2').html(rendered);
+				} else {
+					var rendered = Mustache.render(Template, {"businessList": result.gongyingshang});
+		        	$('.gongyingshang-list').html(rendered);
+				}
 			}
 		});
     }
@@ -435,38 +464,6 @@ $(function () {
 			}
 		});
     }
-  	
-	//搜索 药品名字,供应商名字，金额操作
-    $('.yaopingMingzi,.gongyingshangMingzi,.qishiZongjia,.jieshuZongjia').keydown(function(e){
-    	//entry按键
-    	if(e.keyCode==13){ 
-    		var yaopingMingzi=$('.yaopingMingzi').val();
-    		var gongyingshangMingzi=$('.gongyingshangMingzi').val();
-    		var qishiZongjia=$('.qishiZongjia').val();
-    		var jieshuZongjia=$('.jieshuZongjia').val();
-    		if(yaopingMingzi == null && yaopingMingzi == '' && 
-    				gongyingshangMingzi == null && gongyingshangMingzi == '' &&
-    				qishiZongjia == null && qishiZongjia == '' &&
-    				jieshuZongjia == null && jieshuZongjia == '' ) {
-    			loadUserList();
-    		} else {
-    			loadUserListByParams(yaopingMingzi,gongyingshangMingzi,qishiZongjia,jieshuZongjia)
-    		}
-    	}
-    });
-	
-  	//根据名字查询
-    function loadUserListByParams(yaopingMingzi,gongyingshangMingzi,qishiZongjia,jieshuZongjia) {
-        var url = "${pageContext.request.contextPath }/cs";
-        $.ajax({
-        	 url: url,
-        	data:{cls:'CaigoushouhuoController',mtd:'findAll',yaopingMingzi:yaopingMingzi,gongyingshangMingzi:gongyingshangMingzi
-        		,qishiZongjia:qishiZongjia,jieshuZongjia:jieshuZongjia},
-            success: function (result) {
-            	renderUserListAndPage(result);
-            }
-        });
-    }     
   
  });
 </script>
