@@ -8,10 +8,90 @@
 	<input id="gritter-light" checked="" type="checkbox"
 		class="ace ace-switch ace-switch-5" />
 
+<<<<<<< HEAD
 	<div class="page-header">
 		<h1>销售出货订单管理</h1>
 	</div>
 	<div class="main-content-inner">
+=======
+<div class="page-header">
+    <h1>
+        销售出货订单管理
+    </h1>
+</div>
+<div class="main-content-inner">
+		<form id="searchForm" class="form-inline" role="form" onsubmit="return false">
+            <div class="form-group">
+                <label class="form-label">药品名字:</label>
+                <input type="text" class="form-control" id="searchyaopingMingzi" name="yaopingMingzi">
+            </div>
+            <div class="form-group">
+                <label class="form-label">客户:</label>
+                <select class="kehu-list" id="searchkehuMingzi" name="searchkehuMingzi" data-placeholder="选择客户" style="width: 170px;"></select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">总价:</label>
+                <input type="text" class="form-control" id="searchqishiZongjia" name="qishiZongjia" placeholder="请输入起始总价">~
+                <input type="text" class="form-control" id="searchjieshuZongjia" name="jieshuZongjia" placeholder="请输入终止总价">
+            </div>
+            <button id="search" class="btn1 btn-primary1">查询</button>
+        </form>
+        
+        <div class="col-xs-12">
+            <div class="table-header">
+               销售出货订单列表&nbsp;&nbsp;
+                <a class="green" href="#">
+                    <i class="ace-icon fa fa-plus-circle orange bigger-130 user-add"></i>
+                </a>
+            </div>
+            <div class="row">
+                <!-- <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline no-footer">
+					<div class="col-xs-6">
+					<div id="dynamic-table_filter" class="dataTables_filter">
+						<label> 药品名字: <input type="search" name="yaopingMingzi"
+							id="yaopingMingzi" class="form-control input-sm yaopingMingzi"
+							placeholder="" aria-controls="dynamic-table"></label>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<div id="dynamic-table_filter" class="dataTables_filter">
+						<label> 供应商名字: <input type="search"
+							name="gongyingshangMingzi" id="gongyingshangMingzi"
+							class="form-control input-sm gongyingshangMingzi" placeholder=""
+							aria-controls="dynamic-table"></label>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<div id="dynamic-table_filter" class="dataTables_filter">
+						<label> 金额: <input type="search" name="qishiZongjia"
+							id="qishiZongjia" class="form-control input-sm qishiZongjia"
+							placeholder="请输入起始总金额" aria-controls="dynamic-table"></label>
+						~ <input type="search" name="jieshuZongjia" id="jieshuZongjia"
+							class="form-control input-sm jieshuZongjia" placeholder="请输入终止总金额"
+							aria-controls="dynamic-table"></label>
+					</div>
+				</div> -->
+					
+                    <table id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid"
+                           aria-describedby="dynamic-table_info" style="font-size:14px">
+                        <thead>
+                        <tr role="row">
+							<th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
+      	   		订单编号
+                            </th>
+                           <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
+    	      	药品编号
+                            </th>
+                            <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
+                                名称
+                            </th>
+                            <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
+                               单价
+                            </th>
+                            <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
+                             数量
+                            </th>
+>>>>>>> 2fa60000029f193b9b0c2207827308e0d08e4ebc
 
 		<form id="searchForm" class="form-inline" role="form"
 			onsubmit="return false">
@@ -194,7 +274,7 @@
 												data-yaoxiangID="{{yaoxiangID}}"	
 												data-complete="{{complete}}"
 												data-kehuID="{{yaoxiangID}}">
-                <i class="ace-icon fa fa-pencil bigger-100"></i>
+                <!-- <i class="ace-icon fa fa-pencil bigger-100"></i> -->
             </a>
              <a class="red user-delete" href="#" data-id="{{dingdanID}}" data-complete="{{complete}}" >
                     <i class="ace-icon fa fa-trash-o bigger-100"></i>
@@ -229,8 +309,32 @@
 	<script type="text/javascript">
 		$(function() {
 
+<<<<<<< HEAD
 			var userListTemplate = $('#userListTemplate').html();
 			Mustache.parse(userListTemplate);
+=======
+    var yaoxiangTemplate = $('#yaoxiangTemplate').html();
+    Mustache.parse(yaoxiangTemplate);
+    var yaopingTemplate = $('#yaopingTemplate').html();
+    Mustache.parse(yaopingTemplate);
+    var kehuTemplate = $('#kehuTemplate').html();
+    Mustache.parse(kehuTemplate);
+    var gongyingshangTemplate = $('#gongyingshangTemplate').html();
+    Mustache.parse(gongyingshangTemplate);
+    loadUserList();
+    // 加载信息,并渲染
+    function loadUserList() {
+        var url = "${pageContext.request.contextPath }/cs";
+        $.ajax({
+        	url: url,
+        	data:{cls:'XiaoshouchuhuoController',mtd:'findAll'},            
+            success: function (result) {            	
+                renderUserListAndPage(result);
+                kehuSelect();
+            }
+        });
+    }
+>>>>>>> 2fa60000029f193b9b0c2207827308e0d08e4ebc
 
 			var yaoxiangTemplate = $('#yaoxiangTemplate').html();
 			Mustache.parse(yaoxiangTemplate);
@@ -431,6 +535,7 @@
 				});
 			}
 
+<<<<<<< HEAD
 			function save() {
 				$.ajax({
 					url : "${pageContext.request.contextPath }/cs",
@@ -442,6 +547,58 @@
 						loadUserList();
 					}
 				});
+=======
+    function save() {
+        $.ajax({
+            url: "${pageContext.request.contextPath }/cs",
+            data: $("#saveuserForm").serializeArray(),
+            type: 'POST',
+            success: function () {
+            	alert("添加成功！");
+           	   $("#dialog-saveuser-form").dialog("close");
+           	   loadUserList();
+            }
+        });
+    }
+    
+    function update() {
+        $.ajax({
+            url: "${pageContext.request.contextPath }/cs",
+            data: $("#updateuserForm").serializeArray(),
+            type: 'POST',
+            success: function () {
+            		alert("修改成功！");
+            	   $("#dialog-updateuser-form").dialog("close");
+            	   loadUserList();
+            }
+        });
+    }
+    
+  	//加载保存和修改弹出框的供应商下拉信息 
+    function gongyingshangSelect() {
+		$.ajax({
+			url: "${pageContext.request.contextPath }/cs",
+			data:{cls:'GongyingshangController',mtd:'findAll'},
+			type: 'POST',
+			async: false,
+			success: function (result) {
+				var rendered = Mustache.render(gongyingshangTemplate, {"gongyingshangList": result.gongyingshang});
+		         $('.gongyingshang-list').html(rendered);
+			}
+		});
+    }
+    
+  	//加载保存和修改弹出框的仓库下拉信息 
+    function yaoxiangSelect() {
+    	$.ajax({
+			url: "${pageContext.request.contextPath }/cs",
+			data:{cls:'YaoxiangController',mtd:'findAll'},
+			type: 'POST',
+			async: false,
+			success: function (result) {
+				var rendered = Mustache.render(yaoxiangTemplate, {"yaoxiangList": result.yaoxiang});
+		         $('.yaoxiang-list').html(rendered);
+>>>>>>> 2fa60000029f193b9b0c2207827308e0d08e4ebc
 			}
 
 			function update() {
@@ -548,6 +705,46 @@
 			}
 
 		});
+<<<<<<< HEAD
 	</script>
+=======
+    }
+  	
+  	
+  	
+    //搜索 药品名字,供应商名字，金额操作
+	$("#search").click(function(){
+		var yaopingMingzi=$('#searchyaopingMingzi').val();
+		var kehuMingzi=$("#searchkehuMingzi").find("option:selected").text();
+		var qishiZongjia=$('#searchqishiZongjia').val();
+		var jieshuZongjia=$('#searchjieshuZongjia').val();
+		if(yaopingMingzi == null && yaopingMingzi == '' && 
+				gongyingshangMingzi == null && gongyingshangMingzi == '' &&
+				qishiZongjia == null && qishiZongjia == '' &&
+				jieshuZongjia == null && jieshuZongjia == '' ) {
+			loadUserList();
+		} else {
+			loadUserListByParams(yaopingMingzi,kehuMingzi,qishiZongjia,jieshuZongjia)
+		}
+	});
+	
+  	//根据名字查询
+    function loadUserListByParams(yaopingMingzi,kehuMingzi,qishiZongjia,jieshuZongjia) {
+        var url = "${pageContext.request.contextPath }/cs";
+        $.ajax({
+        	 url: url,
+        	data:{cls:'XiaoshouchuhuoController',mtd:'findAll',yaopingMingzi:yaopingMingzi,kehuMingzi:kehuMingzi
+        		,qishiZongjia:qishiZongjia,jieshuZongjia:jieshuZongjia},
+            success: function (result) {
+            	renderUserListAndPage(result);
+            }
+        });
+    }
+  	
+  	
+  
+ });
+</script>
+>>>>>>> 2fa60000029f193b9b0c2207827308e0d08e4ebc
 </body>
 </html>
