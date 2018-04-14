@@ -49,13 +49,4 @@ public class KucunyujingController extends ControllerBase{
 		writeJson(jsonObject.toString());
 		return;
 	}
-	/*public void findAllMinNumber(){
-		System.out.println("kucunController.findAllMinNumber()");
-		List<KucunJisuang> AllMinNumber=new ArrayList<>();
-		AllMinNumber=KucunDao.findAllMinshuliang();
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("AllMinNumber", AllMinNumber);
-		writeJson(jsonObject.toString());
-		return;
-	}*/
 }
