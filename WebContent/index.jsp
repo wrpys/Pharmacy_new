@@ -109,25 +109,6 @@
 						</a> <b class="arrow"></b></li>
 					</ul></li>
 
-				<li class="xiaoshouyuan cangguanyuan caigourenyuan"><a href="#" class="dropdown-toggle"> <i
-						class="menu-icon fa fa-desktop"></i> <span class="menu-text">
-							财务管理 </span> <b class="arrow fa fa-angle-down"></b>
-				</a> <b class="arrow"></b>
-					<ul class="submenu">
-						<li class=""><a class="popstyle" href="shoukuanshenhe.jsp"
-							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
-								收款审核
-						</a> <b class="arrow"></b></li>
-						<li class=""><a class="popstyle" href="fukuanshenhe.jsp"
-							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
-								付款审核
-						</a> <b class="arrow"></b></li>
-						<li class=""><a class="popstyle" href="zhanghu.jsp"
-							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
-								账户管理
-						</a> <b class="arrow"></b></li>
-					</ul></li>
-
 				<li class="laoban caiwu"><a href="#" class="dropdown-toggle"> <i
 						class="menu-icon fa fa-desktop"></i> <span
 						class="menu-text"> 基础信息</span> <b class="arrow fa fa-angle-down"></b>

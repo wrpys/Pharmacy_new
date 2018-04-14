@@ -8,7 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 import edu.hzcc.webdemo.dao.DingdanDao;
+import edu.hzcc.webdemo.dao.KucunDao;
 import edu.hzcc.webdemo.pojo.Dingdan;
+import edu.hzcc.webdemo.pojo.Kuncun;
 import edu.hzcc.webdemo.util.ControllerBase;
 import net.sf.json.JSONObject;
 /**
@@ -76,18 +78,48 @@ public class CaigoushouhuoController extends ControllerBase{
 		caigoudingdan.setYaoxiangID(getParameterInt("yaoxiangID"));
 		caigoudingdan.setDingdanleixing(2);
 		caigoudingdan.setKehuID(0);
-		caigoudingdan.setComplete(0);
+		caigoudingdan.setComplete(1);
 		// 在DingdanDao中数据库操作 新增一个订单
-		int dingdangID = DingdanDao.saveAndReturnPK(caigoudingdan);
-		// 审核 修改采购订单的状态
-		Dingdan dingdan = new Dingdan();
-		// 从页面表单中获取。name="dingdanID"
-		dingdan.setDingdanID(dingdangID);
-		//设置已完成
-		dingdan.setComplete(1);
-		// 在DingdanDao中数据库操作 修改一个订单
-		DingdanDao.updateComplete(dingdan);
+		int dingdanID = DingdanDao.saveAndReturnPK(caigoudingdan);
+		//新增库存
+		xinzengkucun(dingdanID);
 	}
+	
+	//新增库存
+	private void xinzengkucun(int dingdanID) {
+		Kuncun kucun=new Kuncun();
+		//获取yaopingID
+		int yaopingID=getParameterInt("yaopingID");
+		//获取yaoxiangId
+		int yaoxiangID=getParameterInt("yaoxiangID");
+		//根据库存ID获取库存实体信息
+		Kuncun cunzaiKucun = KucunDao.findKucunByYaopingkuCunID(yaopingID, yaoxiangID);
+		//获取入库出库的药品数量
+		int shuliang = getParameterInt("shuliang");
+		//定义现在要更新库存的药品数量
+		int xianzaishuliang;
+		//如果库存存在
+		if(null!=cunzaiKucun && cunzaiKucun.getKucunID()>0) {
+			kucun.setKucunID(cunzaiKucun.getKucunID());
+			//入库，数量增加
+			xianzaishuliang = cunzaiKucun.getShuliang()+shuliang;
+			kucun.setShuliang(xianzaishuliang);
+		}else {
+			kucun.setShuliang(shuliang);
+		}
+		kucun.setDingdanID(dingdanID);
+		kucun.setYaopingID(getParameterInt("yaopingID"));
+		kucun.setYaoxiangID(getParameterInt("yaoxiangID"));
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		kucun.setRiqi(sdf.format(date));
+		kucun.setZhuangtai(1);//0未完成 1已完成
+		KucunDao.save(kucun);
+	}
+	
+	
+	
+	
 	
 	// 修改采购收获订单
 	public void update() {

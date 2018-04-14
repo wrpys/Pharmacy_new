@@ -7,10 +7,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.sf.json.JSONObject;
 import edu.hzcc.webdemo.dao.DingdanDao;
+import edu.hzcc.webdemo.dao.KucunDao;
 import edu.hzcc.webdemo.pojo.Dingdan;
+import edu.hzcc.webdemo.pojo.Kuncun;
 import edu.hzcc.webdemo.util.ControllerBase;
+import net.sf.json.JSONObject;
 /**
 
  * 销售订单汇总的交互，页面根据cls:'XiaoshouchuhuoController',mtd:'findAll'来调用
@@ -80,19 +82,56 @@ public class XiaoshouchuhuoController extends ControllerBase{
 		caigoudingdan.setYaoxiangID(getParameterInt("yaoxiangID"));
 		caigoudingdan.setDingdanleixing(4);
 		caigoudingdan.setKehuID(getParameterInt("kehuID"));
-		caigoudingdan.setComplete(0);
-		// 在DingdanDao中数据库操作 新增一个订单
-		DingdanDao.saveAndReturnPK(caigoudingdan);
-		// 在DingdanDao中数据库操作 新增一个订单
-		int dingdangID = DingdanDao.saveAndReturnPK(caigoudingdan);
-		// 审核 修改采购订单的状态
-		Dingdan dingdan = new Dingdan();
-		dingdan.setDingdanID(dingdangID);
-		//设置已完成
-		dingdan.setComplete(1);
-		// 在DingdanDao中数据库操作 修改一个订单
-		DingdanDao.updateComplete(dingdan);
+		caigoudingdan.setComplete(1);
+		//新增库存
+		xinzengkucun(caigoudingdan);
 	}
+	
+	//新增库存
+	private void xinzengkucun(Dingdan caigoudingdan) {
+		Kuncun kucun=new Kuncun();
+		//获取yaopingID
+		int yaopingID=getParameterInt("yaopingID");
+		// 在DingdanDao中数据库操作 新增一个订单,返回dingdanID
+		int dingdanID = DingdanDao.saveAndReturnPK(caigoudingdan);
+		//获取yaoxiangId
+		int yaoxiangID=getParameterInt("yaoxiangID");
+		//根据库存ID获取库存实体信息
+		Kuncun cunzaiKucun = KucunDao.findKucunByYaopingkuCunID(yaopingID, yaoxiangID);
+		//获取入库出库的药品数量
+		int shuliang = getParameterInt("shuliang");
+		//定义现在要更新库存的药品数量
+		int xianzaishuliang;
+		//定义一个json格式
+		JSONObject jsonObject = new JSONObject();
+		//如果库存存在且数量充足
+		if(null!=cunzaiKucun && cunzaiKucun.getKucunID()>0  && cunzaiKucun.getShuliang()>shuliang) {
+			kucun.setKucunID(cunzaiKucun.getKucunID());
+			//出库，数量减掉
+			xianzaishuliang =cunzaiKucun.getShuliang()-shuliang;
+		}else {
+			//把kucun列表填入json
+			jsonObject.put("message", "库存不存在或者数量不足!");
+			//原路返回kucun列表，用writeJson返回Json数据名字为kucun
+			writeJson(jsonObject.toString());
+			return;
+		}
+		kucun.setYaopingID(getParameterInt("yaopingID"));
+		kucun.setYaoxiangID(getParameterInt("yaoxiangID"));
+		kucun.setDingdanID(dingdanID);
+		kucun.setShuliang(xianzaishuliang);
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		kucun.setRiqi(sdf.format(date));
+		kucun.setZhuangtai(1);//0未完成 1已完成
+		KucunDao.save(kucun);
+		//把kucun列表填入json
+		jsonObject.put("message", "操作成功!");
+		//原路返回kucun列表，用writeJson返回Json数据名字为kucun
+		writeJson(jsonObject.toString());
+	}
+	
+	
 	
 	// 修改销售出货订单
 	public void update() {

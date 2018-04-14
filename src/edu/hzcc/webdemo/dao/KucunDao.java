@@ -125,7 +125,7 @@ public class KucunDao {
 						+ kucun.getKucunID();
 			} else {
 				// 执行新增
-				sql = "insert into yaoxaing(yaopingID,yaoxiangID,dingdanID,shuliang,riqi,zhuangtai)";
+				sql = "insert into kucun(yaopingID,yaoxiangID,dingdanID,shuliang,riqi,zhuangtai)";
 				sql += " values('" + kucun.getYaopingID() + "','"
 						+ kucun.getYaoxiangID() + "','"
 						+ kucun.getDingdanID() + "','"
