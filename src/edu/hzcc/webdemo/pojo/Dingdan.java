@@ -15,13 +15,13 @@ public class Dingdan {
 	private String riqi;
 	private Integer gongyingshangID;
 	private Integer kehuID;
-	private Integer cangkuID;
+	private Integer yaoxiangID;
 	private Integer complete;//0未完成，1已完成
 	
 	private Yaoping yaoping;
 	private Gongyingshang gongyingshang;
 	private Kehu kehu;
-	private Yaoxiang cangku;
+	private Yaoxiang yaoxiang;
 	private Kuncun kucun;
 	
 	//采购收货查询使用
@@ -89,11 +89,11 @@ public class Dingdan {
 	public void setKehuID(Integer kehuID) {
 		this.kehuID = kehuID;
 	}
-	public Integer getCangkuID() {
-		return cangkuID;
+	public Integer getYaoxiangID() {
+		return yaoxiangID;
 	}
-	public void setCangkuID(Integer cangkuID) {
-		this.cangkuID = cangkuID;
+	public void setYaoxiangID(Integer yaoxiangID) {
+		this.yaoxiangID = yaoxiangID;
 	}
 	public Integer getComplete() {
 		return complete;
@@ -119,11 +119,11 @@ public class Dingdan {
 	public void setKehu(Kehu kehu) {
 		this.kehu = kehu;
 	}
-	public Yaoxiang getCangku() {
-		return cangku;
+	public Yaoxiang getYaoxiang() {
+		return yaoxiang;
 	}
-	public void setCangku(Yaoxiang cangku) {
-		this.cangku = cangku;
+	public void setYaoxiang(Yaoxiang yaoxiang) {
+		this.yaoxiang = yaoxiang;
 	}
 	public Kuncun getKucun() {
 		return kucun;

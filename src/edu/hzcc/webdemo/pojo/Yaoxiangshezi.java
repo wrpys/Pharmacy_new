@@ -3,12 +3,12 @@ package edu.hzcc.webdemo.pojo;
  * 预警设置，
  *
  */
-public class Cangkushezi {
+public class Yaoxiangshezi {
 
 	
 	private int id;
-	//仓库ID
-	private int cangkuID;
+	//药箱ID
+	private int yaoxiangID;
 	//药品编号
 	private int yaopingID;
 	
@@ -17,7 +17,7 @@ public class Cangkushezi {
 	/*
 	 * 数据库没有这个字段，为了表格显示
 	 */
-	private String cangkuMingzi;
+	private String yaoxiangMingzi;
 	
 	private Yaoping yaoping;
 	
@@ -30,11 +30,11 @@ public class Cangkushezi {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getCangkuID() {
-		return cangkuID;
+	public int getYaoxiangID() {
+		return yaoxiangID;
 	}
-	public void setCangkuID(int cangkuID) {
-		this.cangkuID = cangkuID;
+	public void setYaoxiangID(int yaoxiangID) {
+		this.yaoxiangID = yaoxiangID;
 	}
 	public int getYaopingID() {
 		return yaopingID;
@@ -48,11 +48,11 @@ public class Cangkushezi {
 	public void setZuishaoshuliang(int zuishaoshuliang) {
 		this.zuishaoshuliang = zuishaoshuliang;
 	}
-	public String getCangkuMingzi() {
-		return cangkuMingzi;
+	public String getYaoxiangMingzi() {
+		return yaoxiangMingzi;
 	}
-	public void setCangkuMingzi(String cangkuMingzi) {
-		this.cangkuMingzi = cangkuMingzi;
+	public void setYaoxiangMingzi(String yaoxiangMingzi) {
+		this.yaoxiangMingzi = yaoxiangMingzi;
 	}
 	public Dingdan getDingdan() {
 		return dingdan;

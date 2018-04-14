@@ -102,7 +102,7 @@ $(function () {
     	function renderUserListAndPage(result) {            
             	
                 var rendered = Mustache.render(userListTemplate, {
-                    "userList": result.returnCangkushezi});
+                    "userList": result.returnYaoxiangshezi});
                 $('#userList').html(rendered);
                 bindUserClick()
             } 
@@ -112,7 +112,7 @@ $(function () {
         	
             // 处理点击按钮
             $(".user-edit").click(function (e) {
-                var Cangkusheziid = $(this).attr("data-id"); // 选中的部门id
+                var yaoxiangsheziid = $(this).attr("data-id"); // 选中的部门id
     			var yaopingID = $(this).attr("data-yaopingID"); 
     			var zuishaoshuliang = $(this).attr("data-zuishaoshuliang"); 
                 $("#dialog-updateuser-form").dialog({
@@ -125,7 +125,7 @@ $(function () {
     					$("#updateuserForm")[0].reset();
     					updateuserrecursiveRenderDeptSelect();
     					
-                       $("#Cangkusheziid").val(Cangkusheziid); $("#updateuseryaopingID").val(yaopingID);
+                       $("#yaoxiangsheziid").val(yaoxiangsheziid); $("#updateuseryaopingID").val(yaopingID);
     					 $("#updateuserzuishaoshuliang").val(zuishaoshuliang);
     		
                         
@@ -145,16 +145,16 @@ $(function () {
             $(".user-delete").click(function (e) {
                 e.preventDefault();
                 e.stopPropagation(); // 此处必须要取消冒泡,因为是个递归结构,冒泡的话会让一个点击被响应多个
-                var Cangkusheziid = $(this).attr("data-id");
-                if (confirm("确定要删除[" + Cangkusheziid + "]吗?")) {
+                var yaoxiangsheziid = $(this).attr("data-id");
+                if (confirm("确定要删除[" + yaoxiangsheziid + "]吗?")) {
                     $.ajax({
                         url: "${pageContext.request.contextPath }/cs",
                         data: {
-                        	cls:'CangkusheziController',mtd:'delete',
-                        	id: Cangkusheziid
+                        	cls:'YaoxiangsheziController',mtd:'delete',
+                        	id: yaoxiangsheziid
                         },
                         success: function () {
-                                showMessage("删除[" + Cangkusheziid + "]", "操作成功", true);
+                                showMessage("删除[" + yaoxiangsheziid + "]", "操作成功", true);
                                 loadUserList();
                             
                         }

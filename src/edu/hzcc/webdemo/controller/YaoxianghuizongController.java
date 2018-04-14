@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 import edu.hzcc.webdemo.dao.DingdanDao;
-import edu.hzcc.webdemo.pojo.CangkuHuizongbiao;
+import edu.hzcc.webdemo.pojo.YaoxiangHuizongbiao;
 import edu.hzcc.webdemo.pojo.Dingdan;
 import edu.hzcc.webdemo.util.ControllerBase;
 import net.sf.json.JSONObject;
 
-public class CangkuhuizongController extends ControllerBase{
+public class YaoxianghuizongController extends ControllerBase{
 
 	/**
 	 * 采购订单列表
@@ -38,7 +38,7 @@ public class CangkuhuizongController extends ControllerBase{
 		dingdan.setRiqi(getParameter("riqi"));
 		dingdan.setGongyingshangID(getParameterInt("gongyingshangID"));
 		dingdan.setKehuID(getParameterInt("kehuID"));
-		dingdan.setCangkuID(getParameterInt("cangkuID"));
+		dingdan.setYaoxiangID(getParameterInt("yaoxiangID"));
 		dingdan.setComplete(getParameterInt("complete"));
 		//调用Dao更新dingdan对象
 		DingdanDao.update(dingdan);
@@ -66,15 +66,15 @@ public class CangkuhuizongController extends ControllerBase{
 	}
 	
 	/**
-	 * 仓库汇总表
+	 * 药箱汇总表
 	 */
-	public void findCangkuHuizongbiao(){
+	public void findYaoxiangHuizongbiao(){
 		//获取yaopingID，并且去重ID，eg:1,2,3,3,4,4,5--->【1,2,3,4,5】
 		List<Integer> yaoPingIDs = DingdanDao.getYaopingIdDistinct();
-		//根据所有yaopingID获取仓库汇总的信息
-		Map<Integer,List<CangkuHuizongbiao>> mapList = DingdanDao.findCangkuHuizongbiao(yaoPingIDs);
+		//根据所有yaopingID获取药箱汇总的信息
+		Map<Integer,List<YaoxiangHuizongbiao>> mapList = DingdanDao.findYaoxiangHuizongbiao(yaoPingIDs);
 		//调用下面私有的tongji方法
-		List<CangkuHuizongbiao> dataList = tongji(mapList);
+		List<YaoxiangHuizongbiao> dataList = tongji(mapList);
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("dataList", dataList);
 		System.out.println(jsonObject.toString());
@@ -82,29 +82,29 @@ public class CangkuhuizongController extends ControllerBase{
 		return;
 	}
 	
-	private List<CangkuHuizongbiao> tongji(Map<Integer,List<CangkuHuizongbiao>> mapList){
-		List<CangkuHuizongbiao> list = new ArrayList<>();
-		//遍历仓库汇总表中的数据
-		for (Map.Entry<Integer, List<CangkuHuizongbiao>> entry : mapList.entrySet()) {
-			//去除Cangkuhuizongbiao的列表信息
-			List<CangkuHuizongbiao> dataList = entry.getValue();
+	private List<YaoxiangHuizongbiao> tongji(Map<Integer,List<YaoxiangHuizongbiao>> mapList){
+		List<YaoxiangHuizongbiao> list = new ArrayList<>();
+		//遍历药箱汇总表中的数据
+		for (Map.Entry<Integer, List<YaoxiangHuizongbiao>> entry : mapList.entrySet()) {
+			//去除Yaoxianghuizongbiao的列表信息
+			List<YaoxiangHuizongbiao> dataList = entry.getValue();
 			//定义入库总数和出库总数
 			int rukuzongshu = 0;
 			int chukuzongshu = 0;
-			//循环遍历仓库汇总表信息
-			for (CangkuHuizongbiao cangkuHuizongbiao : dataList) {
+			//循环遍历药箱汇总表信息
+			for (YaoxiangHuizongbiao yaoxiangHuizongbiao : dataList) {
 				//如果订单类型为2采购收货
-				if(cangkuHuizongbiao.getDingdanleixing()==2) {
-					rukuzongshu+=cangkuHuizongbiao.getShuliang();
-				}else if(cangkuHuizongbiao.getDingdanleixing()==4){//如果订单类型为4销售发货
-					chukuzongshu+=cangkuHuizongbiao.getShuliang();
+				if(yaoxiangHuizongbiao.getDingdanleixing()==2) {
+					rukuzongshu+=yaoxiangHuizongbiao.getShuliang();
+				}else if(yaoxiangHuizongbiao.getDingdanleixing()==4){//如果订单类型为4销售发货
+					chukuzongshu+=yaoxiangHuizongbiao.getShuliang();
 				}
 			}
 			//最后汇总信息统计设置到返回的list中
-			CangkuHuizongbiao cangkuHuizongbiao = dataList.get(0);
-			cangkuHuizongbiao.setChukuzongshu(chukuzongshu);
-			cangkuHuizongbiao.setRukuzongshu(rukuzongshu);
-			list.add(cangkuHuizongbiao);
+			YaoxiangHuizongbiao yaoxiangHuizongbiao = dataList.get(0);
+			yaoxiangHuizongbiao.setChukuzongshu(chukuzongshu);
+			yaoxiangHuizongbiao.setRukuzongshu(rukuzongshu);
+			list.add(yaoxiangHuizongbiao);
 		}
 		return list;
 	}

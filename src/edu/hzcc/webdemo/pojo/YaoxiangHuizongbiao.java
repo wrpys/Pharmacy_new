@@ -1,10 +1,10 @@
 package edu.hzcc.webdemo.pojo;
 
 /**
- * 仓库汇总表，数据库没有这张表，用来传输数据用而已 
+ * 药箱汇总表，数据库没有这张表，用来传输数据用而已 
  *
  */
-public class CangkuHuizongbiao {
+public class YaoxiangHuizongbiao {
 	private Integer yaopingID;
 	private String yaopingMingzi;
 	private String yaopingDanwei;

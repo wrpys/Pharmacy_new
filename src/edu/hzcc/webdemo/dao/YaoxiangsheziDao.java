@@ -5,26 +5,26 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.hzcc.webdemo.pojo.Cangkushezi;
+import edu.hzcc.webdemo.pojo.Yaoxiangshezi;
 import edu.hzcc.webdemo.sys.ProjectShare;
 /**
  * 预警设置
  *
  */
-public class CangkusheziDao {
+public class YaoxiangsheziDao {
 	
-	public static boolean save(Cangkushezi Cangkushezi){
+	public static boolean save(Yaoxiangshezi yaoxiangshezi){
 		try {
 			String sql = null;
-			if(Cangkushezi.getId()>0){
+			if(yaoxiangshezi.getId()>0){
 				//执行修改
-				sql ="update cangkushezi set cangkuID= '"+Cangkushezi.getCangkuID()+"',yaopingID='"+Cangkushezi.getYaopingID()
-				+"',zuishaoshuliang='"+Cangkushezi.getZuishaoshuliang()+"' where id="+Cangkushezi.getId();
+				sql ="update yaoxiangshezi set yaoxiangID= '"+yaoxiangshezi.getYaoxiangID()+"',yaopingID='"+yaoxiangshezi.getYaopingID()
+				+"',zuishaoshuliang='"+yaoxiangshezi.getZuishaoshuliang()+"' where id="+yaoxiangshezi.getId();
 			}else {
 				//执行新增
-				sql = "insert into cangkushezi(cangkuID,yaopingID,zuishaoshuliang)";
-				sql += " values('"+Cangkushezi.getCangkuID()+"','"+Cangkushezi.getYaopingID()
-				+"','"+Cangkushezi.getZuishaoshuliang()+"')";
+				sql = "insert into yaoxiangshezi(yaoxiangID,yaopingID,zuishaoshuliang)";
+				sql += " values('"+yaoxiangshezi.getYaoxiangID()+"','"+yaoxiangshezi.getYaopingID()
+				+"','"+yaoxiangshezi.getZuishaoshuliang()+"')";
 				
 			}
 			//System.out.print(sql);
@@ -40,7 +40,7 @@ public class CangkusheziDao {
 			
 		} catch (Exception e) {
 			// TODO: handle exception
-			ProjectShare.log("Cangkushezi.save/update error: "+e.getMessage());
+			ProjectShare.log("yaoxiangshezi.save/update error: "+e.getMessage());
 			return false;
 		}
 	}
@@ -48,7 +48,7 @@ public class CangkusheziDao {
 	public static boolean delete(int id){
 		try {
 			Connection connection = ProjectShare.getDbPool().getConnection();
-			String sql = "delete from cangkushezi where id="+id;
+			String sql = "delete from yaoxiangshezi where id="+id;
 			int i=ProjectShare.getDbPool().update(connection, sql);
 			
 			ProjectShare.getDbPool().closeConnection(connection);
@@ -58,31 +58,31 @@ public class CangkusheziDao {
 			          
 		} catch (Exception e) {
 			// TODO: handle exception
-			ProjectShare.log("Cangkushezi .delete error: "+e.getMessage());
+			ProjectShare.log("yaoxiangshezi .delete error: "+e.getMessage());
 			return false;
 		}
 	}
 	
-	public static List<Cangkushezi> findALL(){
+	public static List<Yaoxiangshezi> findALL(){
 		try {
-			List<Cangkushezi> list = new ArrayList<>();
+			List<Yaoxiangshezi> list = new ArrayList<>();
 			Connection connection = ProjectShare.getDbPool().getConnection();
 			
-			String sql = "select * from cangkushezi";
+			String sql = "select * from yaoxiangshezi";
 			ResultSet rs = ProjectShare.getDbPool().query(connection, sql);
 			while(rs.next()){
-				Cangkushezi  Cangkushezi = new Cangkushezi();
-				Cangkushezi.setCangkuID(rs.getInt("cangkuID"));
-				Cangkushezi.setYaopingID(rs.getInt("yaopingID"));
-				Cangkushezi.setId(rs.getInt("id"));
-				Cangkushezi.setZuishaoshuliang(rs.getInt("zuishaoshuliang"));
-				if(Cangkushezi.getCangkuID()>0) {
-					Cangkushezi.setCangkuMingzi(YaoxiangDao.findBycangkuID(Cangkushezi.getCangkuID()).getYaoxiangMingzi());
+				Yaoxiangshezi  yaoxiangshezi = new Yaoxiangshezi();
+				yaoxiangshezi.setYaoxiangID(rs.getInt("yaoxiangID"));
+				yaoxiangshezi.setYaopingID(rs.getInt("yaopingID"));
+				yaoxiangshezi.setId(rs.getInt("id"));
+				yaoxiangshezi.setZuishaoshuliang(rs.getInt("zuishaoshuliang"));
+				if(yaoxiangshezi.getYaoxiangID()>0) {
+					yaoxiangshezi.setYaoxiangMingzi(YaoxiangDao.findByyaoxiangID(yaoxiangshezi.getYaoxiangID()).getYaoxiangMingzi());
 				}
-				if(Cangkushezi.getYaopingID() > 0) {
-					Cangkushezi.setYaoping(YaopingDao.findByYaopingID(Cangkushezi.getYaopingID()));
+				if(yaoxiangshezi.getYaopingID() > 0) {
+					yaoxiangshezi.setYaoping(YaopingDao.findByYaopingID(yaoxiangshezi.getYaopingID()));
 				}
-				list.add(Cangkushezi);
+				list.add(yaoxiangshezi);
 				
 			}
 			rs.close();
@@ -93,14 +93,14 @@ public class CangkusheziDao {
 			
 		} catch (Exception e) {
 			// TODO: handle exception
-			ProjectShare.log("Cangkushezi.findALL error: "+e.getMessage());
+			ProjectShare.log("yaoxiangshezi.findALL error: "+e.getMessage());
 			return null;
 		}
 	}
 	
 	/**
 	 * 获取药品的总数量小于设置的数量的所有药品ｉｄ
-	 * Yaoping.shuliang<Cangkushezi.zuishaoshuliang找出所有的yaopingID
+	 * Yaoping.shuliang<yaoxiangshezi.zuishaoshuliang找出所有的yaopingID
 	 * @return  被kucunDao，findAllMinshuliang调用
 	 */
 //写详细点，不明白，上面说的意思？？？？？？？获取药品的总数量小于设置的数量的所有药品ｉｄ
@@ -109,7 +109,7 @@ public class CangkusheziDao {
 			List<Integer> list = new ArrayList<>();
 			Connection connection = ProjectShare.getDbPool().getConnection();
 			
-			String sql = "SELECT yaoping.yaopingID  YaopingID_ FROM yaoping JOIN cangkushezi ON yaoping.shuliang >cangkushezi.zuishaoshuliang WHERE yaoping.yaopingID=cangkushezi.yaopingID";
+			String sql = "SELECT yaoping.yaopingID  YaopingID_ FROM yaoping JOIN yaoxiangshezi ON yaoping.shuliang >yaoxiangshezi.zuishaoshuliang WHERE yaoping.yaopingID=yaoxiangshezi.yaopingID";
 			ResultSet rs = ProjectShare.getDbPool().query(connection, sql);
 			while(rs.next()){
 				Integer yaopingID=rs.getInt("YaopingID_");
@@ -124,7 +124,7 @@ public class CangkusheziDao {
 			
 		} catch (Exception e) {
 			// TODO: handle exception
-			ProjectShare.log("Cangkushezi.findZuishaoshuliangOfYaopingID error: "+e.getMessage());
+			ProjectShare.log("yaoxiangshezi.findZuishaoshuliangOfYaopingID error: "+e.getMessage());
 			return null;
 		}
 	}

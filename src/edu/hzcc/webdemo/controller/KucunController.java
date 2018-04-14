@@ -94,7 +94,7 @@ public class KucunController extends ControllerBase{
 		}
 		kucun.setYaopingID(getParameterInt("yaopingID"));
 		kucun.setKucunID(kucunID);
-		kucun.setCangKuID(getParameterInt("cangkuID"));
+		kucun.setYaoxiangID(getParameterInt("yaoxiangID"));
 		kucun.setDingdanID(dingdanID);
 		kucun.setShuliang(xianzaishuliang);
 		Date date = new Date();

@@ -56,7 +56,7 @@
                                 供应商
                             </th>
                             <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
-                                仓库
+                                药箱
                             </th>
                             <th class="sorting_disabled" rowspan="1" colspan="1" aria-label=""></th>
                         </tr>
@@ -106,9 +106,9 @@
 					</select></td>
             </tr>
             <tr>
-                <td><label for="cangkuMingzi">仓库</label></td>
-                <td><select class="cangku-list" id="cangkuMingzi" name="cangkuID"
-						data-placeholder="选择仓库" style="width: 170px;">
+                <td><label for="yaoxiangMingzi">药箱</label></td>
+                <td><select class="yaoxiang-list" id="yaoxiangMingzi" name="yaoxiangID"
+						data-placeholder="选择药箱" style="width: 170px;">
 					</select></td>
             </tr>
         </table>
@@ -151,8 +151,8 @@
 					</select></td>
             </tr>
             <tr>
-                <td><label for="cangkuMingzi"> 仓库</label></td>
-                <td><select class="cangku-list" id="updateusercangkuMingzi" name="cangkuID"
+                <td><label for="yaoxiangMingzi"> 药箱</label></td>
+                <td><select class="yaoxiang-list" id="updateuseryaoxiangMingzi" name="yaoxiangID"
 						data-placeholder="选择仓库" style="width: 170px;">
 					</select></td>
             </tr>
@@ -171,7 +171,7 @@
 	<td>{{jingjia}}</td>
 
  	<td>{{gongyingshangMingzi}}</td>
- 	<td>{{cangku.cangkuMingzi}}</td>
+ 	<td>{{yaoxiang.yaoxiangMingzi}}</td>
     <td>
         <div class="hidden-sm hidden-xs action-buttons">
             <a class="green user-edit" href="#" data-id="{{yaopingID}}"
@@ -180,7 +180,7 @@
 			data-youxiaoqi="{{youxiaoqi}}"
 			data-jingjia="{{jingjia}}"
 			data-yaopingBianhao="{{yaopingBianhao}}"
-			data-cangkuID="{{cangku.cangkuID}}"
+			data-yaoxiangID="{{yaoxiang.yaoxiangID}}"
 			data-gongyingshangMingzi="{{gongyingshangMingzi}}">
                 <i class="ace-icon fa fa-pencil bigger-100"></i>
             </a>
@@ -194,10 +194,10 @@
 </script>
 
 <!-- 仓库下拉列表 -->
-<script id="cangkuTemplate" type="x-tmpl-mustache">
-{{#cangkuList}}
-<option value="{{cangkuID}}">{{cangkuMingzi}}</option>
-{{/cangkuList}}
+<script id="yaoxiangTemplate" type="x-tmpl-mustache">
+{{#yaoxiangList}}
+<option value="{{yaoxiangID}}">{{yaoxiangMingzi}}</option>
+{{/yaoxiangList}}
 </script>
 
 <script type="text/javascript">
@@ -207,8 +207,8 @@ $(function () {
 	var userMap = {}; // 存储map格式的用户列表	
     var userListTemplate = $('#userListTemplate').html();
     Mustache.parse(userListTemplate);
-    var cangkuTemplate = $('#cangkuTemplate').html();
-    Mustache.parse(cangkuTemplate);
+    var yaoxiangTemplate = $('#yaoxiangTemplate').html();
+    Mustache.parse(yaoxiangTemplate);
     loadUserList();
     $(".user-add").click(function () {
         $("#dialog-saveuser-form").dialog({
@@ -219,7 +219,7 @@ $(function () {
             open: function (event, ui) {
                 $(".ui-dialog-titlebar-close", $(this).parent()).hide(); // 点开时隐藏关闭按钮
                 $("#saveuserForm")[0].reset();
-                cangkuSelect();
+                yaoxiangSelect();
             },
             buttons: {
                 "添加": function (e) {                    
@@ -289,14 +289,14 @@ $(function () {
 			var jingjia = $(this).attr("data-jingjia");
 			var yaopingBianhao = $(this).attr("data-yaopingBianhao");
 			var gongyingshangMingzi = $(this).attr("data-gongyingshangMingzi");
-			var cangkuID = $(this).attr("data-cangkuID");
+			var yaoxiangID = $(this).attr("data-yaoxiangID");
             $("#dialog-updateuser-form").dialog({
             	height: 480,
             	width: 400,
                 modal: true,
                 title: "编辑药品",
                 open: function (event, ui) {
-                	cangkuSelect();
+                	yaoxiangSelect();
                     $("#updateuserForm")[0].reset();
                     $(".ui-dialog-titlebar-close", $(this).parent()).hide(); // 点开时隐藏关闭按钮
                         $("#updateuseryaopingID").val(yaopingID);
@@ -306,7 +306,7 @@ $(function () {
 						   $("#updateuseryouxiaoqi").val(youxiaoqi);
 						    $("#updateuserjingjia").val(jingjia);
 							 $("#updateusergongyingshangMingzi").val(gongyingshangMingzi);
-							 $("#updateusercangkuMingzi").val(cangkuID);
+							 $("#updateuseryaoxiangMingzi").val(yaoxiangID);
 
 							
                 },
@@ -400,15 +400,15 @@ $(function () {
     } 
      
   //加载保存和修改弹出框的仓库下拉信息 
-    function cangkuSelect() {
+    function yaoxiangSelect() {
 		$.ajax({
 			url: "${pageContext.request.contextPath }/cs",
-			data:{cls:'CangkuController',mtd:'findAll'},
+			data:{cls:'YaoxiangController',mtd:'findAll'},
 			type: 'POST',
 			async: false,
 			success: function (result) {
-				var rendered = Mustache.render(cangkuTemplate, {"cangkuList": result.cangku});
-		         $('.cangku-list').html(rendered);
+				var rendered = Mustache.render(yaoxiangTemplate, {"yaoxiangList": result.yaoxiang});
+		         $('.yaoxiang-list').html(rendered);
 			}
 		});
     }

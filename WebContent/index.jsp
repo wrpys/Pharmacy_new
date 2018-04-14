@@ -98,7 +98,7 @@
 								药箱查询
 						</a> <b class="arrow"></b></li>
 
-						<li class=""><a class="popstyle" href="cangkushezi.jsp"
+						<li class=""><a class="popstyle" href="yaoxiangshezi.jsp"
 							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
 								药箱预警设置
 						</a> <b class="arrow"></b></li>

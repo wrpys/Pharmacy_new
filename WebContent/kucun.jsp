@@ -78,13 +78,13 @@
             </tr>
             
             <tr>
-                <td><label for="cangkuMingzi">仓库名字</label></td>
+                <td><label for="yaoxiangMingzi">仓库名字</label></td>
                 <input type="hidden" name="cls" id="cls" value="KucunController"/>
                 <input type="hidden" name="mtd" id="mtd" value="update"/>
-                <input type="hidden" name="cangkuID" id="cangkuID"/>
+                <input type="hidden" name="yaoxiangID" id="yaoxiangID"/>
                 <input type="hidden" name="kucunID" id="kucunID"/>
                 <input type="hidden" name="dingdanID" id="dingdanID"/>
-                <td><input type="text" name="cangkuMingzi" id="cangkuMingzi" readonly="true" value="" class="text ui-widget-content ui-corner-all"></td>
+                <td><input type="text" name="yaoxiangMingzi" id="yaoxiangMingzi" readonly="true" value="" class="text ui-widget-content ui-corner-all"></td>
             </tr>
          
             <tr>
@@ -150,7 +150,7 @@
     <td>{{yaoping.yaopingBianhao}}</a></td>
     <td>{{yaoping.yaopingMingzi}}</td>
     <td>{{yaoping.yaopingDanwei}}</td>
-	<td>{{cangku.yaoxiangMingzi}}</td>
+	<td>{{yaoxiang.yaoxiangMingzi}}</td>
     <td>{{shuliang}}</td>
 	<td>{{riqi}}</td>
 	<!-- <td>{{#bold}}{{complete}}{{/bold}}</td>	 -->
@@ -163,8 +163,8 @@
  												data-shuliang="{{shuliang}}"
  												data-riqi="{{riqi}}"
 												data-complete="{{complete}}"
-												data-yaoxiangMingzi="{{cangku.yaoxiangMingzi}}"
-												data-cangkuID="{{cangku.cangkuID}}"
+												data-yaoxiangMingzi="{{yaoxiang.yaoxiangMingzi}}"
+												data-yaoxiangID="{{yaoxiang.yaoxiangID}}"
 												data-dingdanID="{{dingdanID}}"
 												data-kucunID="{{kucun.kucunID}}"
 												data-dingdanleixing="{{dingdanleixing}}">
@@ -249,7 +249,7 @@ $(function () {
 										: "出库";
 								var yaoxiangMingzi = $(this).attr(
 										"data-yaoxiangMingzi");
-								var cangkuID = $(this).attr("data-cangkuID");
+								var yaoxiangID = $(this).attr("data-yaoxiangID");
 								var kucunID = $(this).attr("data-kucunID");
 								var dingdanID = $(this).attr("data-yaopingBianhao");
 								var yaopingID = $(this).attr("data-yaopingID");
@@ -275,7 +275,7 @@ $(function () {
 																.hide(); // 点开时隐藏关闭按钮      
 														$("#churuku").val(
 																churuku);
-														$("#cangkuMingzi").val(
+														$("#yaoxiangMingzi").val(
 																yaoxiangMingzi);
 														$("#yaopingID").val(
 																yaopingID);
@@ -296,8 +296,8 @@ $(function () {
 
 														$("#updateYaopingID")
 																.val(yaopingID);
-														$("#cangkuID").val(
-																cangkuID);
+														$("#yaoxiangID").val(
+																yaoxiangID);
 														$("#dingdanID").val(
 																dingdanID);
 														$("#kucunID").val(

@@ -100,7 +100,7 @@
 	<td>{{shuliang}}</td>
 	<td>{{zongjia}}</td>
 	<td>{{gongyingshang.gongyingshangMingzi}}</td>
-	<td>{{cangku.cangkuMingzi}}</td>
+	<td>{{yaoxiang.yaoxiangMingzi}}</td>
 	<td>{{riqi}}</td>
 	<td>{{#bold}}{{complete}}{{/bold}}</td>	
     <td>

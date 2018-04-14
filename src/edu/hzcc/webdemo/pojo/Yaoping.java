@@ -34,14 +34,10 @@ public class Yaoping {
 	 * 供应商
 	 */
 	private String gongyingshangMingzi;
-	/*
-	 * 该药品总数，为了预警用的
-	 */
-	private int shuliang;
 	
-	private Integer cangkuID; 
+	private Integer yaoxiangID; 
 	
-	private Yaoxiang cangku;
+	private Yaoxiang yaoxiang;
 	
 	public int getYaopingID() {
 		return yaopingID;
@@ -85,29 +81,23 @@ public class Yaoping {
 	public void setGongyingshangMingzi(String gongyingshangMingzi) {
 		this.gongyingshangMingzi = gongyingshangMingzi;
 	}
-	public int getShuliang() {
-		return shuliang;
+	public Integer getYaoxiangID() {
+		return yaoxiangID;
 	}
-	public void setShuliang(int shuliang) {
-		this.shuliang = shuliang;
+	public void setYaoxiangID(Integer yaoxiangID) {
+		this.yaoxiangID = yaoxiangID;
 	}
-	public Integer getCangkuID() {
-		return cangkuID;
+	public Yaoxiang getYaoxiang() {
+		return yaoxiang;
 	}
-	public void setCangkuID(Integer cangkuID) {
-		this.cangkuID = cangkuID;
-	}
-	public Yaoxiang getCangku() {
-		return cangku;
-	}
-	public void setCangku(Yaoxiang cangku) {
-		this.cangku = cangku;
+	public void setYaoxiang(Yaoxiang yaoxiang) {
+		this.yaoxiang = yaoxiang;
 	}
 	@Override
 	public String toString() {
 		return "Yaoping [yaopingID=" + yaopingID + ", yaopingMingzi=" + yaopingMingzi + ", yaopingDanwei="
 				+ yaopingDanwei + ", youxiaoqi=" + youxiaoqi + ", jingjia=" + jingjia + ", gongyingshangMingzi="
-				+ gongyingshangMingzi + ", shuliang=" + shuliang + "]";
+				+ gongyingshangMingzi + "]";
 	}
 
 	

@@ -121,20 +121,22 @@ public class YonghuController extends ControllerBase {
 
 	// 系统退出
 	public void loginout() {
-		// 日志
-		Rizhi rizhi = new Rizhi();
-		rizhi.setYonghuID(loginyonghuID);
-		rizhi.setDengluMingzi(logindengluMingzi);
-		// 今天的时间
-		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		rizhi.setRiqi(sdf.format(date));
-		rizhi.setNeirong(logindengluMingzi + "退出");
-		// 保存日志
-		RizhiDao.save(rizhi);
-		// 清除用户信息
-		loginyonghuID = 0;
-		logindengluMingzi = null;
+		if(loginyonghuID != 0 && logindengluMingzi != null){
+			// 日志
+			Rizhi rizhi = new Rizhi();
+			rizhi.setYonghuID(loginyonghuID);
+			rizhi.setDengluMingzi(logindengluMingzi);
+			// 今天的时间
+			Date date = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			rizhi.setRiqi(sdf.format(date));
+			rizhi.setNeirong(logindengluMingzi + "退出");
+			// 保存日志
+			RizhiDao.save(rizhi);
+			// 清除用户信息
+			loginyonghuID = 0;
+			logindengluMingzi = null;
+		}
 		// 跳转登录页
 		toPage("login.jsp");
 		return;

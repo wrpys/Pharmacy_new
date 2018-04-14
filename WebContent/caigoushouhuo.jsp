@@ -13,6 +13,24 @@
     </h1>
 </div>
 <div class="main-content-inner">
+
+		<form id="searchForm" class="form-inline" role="form" onsubmit="return false">
+            <div class="form-group">
+                <label class="form-label">药品名字:</label>
+                <input type="text" class="form-control" name="yaopingMingzi">
+            </div>
+            <div class="form-group">
+                <label class="form-label">供应商:</label>
+                <select class="gongyingshang-list" name="gongyingshangID" data-placeholder="选择供应商" style="width: 170px;"></select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">总价:</label>
+                <input type="text" class="form-control" name="qishiZongjia" placeholder="请输入起始总价">~
+                <input type="text" class="form-control" name="jieshuZongjia" placeholder="请输入终止总价">
+            </div>
+            <button id="search" class="btn1 btn-primary1">查询</button>
+        </form>
+
         <div class="col-xs-12">
             <div class="table-header">
                采购收货订单列表&nbsp;&nbsp;
@@ -20,35 +38,8 @@
                     <i class="ace-icon fa fa-plus-circle orange bigger-130 user-add"></i>
                 </a>
             </div>
-            <div class="row">
+            <div>
                <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline no-footer">
-                 <div class="col-xs-6">
-					<div id="dynamic-table_filter" class="dataTables_filter">
-						<label> 药品名字: <input type="search" name="yaopingMingzi"
-							id="yaopingMingzi" class="form-control input-sm yaopingMingzi"
-							placeholder="" aria-controls="dynamic-table"></label>
-					</div>
-				</div>
-				<div class="col-xs-6">
-					<div id="dynamic-table_filter" class="dataTables_filter">
-						<label> 供应商名字: <input type="search"
-							name="gongyingshangMingzi" id="gongyingshangMingzi"
-							class="form-control input-sm gongyingshangMingzi" placeholder=""
-							aria-controls="dynamic-table"></label>
-					</div>
-				</div>
-				<div class="col-xs-6">
-					<div id="dynamic-table_filter" class="dataTables_filter">
-						<label> 金额: <input type="search" name="qishiZongjia"
-							id="qishiZongjia" class="form-control input-sm qishiZongjia"
-							placeholder="请输入起始总金额" aria-controls="dynamic-table"></label>
-						~ <input type="search" name="jieshuZongjia" id="jieshuZongjia"
-							class="form-control input-sm jieshuZongjia" placeholder="请输入终止总金额"
-							aria-controls="dynamic-table"></label>
-					</div>
-				</div>
-                   
-                   
                     <table id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid"
                            aria-describedby="dynamic-table_info" style="font-size:14px">
                         <thead>
@@ -118,9 +109,9 @@
                 </td>
             </tr>
             <tr>
-                <td><label for="cangkuID">仓库</label></td>
+                <td><label for="yaoxiangID">仓库</label></td>
                 <td>
-                	<select class="cangku-list" name="cangkuID" data-placeholder="选择仓库" style="width: 170px;"></select>
+                	<select class="yaoxiang-list" name="yaoxiangID" data-placeholder="选择仓库" style="width: 170px;"></select>
                 </td>
             </tr>
             <tr>
@@ -157,9 +148,9 @@
                 </td>
             </tr>
             <tr>
-                <td><label for="cangkuID">仓库</label></td>               
+                <td><label for="yaoxiangID">仓库</label></td>               
                 <td>
-                <select class="cangku-list" id="dialog-updateuser-formcangkuID" name="cangkuID" data-placeholder="选择仓库" style="width: 170px;"></select>
+                <select class="yaoxiang-list" id="dialog-updateuser-formyaoxiangID" name="yaoxiangID" data-placeholder="选择仓库" style="width: 170px;"></select>
                 </td>
             </tr>
             <tr>
@@ -186,7 +177,7 @@
 	<td>{{shuliang}}</td>
 	<td>{{zongjia}}</td>
 	<td>{{gongyingshang.gongyingshangMingzi}}</td>
-	<td>{{cangku.cangkuMingzi}}</td>
+	<td>{{yaoxiang.yaoxiangMingzi}}</td>
 	<td>{{riqi}}</td>
 	<td>{{#bold}}{{complete}}{{/bold}}</td>	
     <td>
@@ -196,7 +187,7 @@
 												data-yaopingID="{{yaopingID}}"
 												data-danjia="{{danjia}}"
 												data-shuliang="{{shuliang}}"	
-												data-cangkuID="{{cangkuID}}"	
+												data-yaoxiangID="{{yaoxiangID}}"	
 												data-complete="{{complete}}"
 												data-gongyingshangID="{{gongyingshangID}}">
                 <i class="ace-icon fa fa-pencil bigger-100"></i>
@@ -225,10 +216,10 @@
 </script>
 
 <!-- 仓库下拉列表 -->
-<script id="cangkuTemplate" type="x-tmpl-mustache">
-{{#cangkuList}}
-<option value="{{cangkuID}}">{{cangkuMingzi}}</option>
-{{/cangkuList}}
+<script id="yaoxiangTemplate" type="x-tmpl-mustache">
+{{#yaoxiangList}}
+<option value="{{yaoxiangID}}">{{yaoxiangMingzi}}</option>
+{{/yaoxiangList}}
 </script>
 
 <script type="text/javascript">
@@ -242,8 +233,8 @@ $(function () {
     Mustache.parse(Template);
     var yaopingTemplate = $('#yaopingTemplate').html();
     Mustache.parse(yaopingTemplate);
-    var cangkuTemplate = $('#cangkuTemplate').html();
-    Mustache.parse(cangkuTemplate);
+    var yaoxiangTemplate = $('#yaoxiangTemplate').html();
+    Mustache.parse(yaoxiangTemplate);
     loadUserList();
     // 加载信息,并渲染
     function loadUserList() {
@@ -283,7 +274,7 @@ $(function () {
                 $(".ui-dialog-titlebar-close", $(this).parent()).hide(); // 点开时隐藏关闭按钮
                 gongyingshangSelect();
                 yaopingSelect();
-                cangkuSelect();
+                yaoxiangSelect();
                 $("#saveuserForm")[0].reset();
             },
             buttons: {
@@ -313,7 +304,7 @@ $(function () {
 			var yaopingID = $(this).attr("data-yaopingID"); 
 			var danjia = $(this).attr("data-danjia"); 
 			var shuliang = $(this).attr("data-shuliang"); 
-			var cangkuID = $(this).attr("data-cangkuID"); 
+			var yaoxiangID = $(this).attr("data-yaoxiangID"); 
 			var gongyingshangID = $(this).attr("data-gongyingshangID"); 
             $("#dialog-updateuser-form").dialog({
             	height: 450,
@@ -323,7 +314,7 @@ $(function () {
                 open: function (event, ui) {
                 	gongyingshangSelect();
                 	yaopingSelect();
-                	cangkuSelect();
+                	yaoxiangSelect();
                     $("#updateuserForm")[0].reset();
                     $(".ui-dialog-titlebar-close", $(this).parent()).hide(); // 点开时隐藏关闭按钮
                    $("#dingdanID").val(dingdanID);
@@ -331,7 +322,7 @@ $(function () {
 				   $("#dialog-updateuser-formyaopingID").val(yaopingID);
 				   $("#dialog-updateuser-formdanjia").val(danjia);
 				   $("#dialog-updateuser-formshuliang").val(shuliang);
-				   $("#dialog-updateuser-formcangkuID").val(cangkuID);
+				   $("#dialog-updateuser-formyaoxiangID").val(yaoxiangID);
 				   $("#dialog-updateuser-formgongyingshangID").val(gongyingshangID);
                 },
                 buttons: {
@@ -432,15 +423,15 @@ $(function () {
     }
   	
   	//加载保存和修改弹出框的仓库下拉信息 
-    function cangkuSelect() {
+    function yaoxiangSelect() {
 		$.ajax({
 			url: "${pageContext.request.contextPath }/cs",
-			data:{cls:'CangkuController',mtd:'findAll'},
+			data:{cls:'YaoxiangController',mtd:'findAll'},
 			type: 'POST',
 			async: false,
 			success: function (result) {
-				var rendered = Mustache.render(cangkuTemplate, {"cangkuList": result.cangku});
-		         $('.cangku-list').html(rendered);
+				var rendered = Mustache.render(yaoxiangTemplate, {"yaoxiangList": result.yaoxiang});
+		         $('.yaoxiang-list').html(rendered);
 			}
 		});
     }
