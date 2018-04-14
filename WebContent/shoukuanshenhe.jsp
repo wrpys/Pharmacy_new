@@ -77,7 +77,7 @@
                 <input type="hidden" name="mtd" id="mtd" value="update"/>
 				<input type="hidden" name="dingdanID" id="dingdanID"/>
 				<input type="hidden" name="yaopingID" id="yaopingID"/>
-				<input type="hidden" name="cangkuID" id="cangkuID"/>
+				<input type="hidden" name="yaoxiangID" id="yaoxiangID"/>
 				<input type="hidden" name="shuliang" id="shuliang"/>
 				<input type="hidden" name="zongjia" id="zongjia"/>
                 <td><input type="text" name="dingdanBianhao" id="dialog-updateuser-formDingdanBianhao" readonly="readonly" value="" class="text ui-widget-content ui-corner-all"></td>
@@ -111,7 +111,7 @@
 	<td>{{shuliang}}</td>
 	<td>{{zongjia}}</td>
 	<td>{{kehu.kehuMingzi}}</td>
-	<td>{{cangku.cangkuMingzi}}</td>
+	<td>{{yaoxiang.yaoxiangMingzi}}</td>
 	<td>{{riqi}}</td>
 	<td>{{#bold}}{{complete}}{{/bold}}</td>	
     <td>
@@ -119,7 +119,7 @@
             <a class="green user-edit" href="#" data-id="{{dingdanID}}"
 												data-dingdanBianhao="{{dingdanBianhao}}"
 												data-yaopingID="{{yaoping.yaopingID}}"
-												data-cangkuID="{{cangku.cangkuID}}"
+												data-yaoxiangID="{{yaoxiang.yaoxiangID}}"
 												data-zongjia="{{zongjia}}"
 												data-shuliang="{{shuliang}}"
 												data-complete="{{complete}}">
@@ -185,7 +185,7 @@ $(function () {
             var dingdanID = $(this).attr("data-id"); // 选中的id
 			var dingdanBianhao = $(this).attr("data-dingdanBianhao"); 
 			var yaopingID = $(this).attr("data-yaopingID"); 
-			var cangkuID = $(this).attr("data-cangkuID"); 
+			var yaoxiangID = $(this).attr("data-yaoxiangID"); 
 			var shuliang = $(this).attr("data-shuliang"); 
 			var zongjia = $(this).attr("data-zongjia"); 
 			if(complete != "0") {
@@ -206,7 +206,7 @@ $(function () {
 				   $("#dialog-updateuser-formDingdanBianhao").val(dingdanBianhao);
 				   $("#dialog-updateuser-formcomplete").val(complete);
 				   $("#yaopingID").val(yaopingID);
-				   $("#cangkuID").val(cangkuID);
+				   $("#yaoxiangID").val(yaoxiangID);
 				   $("#shuliang").val(shuliang);
                 },
                 buttons: {

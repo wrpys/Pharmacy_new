@@ -18,7 +18,7 @@ public class KucunDao {
 		Kuncun kucun = new Kuncun();
 		kucun.setKucunID(rs.getInt("kucunID"));
 		kucun.setYaopingID(rs.getInt("yaopingID"));
-		kucun.setCangKuID(rs.getInt("cangKuID"));
+		kucun.setYaoxiangID(rs.getInt("yaoxiangID"));
 		kucun.setDingdanID(rs.getInt("dingdanID"));
 		kucun.setShuliang(rs.getInt("shuliang"));
 		kucun.setRiqi(rs.getString("riqi"));
@@ -27,9 +27,9 @@ public class KucunDao {
 		if(kucun.getYaopingID() > 0) {
 			kucun.setYaoping(YaopingDao.findByYaopingID(kucun.getYaopingID()));
 		}
-		// 仓库详情
-		if (kucun.getCangKuID() > 0 ) {
-			kucun.setCangku(YaoxiangDao.findBycangkuID(kucun.getCangKuID()));
+		// 药箱详情
+		if (kucun.getYaoxiangID() > 0 ) {
+			kucun.setYaoxiang(YaoxiangDao.findByyaoxiangID(kucun.getYaoxiangID()));
 		}
 //		//库存详情
 //		if (kucun.getDingdanID() > 0) {
@@ -75,18 +75,18 @@ public class KucunDao {
 	/**
 	 * 
 	 * @param yaoping 
-	 * @param cangkuID 
+	 * @param yaoxiangID 
 	 * @return 数据少于预警设置数量的库存列表
 	 */
-	//详细写一下？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？-->每一句注解我都写出来：主要是根据仓库ID和yaopingID获取库存中对应的信息
-	public static  Kuncun findAllMinshuliang(int cangkuID, int yaopingID){
+	//详细写一下？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？-->每一句注解我都写出来：主要是根据药箱ID和yaopingID获取库存中对应的信息
+	public static  Kuncun findAllMinshuliang(int yaoxiangID, int yaopingID){
 		try {
 			//创建kucun实例
 			Kuncun kucun = new Kuncun();
 			//创建数据库链接
 			Connection connection = ProjectShare.getDbPool().getConnection();
-			//创建sql语句--->select * from kucun where cangkuID=传进来的cangkuID and yaopingID = 传进来的yaopingID
-			String sql = "select * from kucun where cangkuID='"+cangkuID+"'" + " and yaopingID=" + yaopingID;
+			//创建sql语句--->select * from kucun where yaoxiangID=传进来的yaoxiangID and yaopingID = 传进来的yaopingID
+			String sql = "select * from kucun where yaoxiangID='"+yaoxiangID+"'" + " and yaopingID=" + yaopingID;
 			//执行sql语句，并发挥resultset数据集
 			ResultSet rs = ProjectShare.getDbPool().query(connection, sql);
 			//遍历rs数据集中的对象
@@ -117,7 +117,7 @@ public class KucunDao {
 			if (kucun.getKucunID() > 0) {
 				// 执行修改
 				sql = "update kucun set yaopingID= '" + kucun.getYaopingID()
-						+ "',cangkuID='" + kucun.getCangKuID()
+						+ "',yaoxiangID='" + kucun.getYaoxiangID()
 						/*+ "',dingdanID='" + kucun.getDingdanID()*/
 						+ "',shuliang='" + kucun.getShuliang() + "',riqi='"
 						+ kucun.getRiqi() + "',zhuangtai="
@@ -125,9 +125,9 @@ public class KucunDao {
 						+ kucun.getKucunID();
 			} else {
 				// 执行新增
-				sql = "insert into yaoxaing(yaopingID,cangkuID,dingdanID,shuliang,riqi,zhuangtai)";
+				sql = "insert into yaoxaing(yaopingID,yaoxiangID,dingdanID,shuliang,riqi,zhuangtai)";
 				sql += " values('" + kucun.getYaopingID() + "','"
-						+ kucun.getCangKuID() + "','"
+						+ kucun.getYaoxiangID() + "','"
 						+ kucun.getDingdanID() + "','"
 						+ kucun.getShuliang() + "','"
 						+ kucun.getRiqi() + "','"
@@ -206,13 +206,13 @@ public class KucunDao {
 	
 	
 	/*
-	 * 根据yaopingID,cangkuID,dingdanID获取库存
+	 * 根据yaopingID,yaoxiangID,dingdanID获取库存
 	 */
-	public static Kuncun findKucunByYaopingkuCunID(int yaopingID,int cangkuID){
+	public static Kuncun findKucunByYaopingkuCunID(int yaopingID,int yaoxiangID){
 		try {
 			Kuncun kucun = new Kuncun();
 			Connection connection = ProjectShare.getDbPool().getConnection();
-			String sql = "select * from kucun where yaopingID='"+yaopingID+"' and cangkuID='" +cangkuID + "'";
+			String sql = "select * from kucun where yaopingID='"+yaopingID+"' and yaoxiangID='" +yaoxiangID + "'";
 			ResultSet rs = ProjectShare.getDbPool().query(connection, sql);
 			while(rs.next()){
 				kucun = converkucun(rs);

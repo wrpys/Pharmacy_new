@@ -74,10 +74,10 @@ public class FakuanshenheController extends ControllerBase {
 		int yaopingID=getParameterInt("yaopingID");
 		//获取dingdanID
 		int dingdanID = getParameterInt("dingdanID");
-		//获取cangkuId
-		int cangkuID=getParameterInt("cangkuID");
+		//获取yaoxiangId
+		int yaoxiangID=getParameterInt("yaoxiangID");
 		//根据库存ID获取库存实体信息
-		Kuncun cunzaiKucun = KucunDao.findKucunByYaopingkuCunID(yaopingID, cangkuID);
+		Kuncun cunzaiKucun = KucunDao.findKucunByYaopingkuCunID(yaopingID, yaoxiangID);
 		//获取入库出库的药品数量
 		int shuliang = getParameterInt("shuliang");
 		//定义现在要更新库存的药品数量
@@ -92,7 +92,7 @@ public class FakuanshenheController extends ControllerBase {
 			kucun.setShuliang(shuliang);
 		}
 		kucun.setYaopingID(getParameterInt("yaopingID"));
-		kucun.setCangKuID(getParameterInt("cangkuID"));
+		kucun.setYaoxiangID(getParameterInt("yaoxiangID"));
 		kucun.setDingdanID(dingdanID);
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

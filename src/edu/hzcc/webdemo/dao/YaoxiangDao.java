@@ -14,18 +14,18 @@ import edu.hzcc.webdemo.sys.ProjectShare;
 public class YaoxiangDao {
 
 	// 新增或者修改。当药箱ID已经存在，说明记录在表中存在就应该执行更新
-	public static boolean save(Yaoxiang cangku) {
+	public static boolean save(Yaoxiang yaoxiang) {
 		try {
 			String sql = null;
-			if (cangku.getYaoxiangID() > 0) {
+			if (yaoxiang.getYaoxiangID() > 0) {
 				// 执行修改
 				sql = "update yaoxiang set yaoxiangMingzi= '"
-						+ cangku.getYaoxiangMingzi() + "' where yaoxiangID="
-						+ cangku.getYaoxiangID();
+						+ yaoxiang.getYaoxiangMingzi() + "' where yaoxiangID="
+						+ yaoxiang.getYaoxiangID();
 			} else {
 				// 执行新增
 				sql = "insert into yaoxiang(yaoxiangMingzi)";
-				sql += " values('" + cangku.getYaoxiangMingzi() + "')";
+				sql += " values('" + yaoxiang.getYaoxiangMingzi() + "')";
 
 			}
 			// System.out.print(sql);
@@ -75,7 +75,7 @@ public class YaoxiangDao {
 			String sql = "select * from yaoxiang";
 			// 返回数据库结果集
 			ResultSet rs = ProjectShare.getDbPool().query(connection, sql);
-			// 循环结果集，一个个填充入List<cangku>
+			// 循环结果集，一个个填充入List<Yaoxiang>
 			while (rs.next()) {
 				Yaoxiang yaoxiang = new Yaoxiang();
 				yaoxiang.setYaoxiangID(rs.getInt("yaoxiangID"));
@@ -88,7 +88,7 @@ public class YaoxiangDao {
 			// 数据量链接关闭
 			ProjectShare.getDbPool().closeConnection(connection);
 
-			return list;// 找到所有供应商列表，返回给cangkuController
+			return list;// 找到所有供应商列表，返回给YaoxiangController
 			// 异常
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -98,9 +98,9 @@ public class YaoxiangDao {
 	}
 
 	// caigoudingdan
-	// xiaoshoudingdan，cangkushezhi表没有仓库名字，只有cangkuID，用cangkuID获取cangku，再获取名字，返回到这三表的DAO，用于显示名字
-	// 订单列表，需要展示仓库，所以到这边查找
-	public static Yaoxiang findBycangkuID(int yaoxiangID) {
+	// xiaoshoudingdan，yaoxiangshezhi表没有药箱名字，只有yaoxiangID，用yaoxiangID获取yaoxiang，再获取名字，返回到这三表的DAO，用于显示名字
+	// 订单列表，需要展示药箱，所以到这边查找
+	public static Yaoxiang findByyaoxiangID(int yaoxiangID) {
 		Yaoxiang yaoxiang = null;
 		try {
 			Connection connection = ProjectShare.getDbPool().getConnection();
@@ -118,7 +118,7 @@ public class YaoxiangDao {
 			return yaoxiang;
 		} catch (Exception e) {
 			// TODO: handle exception
-			ProjectShare.log("cangku findBycangkuID error: " + e.getMessage());
+			ProjectShare.log("yaoxiang findByyaoxiangID error: " + e.getMessage());
 			return null;
 		}
 	}

@@ -32,9 +32,8 @@ public class YaopingDao {
 		yaoping.setYouxiaoqi(rs.getInt("youxiaoqi"));
 		yaoping.setJingjia(rs.getDouble("jingjia"));
 		yaoping.setGongyingshangMingzi(rs.getString("gongyingshangMingzi"));
-		yaoping.setShuliang(rs.getInt("shuliang"));
-		yaoping.setCangkuID(rs.getInt("cangkuID"));
-		yaoping.setCangku(YaoxiangDao.findBycangkuID(yaoping.getCangkuID()));
+		yaoping.setYaoxiangID(rs.getInt("yaoxiangID"));
+		yaoping.setYaoxiang(YaoxiangDao.findByyaoxiangID(yaoping.getYaoxiangID()));
 		return yaoping;
 		//把数据库查到的数据填充到yaoping这个对象中  返回给使用对象，与findALL()有关吗，findALL()中也返回给yaopingController
 	}
@@ -44,9 +43,9 @@ public class YaopingDao {
 		try {
 			String sql = null;	
 			//执行新增
-			sql = "insert into yaoping(yaopingBianhao,yaopingMingzi,yaopingDanwei,youxiaoqi,jingjia,gongyingshangMingzi,shuliang,cangkuID)";
+			sql = "insert into yaoping(yaopingBianhao,yaopingMingzi,yaopingDanwei,youxiaoqi,jingjia,gongyingshangMingzi,yaoxiangID)";
 			sql += " values('"+yaoping.getYaopingBianhao()+"','"+yaoping.getYaopingMingzi()+"','"+yaoping.getYaopingDanwei()+"','"+yaoping.getYouxiaoqi()+"','"+yaoping.getJingjia()+"','"
-			+yaoping.getGongyingshangMingzi()+"','"+yaoping.getShuliang()+"','" + yaoping.getCangkuID() + "')";
+			+yaoping.getGongyingshangMingzi()+"','" + yaoping.getYaoxiangID() + "')";
 			//System.out.print(sql);
 			//开启数据库链接
 			Connection connection = ProjectShare.getDbPool().getConnection();
@@ -78,7 +77,7 @@ public class YaopingDao {
 			//执行修改
 			sql ="update yaoping set yaopingBianhao= '" + yaoping.getYaopingBianhao() + "', yaopingMingzi= '"+yaoping.getYaopingMingzi()+"',yaopingDanwei='"+yaoping.getYaopingDanwei()
 			+"',youxiaoqi='"+yaoping.getYouxiaoqi()+"',jingjia= '"+yaoping.getJingjia()+"',gongyingshangMingzi='"+yaoping.getGongyingshangMingzi()
-			+"',shuliang='"+yaoping.getShuliang()+"',cangkuID='" + yaoping.getCangkuID() + "' where yaopingID= '"+yaoping.getYaopingID()+"'";
+			+"',yaoxiangID='" + yaoping.getYaoxiangID() + "' where yaopingID= '"+yaoping.getYaopingID()+"'";
 			System.out.print(sql);
 			Connection connection = ProjectShare.getDbPool().getConnection();
 			ProjectShare.getDbPool().transaction(connection, true);
@@ -198,35 +197,4 @@ public class YaopingDao {
 		}
 	}
 	
-	/**
-	 * 出入库时，修改药品的number
-	 * @param yaopingID
-	 * @param number
-	 * @return
-	 */
-	//药品管理中没有数量这个属性，为了预警设置的，是该ID药品所有库存   KucunController。save方法调用
-	public static boolean updateNumber(int yaopingID,int shuliang){
-		try {
-			String sql = null;
-			
-				//执行修改
-				sql ="update yaoping set shuliang='"+shuliang+"' where yaopingID="+yaopingID;
-			
-			//System.out.print(sql);
-			Connection connection = ProjectShare.getDbPool().getConnection();
-			ProjectShare.getDbPool().transaction(connection, true);
-			ProjectShare.getDbPool().update(connection, sql);
-			ProjectShare.getDbPool().commit(connection);
-			ProjectShare.getDbPool().transaction(connection, false);
-			
-			ProjectShare.getDbPool().closeConnection(connection);
-			
-			return true;
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			ProjectShare.log("yaoping.updateNumber error: "+e.getMessage());
-			return false;
-		}
-	}
 }

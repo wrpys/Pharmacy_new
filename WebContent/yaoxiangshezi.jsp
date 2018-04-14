@@ -67,7 +67,7 @@
 	
 			<tr>
                 <td><label for="yaopingID">药品</label></td>
-                 <input type="hidden" name="cls" id="cls" value="CangkusheziController"/>
+                 <input type="hidden" name="cls" id="cls" value="YaoxiangsheziController"/>
                 	<input type="hidden" name="mtd" id="mtd" value="save"/>
                 <td><select class="yaoping-list" name="yaopingID" id="yaopingID"  data-placeholder="选择药品" style="width: 170px;"></select></td>
             </tr>
@@ -92,9 +92,9 @@
 	
 			<tr>
                 <td><label for="yaopingID">药品</label></td>
-                 <input type="hidden" name="cls" id="cls" value="CangkusheziController"/>
+                 <input type="hidden" name="cls" id="cls" value="YaoxiangsheziController"/>
                 <input type="hidden" name="mtd" id="mtd" value="update"/>
-				<input type="hidden" name="Cangkusheziid" id="Cangkusheziid" />
+				<input type="hidden" name="yaoxiangsheziid" id="yaoxiangsheziid" />
                 <td>
                 <select class="yaoping-list" name="yaopingID" id="updateuseryaopingID"  data-placeholder="选择药品" style="width: 170px;"></select></td>
             </tr>
@@ -110,7 +110,7 @@
 {{#userList}}
 <tr role="row" class="user-name odd" data-id="{{id}}"><!--even -->
     <!-- <td><a href="#" class="user-edit" data-id="{{id}}">{{id}}</a></td> -->
-    <td>{{cangkuMingzi}}</td>
+    <td>{{yaoxiangMingzi}}</td>
 	<td>{{yaoping.yaopingMingzi}}</td>
     <td>{{yaoping.yaopingBianhao}}</td>
     <td>{{zuishaoshuliang}}</td>
@@ -135,10 +135,10 @@
 
 
 <script id="Template" type="x-tmpl-mustache">
-<select id="deptSelectId" name="cangkuID" data-placeholder="选择" style="width: 200px;">
-{{#cangku}}
-<option value="{{cangkuID}}">{{cangkuMingzi}}</option>
-{{/cangku}}
+<select id="deptSelectId" name="yaoxiangID" data-placeholder="选择" style="width: 200px;">
+{{#yaoxiang}}
+<option value="{{yaoxiangID}}">{{yaoxiangMingzi}}</option>
+{{/yaoxiang}}
 </select>
 </script>
 
@@ -169,7 +169,7 @@ $(function () {
         var url = "${pageContext.request.contextPath }/cs";
         $.ajax({
         	url: url,
-        	data:{cls:'CangkusheziController',mtd:'findAll'},            
+        	data:{cls:'YaoxiangsheziController',mtd:'findAll'},            
             success: function (result) {            	
                 renderUserListAndPage(result);
             }
@@ -177,7 +177,7 @@ $(function () {
     }
 
     function renderUserListAndPage(result) {   
-		 var rendered = Mustache.render(userListTemplate, {"userList": result.cangkushezi});
+		 var rendered = Mustache.render(userListTemplate, {"userList": result.yaoxiangshezi});
          $('#userList').html(rendered);
          bindUserClick()
     } 
@@ -210,7 +210,7 @@ $(function () {
     	
         // 处理点击按钮
         $(".user-edit").click(function (e) {
-            var Cangkusheziid = $(this).attr("data-id"); // 选中的部门id
+            var yaoxiangsheziid = $(this).attr("data-id"); // 选中的部门id
 			var yaopingID = $(this).attr("data-yaopingID"); 
 			var zuishaoshuliang = $(this).attr("data-zuishaoshuliang"); 
             $("#dialog-updateuser-form").dialog({
@@ -223,7 +223,7 @@ $(function () {
 					$("#updateuserForm")[0].reset();
 					updateuserrecursiveRenderDeptSelect();
 					yaopingSelect();
-                   $("#Cangkusheziid").val(Cangkusheziid); 
+                   $("#yaoxiangsheziid").val(yaoxiangsheziid); 
                    		$("#updateuseryaopingID").val(yaopingID);
 					 $("#updateuserzuishaoshuliang").val(zuishaoshuliang);
 		
@@ -244,16 +244,16 @@ $(function () {
         $(".user-delete").click(function (e) {
             //e.preventDefault();
             //e.stopPropagation(); // 此处必须要取消冒泡,因为是个递归结构,冒泡的话会让一个点击被响应多个
-            var Cangkusheziid = $(this).attr("data-id");
-            if (confirm("确定要删除[" + Cangkusheziid + "]吗?")) {
+            var yaoxiangsheziid = $(this).attr("data-id");
+            if (confirm("确定要删除[" + yaoxiangsheziid + "]吗?")) {
                 $.ajax({
                     url: "${pageContext.request.contextPath }/cs",
                     data: {
-                    	cls:'CangkusheziController',mtd:'delete',
-                    	id: Cangkusheziid
+                    	cls:'YaoxiangsheziController',mtd:'delete',
+                    	id: yaoxiangsheziid
                     },
                     success: function () {
-                            //showMessage("删除[" + Cangkusheziid + "]", "操作成功", true);
+                            //showMessage("删除[" + yaoxiangsheziid + "]", "操作成功", true);
                             loadUserList();
                         
                     }
@@ -296,11 +296,11 @@ $(function () {
     function saveuserrecursiveRenderDeptSelect() {
 		$.ajax({
 			url: "${pageContext.request.contextPath }/cs",
-			data:{cls:'CangkuController',mtd:'findAll'},
+			data:{cls:'YaoxiangController',mtd:'findAll'},
 			type: 'POST',
 			success: function (result) {
 				
-				var rendered = Mustache.render(Template, {"cangku": result.cangku});
+				var rendered = Mustache.render(Template, {"yaoxiang": result.yaoxiang});
 		         $('#dialog-saveuser-formselete').html(rendered);
 			}
 		});
@@ -310,11 +310,11 @@ $(function () {
 	function updateuserrecursiveRenderDeptSelect() {
 		$.ajax({
 			url: "${pageContext.request.contextPath }/cs",
-			data:{cls:'CangkuController',mtd:'findAll'},
+			data:{cls:'YoxiangController',mtd:'findAll'},
 			type: 'POST',
 			success: function (result) {
 				
-				var rendered = Mustache.render(Template, {"cangku": result.cangku});
+				var rendered = Mustache.render(Template, {"yaoxiang": result.yaoxiang});
 		         $('#dialog-updateuser-formselete').html(rendered);
 			}
 		});

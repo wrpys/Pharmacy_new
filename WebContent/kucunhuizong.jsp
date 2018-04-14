@@ -86,7 +86,7 @@ $(function () {
         var url = "${pageContext.request.contextPath }/cs";
         $.ajax({
         	 url: url,
-        	data:{cls:'CangkuhuizongController',mtd:'findCangkuHuizongbiao'},
+        	data:{cls:'YaoxianghuizongController',mtd:'findYaoxiangHuizongbiao'},
             
             success: function (result) {
             	console.log(result);
@@ -156,7 +156,7 @@ $(function () {
                 $.ajax({
                     url: "${pageContext.request.contextPath }/cs",
                     data: {
-                    	cls:'CangkuhuizongController',mtd:'delete',
+                    	cls:'YaoxianghuizongController',mtd:'delete',
                     	dingdanID: dingdanID
                     },
                     success: function () {

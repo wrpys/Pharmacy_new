@@ -30,9 +30,9 @@ public class Kuncun {
 	private String riqi;
 	
 	/**
-	 * 仓库ID
+	 * 药箱ID
 	 */
-	private int cangKuID;
+	private int yaoxiangID;
 	
 	/**
 	 * 订单ID
@@ -41,7 +41,7 @@ public class Kuncun {
 	
 	private Yaoping yaoping;
 	
-	private Yaoxiang cangku;
+	private Yaoxiang yaoxiang;
 	
 	private Dingdan dingdan;
 	/*
@@ -104,11 +104,11 @@ public class Kuncun {
 	public void setZhuangtai(int zhuangtai) {
 		this.zhuangtai = zhuangtai;
 	}
-	public int getCangKuID() {
-		return cangKuID;
+	public int getYaoxiangID() {
+		return yaoxiangID;
 	}
-	public void setCangKuID(int cangKuID) {
-		this.cangKuID = cangKuID;
+	public void setYaoxiangID(int yaoxiangID) {
+		this.yaoxiangID = yaoxiangID;
 	}
 	public int getDingdanID() {
 		return dingdanID;
@@ -117,11 +117,11 @@ public class Kuncun {
 		this.dingdanID = dingdanID;
 	}
 	
-	public Yaoxiang getCangku() {
-		return cangku;
+	public Yaoxiang getYaoxiang() {
+		return yaoxiang;
 	}
-	public void setCangku(Yaoxiang cangku) {
-		this.cangku = cangku;
+	public void setYaoxiang(Yaoxiang yaoxiang) {
+		this.yaoxiang = yaoxiang;
 	}
 	
 	public Dingdan getDingdan() {

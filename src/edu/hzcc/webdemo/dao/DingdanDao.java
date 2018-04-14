@@ -12,6 +12,7 @@ import java.util.Map;
 
 import edu.hzcc.webdemo.pojo.CangkuHuizongbiao;
 import edu.hzcc.webdemo.pojo.Dingdan;
+import edu.hzcc.webdemo.pojo.YaoxiangHuizongbiao;
 import edu.hzcc.webdemo.sys.ProjectShare;
 
 /**
@@ -34,7 +35,7 @@ public class DingdanDao {
 		dingdan.setGongyingshangID(rs.getInt("gongyingshangID"));
 		dingdan.setKehuID(rs.getInt("kehuID"));
 		dingdan.setDingdanleixing(rs.getInt("dingdanleixing"));
-		dingdan.setCangkuID(rs.getInt("cangkuID"));
+		dingdan.setYaoxiangID(rs.getInt("yaoxiangID"));
 		dingdan.setComplete(rs.getInt("complete"));
 		// 药品详情
 		if(dingdan.getYaopingID() != null) {
@@ -48,9 +49,9 @@ public class DingdanDao {
 		if (dingdan.getKehuID() != null) {
 			dingdan.setKehu(KehuDao.findBykehuID(dingdan.getKehuID()));
 		}
-		// 仓库详情
-		if (dingdan.getCangkuID() != null) {
-			dingdan.setCangku(YaoxiangDao.findBycangkuID(dingdan.getCangkuID()));
+		// 药箱详情
+		if (dingdan.getYaoxiangID() != null) {
+			dingdan.setYaoxiang(YaoxiangDao.findByyaoxiangID(dingdan.getYaoxiangID()));
 		}
 		// 库存详情
 		if (dingdan.getDingdanID() != null) {
@@ -103,21 +104,21 @@ public class DingdanDao {
 			Connection connection = ProjectShare.getDbPool().getConnection();
 			String sql = "select * from dingdan t1 ";
 			if(1==type){
-				sql +=" left JOIN yaoping t2 on t1.yaopingID = t2.yaopingID\r\n" + 
-						"left JOIN gongyingshang t3 on t1.gongyingshangID = t3.gongyingshangID\r\n" + 
-						"left JOIN cangku t4 on t1.cangkuID = t4.cangkuID\r\n" + 
+				sql +=" left JOIN yaoping t2 on t1.yaopingID = t2.yaopingID " + 
+						"left JOIN gongyingshang t3 on t1.gongyingshangID = t3.gongyingshangID " + 
+						"left JOIN yaoxiang t4 on t1.yaoxiangID = t4.yaoxiangID " + 
 						"where t1.dingdanleixing=1 or t1.dingdanleixing=2";
 			}else if(2==type){
-				sql +=" left JOIN yaoping t2 on t1.yaopingID = t2.yaopingID\r\n" + 
-						"left JOIN gongyingshang t3 on t1.gongyingshangID = t3.gongyingshangID\r\n" + 
-						"left JOIN cangku t4 on t1.cangkuID = t4.cangkuID\r\n" + 
-						"left JOIN kehu t5 on t1.dingdanID = t5.dingdanID\r\n" + 
+				sql +=" left JOIN yaoping t2 on t1.yaopingID = t2.yaopingID " + 
+						"left JOIN gongyingshang t3 on t1.gongyingshangID = t3.gongyingshangID " + 
+						"left JOIN yaoxiang t4 on t1.yaoxiangID = t4.yaoxiangID " + 
+						"left JOIN kehu t5 on t1.dingdanID = t5.dingdanID " + 
 						"where t1.dingdanleixing=3 or t1.dingdanleixing=4";
 			}else {
-				sql +=" left JOIN yaoping t2 on t1.yaopingID = t2.yaopingID\r\n" + 
-						"left JOIN gongyingshang t3 on t1.gongyingshangID = t3.gongyingshangID\r\n" + 
-						"left JOIN cangku t4 on t1.cangkuID = t4.cangkuID\r\n" + 
-						"left JOIN kehu t5 on t1.dingdanID = t5.dingdanID\r\n"; 
+				sql +=" left JOIN yaoping t2 on t1.yaopingID = t2.yaopingID " + 
+						"left JOIN gongyingshang t3 on t1.gongyingshangID = t3.gongyingshangID " + 
+						"left JOIN yaoxiang t4 on t1.yaoxiangID = t4.yaoxiangID " + 
+						"left JOIN kehu t5 on t1.dingdanID = t5.dingdanID "; 
 			}
 			//返回数据库结果集
 			ResultSet rs = ProjectShare.getDbPool().query(connection, sql);
@@ -148,10 +149,10 @@ public class DingdanDao {
 				//执行新增
 				sql = "insert into dingdan(dingdanBianhao,yaopingID,danjia,"
 											+ "shuliang,zongjia,dingdanleixing,"
-											+ "riqi,gongyingshangID,kehuID,cangkuID,complete)";
+											+ "riqi,gongyingshangID,kehuID,yaoxiangID,complete)";
 				sql += " values('"+dingdan.getDingdanBianhao()+"','"+dingdan.getYaopingID()+"','"+dingdan.getDanjia()+"','"+
 						dingdan.getShuliang()+"','"+dingdan.getZongjia()+"','"+dingdan.getDingdanleixing()+"','"+
-						dingdan.getRiqi()+"','"+dingdan.getGongyingshangID()+"','"+dingdan.getKehuID()+"','"+dingdan.getCangkuID()+"','"+dingdan.getComplete()+"')";
+						dingdan.getRiqi()+"','"+dingdan.getGongyingshangID()+"','"+dingdan.getKehuID()+"','"+dingdan.getYaoxiangID()+"','"+dingdan.getComplete()+"')";
 			System.out.print(sql);
 			//开启数据库链接
 			Connection connection = ProjectShare.getDbPool().getConnection();
@@ -181,10 +182,10 @@ public class DingdanDao {
 				//执行新增
 				sql = "insert into dingdan(dingdanBianhao,yaopingID,danjia,"
 											+ "shuliang,zongjia,dingdanleixing,"
-											+ "riqi,gongyingshangID,kehuID,cangkuID,complete)";
+											+ "riqi,gongyingshangID,kehuID,yaoxiangID,complete)";
 				sql += " values('"+dingdan.getDingdanBianhao()+"','"+dingdan.getYaopingID()+"','"+dingdan.getDanjia()+"','"+
 						dingdan.getShuliang()+"','"+dingdan.getZongjia()+"','"+dingdan.getDingdanleixing()+"','"+
-						dingdan.getRiqi()+"','"+dingdan.getGongyingshangID()+"','"+dingdan.getKehuID()+"','"+dingdan.getCangkuID()+"','"+dingdan.getComplete()+"')";
+						dingdan.getRiqi()+"','"+dingdan.getGongyingshangID()+"','"+dingdan.getKehuID()+"','"+dingdan.getYaoxiangID()+"','"+dingdan.getComplete()+"')";
 			System.out.print(sql);
 			
 			//开启数据库链接
@@ -226,8 +227,8 @@ public class DingdanDao {
 			// 执行修改
 			sql = "update dingdan " + "set danjia='" + dingdan.getDanjia() + "',shuliang='" + dingdan.getShuliang()
 					+ "',zongjia='" + dingdan.getZongjia() + "',riqi='" + dingdan.getRiqi() + "',gongyingshangID='"
-					+ dingdan.getGongyingshangID() + "',kehuID='" + dingdan.getKehuID() + "',cangkuID='"
-					+ dingdan.getCangkuID() + "',complete='" + dingdan.getComplete() + "' where dingdanID="
+					+ dingdan.getGongyingshangID() + "',kehuID='" + dingdan.getKehuID() + "',yaoxiangID='"
+					+ dingdan.getYaoxiangID() + "',complete='" + dingdan.getComplete() + "' where dingdanID="
 					+ dingdan.getDingdanID();
 			System.out.print(sql);
 			// 开启数据库链接
@@ -340,10 +341,10 @@ public class DingdanDao {
 	}
 	
 	/*
-	 * 把数据库查到的数据填充到CangkuHuizongbiao这个对象中，以便操作
+	 * 把数据库查到的数据填充到YaoxiangHuizongbiao这个对象中，以便操作
 	 */
-	private static CangkuHuizongbiao converCangkuHuizongbiao(ResultSet rs) throws SQLException {
-		CangkuHuizongbiao huizong = new CangkuHuizongbiao();
+	private static YaoxiangHuizongbiao converYaoxiangHuizongbiao(ResultSet rs) throws SQLException {
+		YaoxiangHuizongbiao huizong = new YaoxiangHuizongbiao();
 		huizong.setDingdanleixing(rs.getInt("dingdanleixing"));
 		huizong.setKucun(rs.getInt("kucun"));
 		huizong.setShuliang(rs.getInt("shuliang"));
@@ -353,27 +354,27 @@ public class DingdanDao {
 		return huizong;
 	}
 	
-	public static Map<Integer,List<CangkuHuizongbiao>> findCangkuHuizongbiao(List<Integer> yaopingIDs) {
+	public static Map<Integer,List<YaoxiangHuizongbiao>> findYaoxiangHuizongbiao(List<Integer> yaopingIDs) {
 		try {
-			Map<Integer,List<CangkuHuizongbiao>> mapList = new HashMap<Integer,List<CangkuHuizongbiao>>();
-			String sqlTemp = " (select t1.yaopingID,t1.yaopingMingzi,t1.yaopingDanwei,\r\n" + 
-					 "t2.shuliang,t2.dingdanleixing,t3.shuliang as \"kucun\"\r\n" + 
-				     "from yaoping t1 \r\n" + 
-				     "left join dingdan t2 on t1.yaopingID = t2.yaopingID\r\n" + 
+			Map<Integer,List<YaoxiangHuizongbiao>> mapList = new HashMap<Integer,List<YaoxiangHuizongbiao>>();
+			String sqlTemp = " (select t1.yaopingID,t1.yaopingMingzi,t1.yaopingDanwei, " + 
+					 "t2.shuliang,t2.dingdanleixing,t3.shuliang as \"kucun\" " + 
+				     "from yaoping t1  " + 
+				     "left join dingdan t2 on t1.yaopingID = t2.yaopingID " + 
 				     "left join kucun t3 on t1.yaopingID = t3.yaopingID)t ";
 			//开启数据库链接
 			Connection connection = ProjectShare.getDbPool().getConnection();
 			ResultSet rs = null;
 			for (Integer yaopingID : yaopingIDs) {
-				List<CangkuHuizongbiao> list = new ArrayList<>();
+				List<YaoxiangHuizongbiao> list = new ArrayList<>();
 				String sql = "select * from " + sqlTemp + " where t.yaopingID=" + yaopingID;
 				//返回数据库结果集
 				rs = ProjectShare.getDbPool().query(connection, sql);
 				//循环结果集，一个个填充入List<Dingdan>
 				while(rs.next()){
 					//把结果集填入Dingdan对象
-					CangkuHuizongbiao cangkuHuizongbiao = converCangkuHuizongbiao(rs);
-					list.add(cangkuHuizongbiao);
+					YaoxiangHuizongbiao yaoxiangHuizongbiao = converYaoxiangHuizongbiao(rs);
+					list.add(yaoxiangHuizongbiao);
 				}
 				mapList.put(yaopingID, list);
 			}
@@ -425,10 +426,10 @@ public class DingdanDao {
 			//开启数据库链接
 			Connection connection = ProjectShare.getDbPool().getConnection();
 			
-			String sql = "select * from dingdan t1 \r\n" + 
-					"left join yaoping t2 on t1.yaopingID = t2.yaopingID\r\n" + 
-					"left join gongyingshang t3 on t1.gongyingshangID = t3.gongyingshangID\r\n" + 
-					"left join cangku t4 on t1.cangkuID = t4.cangkuID\r\n where 1=1 and t1.dingdanleixing='" +params.get("dingdanleixing")+"' ";
+			String sql = "select * from dingdan t1  " + 
+					"left join yaoping t2 on t1.yaopingID = t2.yaopingID " + 
+					"left join gongyingshang t3 on t1.gongyingshangID = t3.gongyingshangID " + 
+					"left join yaoxiang t4 on t1.yaoxiangID = t4.yaoxiangID  where 1=1 and t1.dingdanleixing='" +params.get("dingdanleixing")+"' ";
 			if(params.get("yaopingMingzi") != null && !params.get("yaopingMingzi").equals("")) {
 				sql += " and t2.yaopingMingzi like '%" + params.get("yaopingMingzi")+"%' ";
 			}
@@ -499,7 +500,7 @@ public class DingdanDao {
 				CangkuHuizongbiao huizong = new CangkuHuizongbiao();
 				//订单编号  药品编号 药品名字 单价 采购数量 采购总价 
 				huizong.setDingdanbianhao(rs.getString("dingdanBianhao"));
-				huizong.setYaopingbianhao(rs.getString("dingdanBianhao"));
+				huizong.setYaopingbianhao(rs.getString("yaopingBianhao"));
 				huizong.setYaopingMingzi(rs.getString("yaopingMingzi"));
 				huizong.setDanjia(rs.getString("danjia"));
 				huizong.setShuliang(rs.getInt("shuliang"));

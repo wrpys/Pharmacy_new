@@ -77,7 +77,7 @@ public class XiaoshouchuhuoController extends ControllerBase{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		caigoudingdan.setRiqi(sdf.format(date));
 		caigoudingdan.setGongyingshangID(0);
-		caigoudingdan.setCangkuID(getParameterInt("cangkuID"));
+		caigoudingdan.setYaoxiangID(getParameterInt("yaoxiangID"));
 		caigoudingdan.setDingdanleixing(4);
 		caigoudingdan.setKehuID(getParameterInt("kehuID"));
 		caigoudingdan.setComplete(0);
@@ -109,7 +109,7 @@ public class XiaoshouchuhuoController extends ControllerBase{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		caigoudingdan.setRiqi(sdf.format(date));
 		caigoudingdan.setGongyingshangID(0);
-		caigoudingdan.setCangkuID(getParameterInt("cangkuID"));
+		caigoudingdan.setYaoxiangID(getParameterInt("yaoxiangID"));
 		caigoudingdan.setDingdanleixing(4);
 		caigoudingdan.setKehuID(getParameterInt("kehuID"));
 		caigoudingdan.setComplete(0);
