@@ -1,3 +1,4 @@
+<!-- 公共jsp。每个jsp都会引入此jsp -->
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <meta http-equiv="pragma" content="no-cache"/>

@@ -15,8 +15,8 @@
 			</button>
 
 			<div class="navbar-header pull-left">
-				<a href="#" class="navbar-brand"> <small> <i
-						class="fa fa-leaf"></i> 药店进销存管理系统
+				<a href="#" class="navbar-brand"> <small> 
+					<!-- <i class="fa fa-leaf"></i> --> 药店进销存管理系统
 				</small>
 				</a>
 			</div>
@@ -26,9 +26,7 @@
 					<li class="divider"></li>
 				</ul>
 			</div>
-
 		</div>
-
 	</div>
 
 	<div class="main-container" id="main-container">
@@ -51,9 +49,9 @@
 
 			<ul class="nav nav-list">
 				<li class="active">
-					<a href="#"> 
-						<i class="menu-icon fa fa-tachometer"></i> 
-						<span class="menu-text"> 首页 </span>
+					<a href="javascript:location.reload()"> 
+						<!-- <i class="menu-icon fa fa-tachometer"></i>  -->
+						<span class="menu-text"> &nbsp;&nbsp;首页 </span>
 					</a> 
 					<b class="arrow"></b>
 				</li>
@@ -343,7 +341,6 @@ $this 只是个变量名，加$是为说明其是个jquery对象。
 				});
 			});
 		});
-		alert();
 	</script>
 </body>
 </html>

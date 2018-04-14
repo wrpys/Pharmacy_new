@@ -255,6 +255,8 @@ $(function () {
             modal: true,
             title: "新增采购订单",
             open: function (event, ui) {
+            	console.log(parent);
+            	parent.$(".active").click();
                 $(".ui-dialog-titlebar-close", $(this).parent()).hide(); // 点开时隐藏关闭按钮
                 gongyingshangSelect();
                 yaopingSelect();
