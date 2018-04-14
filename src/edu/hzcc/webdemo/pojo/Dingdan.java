@@ -22,7 +22,7 @@ public class Dingdan {
 	private Gongyingshang gongyingshang;
 	private Kehu kehu;
 	private Cangku cangku;
-	private Kucun kucun;
+	private Yaoxiang kucun;
 	
 	//采购收货查询使用
 	private Integer qishiZongjia;
@@ -125,10 +125,10 @@ public class Dingdan {
 	public void setCangku(Cangku cangku) {
 		this.cangku = cangku;
 	}
-	public Kucun getKucun() {
+	public Yaoxiang getKucun() {
 		return kucun;
 	}
-	public void setKucun(Kucun kucun) {
+	public void setKucun(Yaoxiang kucun) {
 		this.kucun = kucun;
 	}
 	public Integer getQishiZongjia() {

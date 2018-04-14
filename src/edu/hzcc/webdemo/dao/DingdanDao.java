@@ -56,7 +56,7 @@ public class DingdanDao {
 		}
 		// 库存详情
 		if (dingdan.getDingdanID() != null) {
-			dingdan.setKucun(KucunDao.findKucunBydingdanID(dingdan.getDingdanID()));
+			dingdan.setKucun(YaoxiangDao.findYaoxiangBydingdanID(dingdan.getDingdanID()));
 		}
 		return dingdan;
 	}

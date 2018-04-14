@@ -3,9 +3,9 @@ package edu.hzcc.webdemo.pojo;
 /*
  * 库存
  */
-public class Kucun {
+public class Yaoxiang {
 
-	private int kucunID;
+	private int yaoxiangID;
 	/*
 	 * 药品ID
 	 */
@@ -56,11 +56,11 @@ public class Kucun {
 	public void setYaoping(Yaoping yaoping) {
 		this.yaoping = yaoping;
 	}
-	public int getKucunID() {
-		return kucunID;
+	public int getYaoxiangID() {
+		return yaoxiangID;
 	}
-	public void setKucunID(int kucunID) {
-		this.kucunID = kucunID;
+	public void setYaoxiangID(int yaoxiangID) {
+		this.yaoxiangID = yaoxiangID;
 	}
 	public int getYaopingID() {
 		return yaopingID;
@@ -132,7 +132,7 @@ public class Kucun {
 	}
 	@Override
 	public String toString() {
-		return "Kucun [kucunID=" + kucunID + ", yaopingID=" + yaopingID + ", yaopingMingzi=" + yaopingMingzi
+		return "yaoxiang [yaoxiangID=" + yaoxiangID + ", yaopingID=" + yaopingID + ", yaopingMingzi=" + yaopingMingzi
 				+ ", dingdanhao=" + dingdanhao + ", yaopingDanwei=" + yaopingDanwei + ", shuliang=" + shuliang
 				+ ", riqi=" + riqi + ", zhuangtai=" + zhuangtai + "]";
 	}

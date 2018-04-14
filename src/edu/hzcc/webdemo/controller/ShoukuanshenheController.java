@@ -7,10 +7,10 @@ import java.util.List;
 
 import net.sf.json.JSONObject;
 import edu.hzcc.webdemo.dao.DingdanDao;
-import edu.hzcc.webdemo.dao.KucunDao;
+import edu.hzcc.webdemo.dao.YaoxiangDao;
 import edu.hzcc.webdemo.dao.ZhanghuDao;
 import edu.hzcc.webdemo.pojo.Dingdan;
-import edu.hzcc.webdemo.pojo.Kucun;
+import edu.hzcc.webdemo.pojo.Yaoxiang;
 import edu.hzcc.webdemo.pojo.Zhanghu;
 import edu.hzcc.webdemo.util.ControllerBase;
 
@@ -64,7 +64,7 @@ public class ShoukuanshenheController extends ControllerBase {
 	//新增库存
 	private boolean saveKucun() {
 		boolean isSaveKucun = false;
-		Kucun kucun=new Kucun();
+		Yaoxiang kucun=new Yaoxiang();
 		//获取yaopingID
 		int yaopingID=getParameterInt("yaopingID");
 		//获取dingdanID
@@ -72,7 +72,7 @@ public class ShoukuanshenheController extends ControllerBase {
 		//获取cangkuId
 		int cangkuID=getParameterInt("cangkuID");
 		//根据库存ID获取库存实体信息
-		Kucun cunzaiKucun = KucunDao.findKucunByYaopingkuCunID(yaopingID, cangkuID);
+		Yaoxiang cunzaiKucun = YaoxiangDao.findYaoxiangByYaopingkuCunID(yaopingID, cangkuID);
 		//获取入库出库的药品数量
 		int shuliang = getParameterInt("shuliang");
 		//定义现在要更新库存的药品数量
@@ -80,8 +80,8 @@ public class ShoukuanshenheController extends ControllerBase {
 		//定义一个json格式
 		JSONObject jsonObject = new JSONObject();
 		//如果库存存在且数量充足
-		if(null!=cunzaiKucun && cunzaiKucun.getKucunID()>0  && cunzaiKucun.getShuliang()>shuliang) {
-			kucun.setKucunID(cunzaiKucun.getKucunID());
+		if(null!=cunzaiKucun && cunzaiKucun.getYaoxiangID()>0  && cunzaiKucun.getShuliang()>shuliang) {
+			kucun.setYaoxiangID(cunzaiKucun.getYaoxiangID());
 			//出库，数量减掉
 			xianzaishuliang =cunzaiKucun.getShuliang()-shuliang;
 			isSaveKucun = true;
@@ -100,7 +100,7 @@ public class ShoukuanshenheController extends ControllerBase {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		kucun.setRiqi(sdf.format(date));
 		kucun.setZhuangtai(1);//0未完成 1已完成
-		KucunDao.save(kucun);
+		YaoxiangDao.save(kucun);
 		Dingdan dingdan = new Dingdan();
 		dingdan.setDingdanID(dingdanID);
 		Dingdan temp = DingdanDao.findDingdanByPK(dingdan);

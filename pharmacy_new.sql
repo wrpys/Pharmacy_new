@@ -139,29 +139,31 @@ INSERT INTO `kehu` VALUES ('2', '客户2', '15', '15', '2');
 INSERT INTO `kehu` VALUES ('3', '客户3', '142', '142', '3');
 INSERT INTO `kehu` VALUES ('4', '客户4', '15', '15', '4');
 
+
 -- ----------------------------
--- Table structure for kucun
+-- Table structure for yaoxiang
 -- ----------------------------
-DROP TABLE IF EXISTS `kucun`;
-CREATE TABLE `kucun` (
-  `kucunID` int(111) NOT NULL AUTO_INCREMENT COMMENT '0未操作，1已操作',
+DROP TABLE IF EXISTS `yaoxiang`;
+CREATE TABLE `yaoxiang` (
+  `yaoxiangID` int(111) NOT NULL AUTO_INCREMENT COMMENT '0未操作，1已操作',
   `yaopingID` int(111) NOT NULL,
   `cangkuID` int(111) NOT NULL COMMENT '仓库Id',
   `dingdanID` int(111) NOT NULL,
   `shuliang` int(111) NOT NULL,
   `riqi` varchar(111) COLLATE utf8_bin NOT NULL,
   `zhuangtai` int(111) NOT NULL,
-  PRIMARY KEY (`kucunID`)
+  PRIMARY KEY (`yaoxiangID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Records of kucun
+-- Records of yaoxiang
 -- ----------------------------
-INSERT INTO `kucun` VALUES ('1', '1', '1', '1', '10000', '2018-04-01', '0');
-INSERT INTO `kucun` VALUES ('2', '2', '2', '2', '10000', '2018-04-01', '0');
-INSERT INTO `kucun` VALUES ('3', '3', '3', '3', '10000', '2018-04-01', '1');
-INSERT INTO `kucun` VALUES ('4', '1', '1', '4', '9980', '2018-04-01', '1');
-INSERT INTO `kucun` VALUES ('11', '1', '1', '1001', '10', '2018-04-01', '1');
+INSERT INTO `yaoxiang` VALUES ('1', '1', '1', '1', '10000', '2018-04-01', '0');
+INSERT INTO `yaoxiang` VALUES ('2', '2', '2', '2', '10000', '2018-04-01', '0');
+INSERT INTO `yaoxiang` VALUES ('3', '3', '3', '3', '10000', '2018-04-01', '1');
+INSERT INTO `yaoxiang` VALUES ('4', '1', '1', '4', '9980', '2018-04-01', '1');
+INSERT INTO `yaoxiang` VALUES ('11', '1', '1', '1001', '10', '2018-04-01', '1');
+
 
 -- ----------------------------
 -- Table structure for rizhi
