@@ -32,7 +32,7 @@ public class YaoxiangController extends ControllerBase {
 
 	public void delete() {
 		int id = getParameterInt("yaoxiangID");
-		KucunDao.delete(id);
+		YaoxiangDao.delete(id);
 		return;
 	}
 
