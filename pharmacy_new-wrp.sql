@@ -1,22 +1,40 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : loc
-Source Server Version : 50528
+Source Server         : test
+Source Server Version : 50625
 Source Host           : localhost:3306
 Source Database       : pharmacy_new
 
 Target Server Type    : MYSQL
-Target Server Version : 50528
+Target Server Version : 50625
 File Encoding         : 65001
 
-Date: 2018-04-14 15:46:39
+Date: 2018-04-14 16:30:31
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `cangkushezi`
+-- Table structure for cangku
+-- ----------------------------
+DROP TABLE IF EXISTS `cangku`;
+CREATE TABLE `cangku` (
+  `cangkuID` int(111) NOT NULL AUTO_INCREMENT,
+  `cangkuMingzi` varchar(111) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`cangkuID`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of cangku
+-- ----------------------------
+INSERT INTO `cangku` VALUES ('1', '仓库1');
+INSERT INTO `cangku` VALUES ('2', '仓库2');
+INSERT INTO `cangku` VALUES ('3', '仓库3');
+INSERT INTO `cangku` VALUES ('4', '仓库4');
+
+-- ----------------------------
+-- Table structure for cangkushezi
 -- ----------------------------
 DROP TABLE IF EXISTS `cangkushezi`;
 CREATE TABLE `cangkushezi` (
@@ -33,7 +51,7 @@ CREATE TABLE `cangkushezi` (
 INSERT INTO `cangkushezi` VALUES ('1', '1', '1', '10000000');
 
 -- ----------------------------
--- Table structure for `dingdan`
+-- Table structure for dingdan
 -- ----------------------------
 DROP TABLE IF EXISTS `dingdan`;
 CREATE TABLE `dingdan` (
@@ -61,7 +79,7 @@ INSERT INTO `dingdan` VALUES ('5', '1', '1', '1.00000000000', '10', '10.00000000
 INSERT INTO `dingdan` VALUES ('6', '1', '1', '1.00000000000', '10', '10.00000000000', '2', '2018-04-12 11:07:18', '1', '0', '1', '1');
 
 -- ----------------------------
--- Table structure for `fukuandan`
+-- Table structure for fukuandan
 -- ----------------------------
 DROP TABLE IF EXISTS `fukuandan`;
 CREATE TABLE `fukuandan` (
@@ -81,7 +99,7 @@ CREATE TABLE `fukuandan` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `gongyingshang`
+-- Table structure for gongyingshang
 -- ----------------------------
 DROP TABLE IF EXISTS `gongyingshang`;
 CREATE TABLE `gongyingshang` (
@@ -101,7 +119,7 @@ INSERT INTO `gongyingshang` VALUES ('3', '供应商3', '33', '32');
 INSERT INTO `gongyingshang` VALUES ('4', '供应商4', '2', '2');
 
 -- ----------------------------
--- Table structure for `kehu`
+-- Table structure for kehu
 -- ----------------------------
 DROP TABLE IF EXISTS `kehu`;
 CREATE TABLE `kehu` (
@@ -121,7 +139,31 @@ INSERT INTO `kehu` VALUES ('3', '客户3', '142', '142');
 INSERT INTO `kehu` VALUES ('4', '客户4', '15', '15');
 
 -- ----------------------------
--- Table structure for `rizhi`
+-- Table structure for kucun
+-- ----------------------------
+DROP TABLE IF EXISTS `kucun`;
+CREATE TABLE `kucun` (
+  `kucunID` int(111) NOT NULL AUTO_INCREMENT COMMENT '0未操作，1已操作',
+  `yaopingID` int(111) NOT NULL,
+  `cangkuID` int(111) NOT NULL COMMENT '仓库Id',
+  `dingdanID` int(111) NOT NULL,
+  `shuliang` int(111) NOT NULL,
+  `riqi` varchar(111) COLLATE utf8_bin NOT NULL,
+  `zhuangtai` int(111) NOT NULL,
+  PRIMARY KEY (`kucunID`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of kucun
+-- ----------------------------
+INSERT INTO `kucun` VALUES ('1', '1', '1', '1', '10000', '2018-04-01', '0');
+INSERT INTO `kucun` VALUES ('2', '2', '2', '2', '10000', '2018-04-01', '0');
+INSERT INTO `kucun` VALUES ('3', '3', '3', '3', '10000', '2018-04-01', '1');
+INSERT INTO `kucun` VALUES ('4', '1', '1', '4', '9980', '2018-04-01', '1');
+INSERT INTO `kucun` VALUES ('11', '1', '1', '1001', '10', '2018-04-01', '1');
+
+-- ----------------------------
+-- Table structure for rizhi
 -- ----------------------------
 DROP TABLE IF EXISTS `rizhi`;
 CREATE TABLE `rizhi` (
@@ -153,7 +195,7 @@ INSERT INTO `rizhi` VALUES ('15', '1', '2018-04-14 14:42:19', 'ting登录');
 INSERT INTO `rizhi` VALUES ('16', '1', '2018-04-14 14:47:54', 'ting登录');
 
 -- ----------------------------
--- Table structure for `rukuandan`
+-- Table structure for rukuandan
 -- ----------------------------
 DROP TABLE IF EXISTS `rukuandan`;
 CREATE TABLE `rukuandan` (
@@ -173,7 +215,7 @@ CREATE TABLE `rukuandan` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `yaoping`
+-- Table structure for yaoping
 -- ----------------------------
 DROP TABLE IF EXISTS `yaoping`;
 CREATE TABLE `yaoping` (
@@ -198,7 +240,7 @@ INSERT INTO `yaoping` VALUES ('3', '1003', 'ceshi2', '单位3', '1', '1.00000000
 INSERT INTO `yaoping` VALUES ('4', '1004', 'ceshi3', '单位4', '1', '1.00000000000', '供应商4', '100', '4');
 
 -- ----------------------------
--- Table structure for `yaoxiang`
+-- Table structure for yaoxiang
 -- ----------------------------
 DROP TABLE IF EXISTS `yaoxiang`;
 CREATE TABLE `yaoxiang` (
@@ -214,31 +256,7 @@ INSERT INTO `yaoxiang` VALUES ('1', '药箱1');
 INSERT INTO `yaoxiang` VALUES ('2', '药箱2');
 
 -- ----------------------------
--- Table structure for `yaoxiang1`
--- ----------------------------
-DROP TABLE IF EXISTS `yaoxiang1`;
-CREATE TABLE `yaoxiang1` (
-  `yaoxiangID` int(111) NOT NULL AUTO_INCREMENT COMMENT '0未操作，1已操作',
-  `yaopingID` int(111) NOT NULL,
-  `cangkuID` int(111) NOT NULL COMMENT '仓库Id',
-  `dingdanID` int(111) NOT NULL,
-  `shuliang` int(111) NOT NULL,
-  `riqi` varchar(111) COLLATE utf8_bin NOT NULL,
-  `zhuangtai` int(111) NOT NULL,
-  PRIMARY KEY (`yaoxiangID`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- ----------------------------
--- Records of yaoxiang1
--- ----------------------------
-INSERT INTO `yaoxiang1` VALUES ('1', '1', '1', '1', '10000', '2018-04-01', '0');
-INSERT INTO `yaoxiang1` VALUES ('2', '2', '2', '2', '10000', '2018-04-01', '0');
-INSERT INTO `yaoxiang1` VALUES ('3', '3', '3', '3', '10000', '2018-04-01', '1');
-INSERT INTO `yaoxiang1` VALUES ('4', '1', '1', '4', '9980', '2018-04-01', '1');
-INSERT INTO `yaoxiang1` VALUES ('11', '1', '1', '1001', '10', '2018-04-01', '1');
-
--- ----------------------------
--- Table structure for `yonghu`
+-- Table structure for yonghu
 -- ----------------------------
 DROP TABLE IF EXISTS `yonghu`;
 CREATE TABLE `yonghu` (
@@ -258,7 +276,7 @@ INSERT INTO `yonghu` VALUES ('1', 'ting', 'ting', 'ting', '0', '13527774500');
 INSERT INTO `yonghu` VALUES ('2', 'test1', 'test1', '123456', '0', '13505050523');
 
 -- ----------------------------
--- Table structure for `zhanghu`
+-- Table structure for zhanghu
 -- ----------------------------
 DROP TABLE IF EXISTS `zhanghu`;
 CREATE TABLE `zhanghu` (
