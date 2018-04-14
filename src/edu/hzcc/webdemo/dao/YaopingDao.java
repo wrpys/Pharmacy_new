@@ -119,13 +119,16 @@ public class YaopingDao {
 	}
 	
 	// 查找所有
-	public static List<Yaoping> findALL(){
+	public static List<Yaoping> findALL(Yaoping yaopingParam){
 		try {
 			List<Yaoping> list = new ArrayList<>();
 			//开启数据库链接
 			Connection connection = ProjectShare.getDbPool().getConnection();
 			
-			String sql = "select * from yaoping";
+			String sql = "select * from yaoping where 1=1 ";
+			if (yaopingParam.getYaopingMingzi() != null && !"".equals(yaopingParam.getYaopingMingzi())) {
+				sql += " and yaopingMingzi like '%" + yaopingParam.getYaopingMingzi() + "%'";
+			}
 			//返回数据库结果集
 			ResultSet rs = ProjectShare.getDbPool().query(connection, sql);
 			//循环结果集，一个个填充入List<yaoping>

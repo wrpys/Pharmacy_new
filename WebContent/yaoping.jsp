@@ -13,8 +13,15 @@
     </h1>
 </div>
 <div class="main-content-inner">
-    
-    
+
+		<form id="searchForm" class="form-inline" role="form" onsubmit="return false">
+            <div class="form-group">
+                <label class="form-label">药品名字:</label>
+                <input type="text" class="form-control" name="yaopingMingzi">
+            </div>
+            <button id="search" class="btn1 btn-primary1">查询</button>
+        </form>
+
         <div class="col-xs-12">
             <div class="table-header">
                 药品列表&nbsp;&nbsp;
@@ -23,13 +30,6 @@
                 </a>
             </div>
             <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline no-footer">
-                <div class="row">
-                    <div class="col-xs-6">
-                        <div id="dynamic-table_filter" class="dataTables_filter"><label>
-                            搜索/药品名字:
-                            <input type="search" class="form-control input-sm searchID" placeholder="" aria-controls="dynamic-table"></label></div>
-                    </div>
-                </div>
                 <table id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid"
                        aria-describedby="dynamic-table_info" style="font-size:14px">
                     <thead>
@@ -207,6 +207,11 @@ $(function () {
     var yaoxiangTemplate = $('#yaoxiangTemplate').html();
     Mustache.parse(yaoxiangTemplate);
     loadUserList();
+    
+    $("#search").click(function(){
+    	loadUserList();
+	});
+    
     $(".user-add").click(function () {
         $("#dialog-saveuser-form").dialog({
         	height: 480,
@@ -232,11 +237,18 @@ $(function () {
 
 
     function loadUserList() {
+    	
+    	var searchForm = $("#searchForm");
+		var searchParam = {
+			yaopingMingzi: searchForm.find("input[name='yaopingMingzi']").val()
+		};
+		var mtd = {cls:'YaopingController',mtd:'findAll'}
+		var params = $.extend({},searchParam,mtd);
+    	
         var url = "${pageContext.request.contextPath }/cs";
         $.ajax({
         	 url: url,
-        	data:{cls:'YaopingController',mtd:'findAll'},
-            
+        	data:params,
             success: function (result) {
             	
                 renderUserListAndPage(result);
@@ -366,35 +378,6 @@ $(function () {
             }
         });
     }
-	//   搜索/药品名字操作
-    $('.searchID').keydown(function(e){
-    	//entry按键
-    	if(e.keyCode==13){ 
-    		var searchID=$('.searchID').val();
-    		if(searchID == null || searchID == '') {
-    			loadUserList();
-    		} else {
-	    		loadOneUserList(searchID)
-    		}
-    	}
-    }); 
-    //根据名字查询
-    function loadOneUserList(orderID) {
-        var url = "${pageContext.request.contextPath }/cs";
-        $.ajax({
-        	 url: url,
-        	data:{cls:'YaopingController',mtd:'findOne',yaopingMingzi:orderID},
-            success: function (result) {
-            	renderOneUserListAndPage(result);
-            }
-        });
-    }     
-     //渲染
-    function renderOneUserListAndPage(result) {            
-        var rendered = Mustache.render(userListTemplate,{ "userList": result.yaoping});
-        $('#userList').html(rendered);
-        bindUserClick()
-    } 
      
   //加载保存和修改弹出框的药箱下拉信息 
     function yaoxiangSelect() {
