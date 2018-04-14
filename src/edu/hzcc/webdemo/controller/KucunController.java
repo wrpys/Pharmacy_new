@@ -2,8 +2,8 @@ package edu.hzcc.webdemo.controller;
 
 import java.util.List;
 
-import edu.hzcc.webdemo.dao.Yaoxiang1Dao;
-import edu.hzcc.webdemo.pojo.Yaoxiang1;
+import edu.hzcc.webdemo.dao.KucunDao;
+import edu.hzcc.webdemo.pojo.Kuncun;
 import edu.hzcc.webdemo.util.ControllerBase;
 import net.sf.json.JSONObject;
 /**
@@ -18,7 +18,7 @@ public class KucunController extends ControllerBase{
 
 		System.out.println("kucunController.findAll() start");
 		//定义一个空的kucun列表
-		List<Yaoxiang1> kucunList=Yaoxiang1Dao.findALLYaoxiang();
+		List<Kuncun> kucunList=KucunDao.findALLKucun();
 		//定义一个json格式
 		JSONObject jsonObject = new JSONObject();
 		//把kucun列表填入json

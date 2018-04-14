@@ -5,10 +5,10 @@ import java.util.List;
 
 import net.sf.json.JSONObject;
 import edu.hzcc.webdemo.dao.FukuandanDao;
-import edu.hzcc.webdemo.dao.Yaoxiang1Dao;
+import edu.hzcc.webdemo.dao.KucunDao;
 import edu.hzcc.webdemo.dao.ZhanghuDao;
 import edu.hzcc.webdemo.pojo.Fukuandan;
-import edu.hzcc.webdemo.pojo.Yaoxiang1;
+import edu.hzcc.webdemo.pojo.Kuncun;
 import edu.hzcc.webdemo.util.ControllerBase;
 
 /**
@@ -62,7 +62,7 @@ public class FukuandanController extends ControllerBase {
 			// 如果这个付款单更新是结算是，就生成一条库存，Zhuangtai=1是结算
 			if (fukuandan.getZhuangtai() > 0) {
 				// caigoufahuo=CaigoufahuoDao.findOne(fukuandan.getCaigoufahuoID());//TODO
-				Yaoxiang1 kucun = new Yaoxiang1();
+				Kuncun kucun = new Kuncun();
 //				kucun.setYaopingDanwei(caigoufahuo.getYaopingDanwei());
 //				kucun.setDingdanhao(caigoufahuo.getCaigoudingdangID());
 //				kucun.setYaopingID(caigoufahuo.getYaopingID());
@@ -70,7 +70,7 @@ public class FukuandanController extends ControllerBase {
 //				kucun.setShuliang(caigoufahuo.getShuliang());
 //				kucun.setRiqi(caigoufahuo.getRiqi());
 				kucun.setZhuangtai(1);
-				Yaoxiang1Dao.save(kucun);
+				KucunDao.save(kucun);
 				// 付款单更新是结算时，找出账户钱-付款钱，再更新账户
 				ZhanghuDao.updatezhanghuQianshu(1, ZhanghuDao.findOne(1)
 						.getQianshu() - fukuandan.getQianshu());
