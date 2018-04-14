@@ -13,6 +13,13 @@
     </h1>
 </div>
 <div class="main-content-inner">
+
+		<form id="searchForm" class="form-inline" role="form" onsubmit="return false">
+            <button id="search1" class="btn1 btn-primary1" value="1">月查询</button>
+            <button id="search2" class="btn1 btn-primary1" value="2">季度查询</button>
+            <button id="search3" class="btn1 btn-primary1" value="3">年查询</button>
+        </form>
+		
         <div class="col-xs-12">
             <div class="table-header">
                销售订单列表&nbsp;&nbsp;
@@ -31,29 +38,17 @@
     	      	药品编号
                             </th>
                             <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
-                                名称
+                                        药品名称
                             </th>
                             <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
-                               单价
+                                       单价
                             </th>
                             <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
-                             数量
+                                     销售数量
                             </th>
 
                             <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
-                             总价
-                            </th>
-                            <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
-                                客户
-                            </th>
-                            <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
-                                仓库
-                            </th>
-                            <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
-                                日期
-                            </th>
-                            <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
-                                状态
+                                      销售总价
                             </th>
                             <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="">操作</th>
                         </tr>
@@ -93,22 +88,18 @@
 <script id="userListTemplate" type="x-tmpl-mustache">
 {{#userList}}
 <tr role="row" class="user-name odd" data-id="{{dingdanID}}"><!--even -->
-    <td>{{dingdanBianhao}}</td>
-    <td>{{yaoping.yaopingBianhao}}</td>
-    <td>{{yaoping.yaopingMingzi}}</td>
+    <td>{{dingdanbianhao}}</td>
+    <td>{{yaopingbianhao}}</td>
+    <td>{{yaopingMingzi}}</td>
     <td>{{danjia}}</td>
 	<td>{{shuliang}}</td>
 	<td>{{zongjia}}</td>
-	<td>{{kehu.kehuMingzi}}</td>
-	<td>{{cangku.cangkuMingzi}}</td>
-	<td>{{riqi}}</td>
-	<td>{{#bold}}{{complete}}{{/bold}}</td>	
     <td>
         <div class="hidden-sm hidden-xs action-buttons">
             <a class="green user-edit" href="#" data-id="{{dingdanID}}"
 												data-dingdanBianhao="{{dingdanBianhao}}"
 												data-complete="{{complete}}">
-                <i class="ace-icon fa fa-pencil bigger-100"></i>
+                <!-- <i class="ace-icon fa fa-pencil bigger-100"></i> -->
             </a>
         </div>
     </td>
@@ -200,6 +191,43 @@ $(function () {
             }
         });
     }
+    
+    $("#search1").click(function(){
+    	var url = "${pageContext.request.contextPath }/cs";
+        $.ajax({
+        	url: url,
+        	data:{cls:'XiaoshouhuizongshenheController',mtd:'findAll',searchType:1},            
+            success: function (result) {            	
+                renderUserListAndPage(result);
+            }
+        });
+   	});
+    
+    $("#search2").click(function(){
+    	var url = "${pageContext.request.contextPath }/cs";
+        $.ajax({
+        	url: url,
+        	data:{cls:'XiaoshouhuizongshenheController',mtd:'findAll',searchType:2},            
+            success: function (result) {            	
+                renderUserListAndPage(result);
+            }
+        });
+   	});
+    
+    $("#search3").click(function(){
+    	var url = "${pageContext.request.contextPath }/cs";
+        $.ajax({
+        	url: url,
+        	data:{cls:'XiaoshouhuizongshenheController',mtd:'findAll',searchType:3},            
+            success: function (result) {            	
+                renderUserListAndPage(result);
+            }
+        });
+   	});
+    
+    
+    
+    
   	
  });
 </script>

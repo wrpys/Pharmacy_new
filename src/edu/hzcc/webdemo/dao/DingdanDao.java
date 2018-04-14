@@ -5,9 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -449,6 +447,64 @@ public class DingdanDao {
 				//把结果集填入Dingdan对象
 				Dingdan dingdan = converDingdan(rs);
 				list.add(dingdan);
+				
+			}
+			//结果集关闭
+			rs.close();
+			//数据量链接关闭
+			ProjectShare.getDbPool().closeConnection(connection);
+			
+			return list;
+			//异常
+		} catch (Exception e) {
+			// TODO: handle exception
+			ProjectShare.log("dingdan.findALL error: "+e.getMessage());
+			return null;
+		}
+	}
+	
+	/**
+	 * 获取采购信息并根据条件汇总,采购的订单类型为2
+	 * @param searchType 1月查询 2季度查询 3 年查询
+	 * @return
+	 */
+	public static List<CangkuHuizongbiao> findCaigouHuizongList(int searchType ,int dingdanleixing) {
+		try {
+			List<CangkuHuizongbiao> list = new ArrayList<>();
+			
+			String sql = "select t1.dingdanBianhao,t1.danjia,SUM(t1.shuliang) as 'shuliang',SUM(t1.zongjia) as 'zongjia',t2.yaopingBianhao,t2.yaopingMingzi \r\n" + 
+					"from dingdan t1 left join yaoping t2 on t1.yaopingID= t2.yaopingID \r\n" + 
+					"where t1.dingdanleixing='" +dingdanleixing +"' "; 
+			switch (searchType) {
+			case 1:
+				sql += " and DATE_SUB(CURDATE(), INTERVAL 30 DAY) <= str_to_date(t1.riqi, '%Y-%m-%d %H:%i:%s') GROUP BY t1.yaopingID";
+				break;
+			case 2:
+				sql += " and DATE_SUB(CURDATE(), INTERVAL 120 DAY) <= str_to_date(t1.riqi, '%Y-%m-%d %H:%i:%s') GROUP BY t1.yaopingID";
+				break;
+			case 3:
+				sql += " and DATE_SUB(CURDATE(), INTERVAL 365 DAY) <= str_to_date(t1.riqi, '%Y-%m-%d %H:%i:%s') GROUP BY t1.yaopingID";
+				break;
+			default:
+				sql += " GROUP BY t1.yaopingID";
+				break;
+			}
+			//开启数据库链接
+			Connection connection = ProjectShare.getDbPool().getConnection();
+			//返回数据库结果集
+			ResultSet rs = ProjectShare.getDbPool().query(connection, sql);
+			//循环结果集，一个个填充入List<Dingdan>
+			while(rs.next()){
+				//把结果集填入Dingdan对象
+				CangkuHuizongbiao huizong = new CangkuHuizongbiao();
+				//订单编号  药品编号 药品名字 单价 采购数量 采购总价 
+				huizong.setDingdanbianhao(rs.getString("dingdanBianhao"));
+				huizong.setYaopingbianhao(rs.getString("dingdanBianhao"));
+				huizong.setYaopingMingzi(rs.getString("yaopingMingzi"));
+				huizong.setDanjia(rs.getString("danjia"));
+				huizong.setShuliang(rs.getInt("shuliang"));
+				huizong.setZongjia(rs.getString("zongjia"));
+				list.add(huizong);
 				
 			}
 			//结果集关闭

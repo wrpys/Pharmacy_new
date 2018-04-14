@@ -28,7 +28,6 @@ public class Dingdan {
 	private Integer qishiZongjia;
 	private Integer jieshuZongjia;
 	
-	
 	public Integer getDingdanID() {
 		return dingdanID;
 	}
@@ -143,5 +142,4 @@ public class Dingdan {
 	public void setJieshuZongjia(Integer jieshuZongjia) {
 		this.jieshuZongjia = jieshuZongjia;
 	}
-	
 }

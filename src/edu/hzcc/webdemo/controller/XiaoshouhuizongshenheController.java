@@ -3,10 +3,11 @@ package edu.hzcc.webdemo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sf.json.JSONObject;
 import edu.hzcc.webdemo.dao.DingdanDao;
+import edu.hzcc.webdemo.pojo.CangkuHuizongbiao;
 import edu.hzcc.webdemo.pojo.Dingdan;
 import edu.hzcc.webdemo.util.ControllerBase;
+import net.sf.json.JSONObject;
 
 /**
  * 
@@ -16,21 +17,26 @@ public class XiaoshouhuizongshenheController extends ControllerBase {
 
 	// 查找所有销售订单
 	public void findAll() {
-		System.out.println("XiaoshouhuizongshenheController.findALL()");
-		// 定义一个空的dingdan列表
-		List<Dingdan> dingdanlist = new ArrayList<>();
+		System.out.println("CaigouhuizongshenheController.findALL()");
+		// 定义一个空的dingdanList列表
+		List<CangkuHuizongbiao> dingdanList = new ArrayList<>();
+		//获取查询类型：1：月查询   2：季度查询   3：年查询
+		int searchType = getParameterInt("searchType");
+		//4为销售订单类型
+		int dingdanleixing = 4;
 		// 在DingdanDao中数据库操作 找出所有的dingdanlist列表
-		Dingdan dingdan = new Dingdan();
-		dingdan.setDingdanleixing(3);// 查找订单为：销售订单
-		dingdanlist = DingdanDao.findALL(dingdan);
+		dingdanList = DingdanDao.findCaigouHuizongList(searchType,dingdanleixing);
 		// 定义一个json格式
 		JSONObject jsonObject = new JSONObject();
 		// 把dingdanlist列表填入json
-		jsonObject.put("caigoudingdanList", dingdanlist);
-		// 原路返回dingdanlist列表，用writeJson返回Json数据名字为caigoudingdanList
+		jsonObject.put("caigoudingdanList", dingdanList);
+		// 原路返回dingdanlist列表，用writeJson返回Json数据名字为dingdanlist
 		writeJson(jsonObject.toString());
 		return;
 	}
+	
+	
+	
 
 	// 审核销售订单 
 	public void update() {
