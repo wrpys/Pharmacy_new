@@ -79,10 +79,10 @@
 				</a> <b class="arrow"></b>
 
 					<ul class="submenu">
-						<li class=""><a class="popstyle"
+						<!-- <li class=""><a class="popstyle"
 							href="xiaoshoudingdan.jsp" target="_blank"> <i
 								class="menu-icon fa fa-caret-right"></i> 销售订单
-						</a> <b class="arrow"></b></li>
+						</a> <b class="arrow"></b></li> -->
 						<li class=""><a class="popstyle"
 							href="xiaoshouchuhuo.jsp" target="_blank"> <i
 								class="menu-icon fa fa-caret-right"></i> 销售出货

@@ -46,6 +46,7 @@ public class CaigoushouhuoController extends ControllerBase{
 		params.put("gongyingshangMingzi", gongyingshangMingzi);
 		params.put("qishiZongjia", qishiZongjia);
 		params.put("jieshuZongjia", jieshuZongjia);
+		params.put("dingdanleixing", 2);
 		return params;
 	}
 
@@ -77,7 +78,15 @@ public class CaigoushouhuoController extends ControllerBase{
 		caigoudingdan.setKehuID(0);
 		caigoudingdan.setComplete(0);
 		// 在DingdanDao中数据库操作 新增一个订单
-		DingdanDao.save(caigoudingdan);
+		int dingdangID = DingdanDao.saveAndReturnPK(caigoudingdan);
+		// 审核 修改采购订单的状态
+		Dingdan dingdan = new Dingdan();
+		// 从页面表单中获取。name="dingdanID"
+		dingdan.setDingdanID(dingdangID);
+		//设置已完成
+		dingdan.setComplete(1);
+		// 在DingdanDao中数据库操作 修改一个订单
+		DingdanDao.updateComplete(dingdan);
 	}
 	
 	// 修改采购收获订单

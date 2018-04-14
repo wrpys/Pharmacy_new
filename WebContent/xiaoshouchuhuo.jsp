@@ -20,9 +20,34 @@
                     <i class="ace-icon fa fa-plus-circle orange bigger-130 user-add"></i>
                 </a>
             </div>
-            <div>
+            <div class="row">
                 <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline no-footer">
-
+					<div class="col-xs-6">
+					<div id="dynamic-table_filter" class="dataTables_filter">
+						<label> 药品名字: <input type="search" name="yaopingMingzi"
+							id="yaopingMingzi" class="form-control input-sm yaopingMingzi"
+							placeholder="" aria-controls="dynamic-table"></label>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<div id="dynamic-table_filter" class="dataTables_filter">
+						<label> 供应商名字: <input type="search"
+							name="gongyingshangMingzi" id="gongyingshangMingzi"
+							class="form-control input-sm gongyingshangMingzi" placeholder=""
+							aria-controls="dynamic-table"></label>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<div id="dynamic-table_filter" class="dataTables_filter">
+						<label> 金额: <input type="search" name="qishiZongjia"
+							id="qishiZongjia" class="form-control input-sm qishiZongjia"
+							placeholder="请输入起始总金额" aria-controls="dynamic-table"></label>
+						~ <input type="search" name="jieshuZongjia" id="jieshuZongjia"
+							class="form-control input-sm jieshuZongjia" placeholder="请输入终止总金额"
+							aria-controls="dynamic-table"></label>
+					</div>
+				</div>
+					
                     <table id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid"
                            aria-describedby="dynamic-table_info" style="font-size:14px">
                         <thead>
@@ -411,6 +436,42 @@ $(function () {
 			}
 		});
     }
+  	
+  	
+  	
+  	//搜索 药品名字,供应商名字，金额操作
+    $('.yaopingMingzi,.gongyingshangMingzi,.qishiZongjia,.jieshuZongjia').keydown(function(e){
+    	//entry按键
+    	if(e.keyCode==13){ 
+    		var yaopingMingzi=$('.yaopingMingzi').val();
+    		var gongyingshangMingzi=$('.gongyingshangMingzi').val();
+    		var qishiZongjia=$('.qishiZongjia').val();
+    		var jieshuZongjia=$('.jieshuZongjia').val();
+    		if(yaopingMingzi == null && yaopingMingzi == '' && 
+    				gongyingshangMingzi == null && gongyingshangMingzi == '' &&
+    				qishiZongjia == null && qishiZongjia == '' &&
+    				jieshuZongjia == null && jieshuZongjia == '' ) {
+    			loadUserList();
+    		} else {
+    			loadUserListByParams(yaopingMingzi,gongyingshangMingzi,qishiZongjia,jieshuZongjia)
+    		}
+    	}
+    });
+	
+  	//根据名字查询
+    function loadUserListByParams(yaopingMingzi,gongyingshangMingzi,qishiZongjia,jieshuZongjia) {
+        var url = "${pageContext.request.contextPath }/cs";
+        $.ajax({
+        	 url: url,
+        	data:{cls:'XiaoshouchuhuoController',mtd:'findAll',yaopingMingzi:yaopingMingzi,gongyingshangMingzi:gongyingshangMingzi
+        		,qishiZongjia:qishiZongjia,jieshuZongjia:jieshuZongjia},
+            success: function (result) {
+            	renderUserListAndPage(result);
+            }
+        });
+    }
+  	
+  	
   
  });
 </script>

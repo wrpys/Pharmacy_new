@@ -3,7 +3,9 @@ package edu.hzcc.webdemo.controller;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import net.sf.json.JSONObject;
 import edu.hzcc.webdemo.dao.DingdanDao;
@@ -18,21 +20,38 @@ public class XiaoshouchuhuoController extends ControllerBase{
 
 	// 查找所有销售出货订单
 	public void findAll(){
-		System.out.println("XiaoshouchuhuoController.findALL()");
-		//定义一个空的dingdan列表
-		List<Dingdan> dingdanlist=new ArrayList<>();
-		//在caigoudingdanDao中数据库操作 找出所有的dingdanlist列表
-		Dingdan dingdan = new Dingdan();
-		dingdan.setDingdanleixing(4);// // 查找订单为：销售出货订单
-		dingdanlist=DingdanDao.findALL(dingdan);
+		System.out.println("CaigoushouhuoController.findALL()");
+		Map<String,Object> params = getParams();
+		//定义一个空的caigoushouhuo列表
+		List<Dingdan> caigoudingdanList=new ArrayList<>();
+		//在DingdanDao中数据库操作 找出所有的caigoushouhuolist列表
+		//Dingdan dingdan = new Dingdan();
+		//dingdan.setDingdanleixing(4);	// 查找订单为：销售出货订单
+		caigoudingdanList=DingdanDao.findDingdansByParams(params);
 		//定义一个json格式
 		JSONObject jsonObject = new JSONObject();
-		//把caigoudingdanlist列表填入json
-		jsonObject.put("caigoudingdanList", dingdanlist);
-		//原路返回dingdanlist列表，用writeJson返回Json数据名字为caigoudingdanglist
+		//把caigoushouhuolist列表填入json
+		jsonObject.put("caigoudingdanList", caigoudingdanList);
+		//原路返回caigoushouhuolist列表，用writeJson返回Json数据名字为caigoushouhuolist
 		writeJson(jsonObject.toString());
 		return;
 	}
+	
+	//获取参数并且构造成map形式
+	private Map<String,Object> getParams(){
+		String yaopingMingzi = getParameter("yaopingMingzi");
+		String gongyingshangMingzi = getParameter("gongyingshangMingzi");
+		int qishiZongjia = getParameterInt("qishiZongjia");
+		int jieshuZongjia = getParameterInt("jieshuZongjia");
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("yaopingMingzi", yaopingMingzi);
+		params.put("gongyingshangMingzi", gongyingshangMingzi);
+		params.put("qishiZongjia", qishiZongjia);
+		params.put("jieshuZongjia", jieshuZongjia);
+		params.put("dingdanleixing", 4);
+		return params;
+	}
+	
 
 	// 删除销售出货订单
 	public void delete(){
@@ -63,7 +82,16 @@ public class XiaoshouchuhuoController extends ControllerBase{
 		caigoudingdan.setKehuID(getParameterInt("kehuID"));
 		caigoudingdan.setComplete(0);
 		// 在DingdanDao中数据库操作 新增一个订单
-		DingdanDao.save(caigoudingdan);
+		DingdanDao.saveAndReturnPK(caigoudingdan);
+		// 在DingdanDao中数据库操作 新增一个订单
+		int dingdangID = DingdanDao.saveAndReturnPK(caigoudingdan);
+		// 审核 修改采购订单的状态
+		Dingdan dingdan = new Dingdan();
+		dingdan.setDingdanID(dingdangID);
+		//设置已完成
+		dingdan.setComplete(1);
+		// 在DingdanDao中数据库操作 修改一个订单
+		DingdanDao.updateComplete(dingdan);
 	}
 	
 	// 修改销售出货订单

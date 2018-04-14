@@ -1,9 +1,13 @@
 package edu.hzcc.webdemo.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -171,7 +175,53 @@ public class DingdanDao {
 			return false;
 		}
 	}
-
+	
+	// 新增
+	public static int saveAndReturnPK(Dingdan dingdan){
+		try {
+			String sql = null;
+				//执行新增
+				sql = "insert into dingdan(dingdanBianhao,yaopingID,danjia,"
+											+ "shuliang,zongjia,dingdanleixing,"
+											+ "riqi,gongyingshangID,kehuID,cangkuID,complete)";
+				sql += " values('"+dingdan.getDingdanBianhao()+"','"+dingdan.getYaopingID()+"','"+dingdan.getDanjia()+"','"+
+						dingdan.getShuliang()+"','"+dingdan.getZongjia()+"','"+dingdan.getDingdanleixing()+"','"+
+						dingdan.getRiqi()+"','"+dingdan.getGongyingshangID()+"','"+dingdan.getKehuID()+"','"+dingdan.getCangkuID()+"','"+dingdan.getComplete()+"')";
+			System.out.print(sql);
+			
+			//开启数据库链接
+			Connection connection = ProjectShare.getDbPool().getConnection();
+			//开启数据库事物
+			ProjectShare.getDbPool().transaction(connection, true);
+			//数据库更新
+			//ProjectShare.getDbPool().update(connection, sql);
+			// 指定返回生成的主键 
+			PreparedStatement pstmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			pstmt.executeUpdate(); 
+			// 检索由于执行此 Statement 对象而创建的所有自动生成的键 
+			ResultSet rs = pstmt.getGeneratedKeys(); 
+			int id = 0;
+			if (rs.next()) { 
+				id = rs.getInt(1); 
+				System.out.println("数据主键：" + id); 
+			} 
+			//提交操作
+			ProjectShare.getDbPool().commit(connection);
+			//事物关闭
+			ProjectShare.getDbPool().transaction(connection, false);
+			//链接关闭
+			ProjectShare.getDbPool().closeConnection(connection);
+			return id;
+			//异常
+		} catch (Exception e) {
+			// TODO: handle exception
+			ProjectShare.log("dingdan.save/update error: "+e.getMessage());
+		}
+		return 0;
+	}
+	
+	
+	
 	public static boolean update(Dingdan dingdan) {
 		try {
 			String sql = null;
@@ -368,7 +418,8 @@ public class DingdanDao {
 			return null;
 		}
 	}
-
+	
+	
 	//根据条件查询订单
 	public static List<Dingdan> findDingdansByParams(Map<String, Object> params) {
 		try {
@@ -379,11 +430,11 @@ public class DingdanDao {
 			String sql = "select * from dingdan t1 \r\n" + 
 					"left join yaoping t2 on t1.yaopingID = t2.yaopingID\r\n" + 
 					"left join gongyingshang t3 on t1.gongyingshangID = t3.gongyingshangID\r\n" + 
-					"left join cangku t4 on t1.cangkuID = t4.cangkuID\r\n where 1=1 and t1.dingdanleixing=2 ";
-			if(params.get("yaopingMingzi") != null) {
+					"left join cangku t4 on t1.cangkuID = t4.cangkuID\r\n where 1=1 and t1.dingdanleixing='" +params.get("dingdanleixing")+"' ";
+			if(params.get("yaopingMingzi") != null && !params.get("yaopingMingzi").equals("")) {
 				sql += " and t2.yaopingMingzi like '%" + params.get("yaopingMingzi")+"%' ";
 			}
-			if(params.get("gongyingshangMingzi") != null) {
+			if(params.get("gongyingshangMingzi") != null && !params.get("gongyingshangMingzi").equals("")) {
 				sql += " and t3.gongyingshangMingzi like '%" + params.get("gongyingshangMingzi")+"%' ";
 			}
 			if(Integer.parseInt(params.get("qishiZongjia").toString()) > 0 
