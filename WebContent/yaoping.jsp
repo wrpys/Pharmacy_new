@@ -57,7 +57,7 @@
                         <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
                             药箱
                         </th>
-                        <th class="sorting_disabled" rowspan="1" colspan="1" aria-label=""></th>
+                        <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="">操作</th>
                     </tr>
                     </thead>
                     <tbody id="userList"></tbody>
