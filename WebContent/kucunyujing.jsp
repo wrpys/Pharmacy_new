@@ -38,6 +38,7 @@
                             <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
                                  库存数
                             </th>
+                            <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="">操作</th>
                         </tr>
                         </thead>
                         <tbody id="userList"></tbody>
@@ -59,6 +60,17 @@
     <td>{{yaoping.yaopingMingzi}}</td>
     <td>{{yaoping.yaopingDanwei}}</td>
 	<td>{{kucun.shuliang}}</td>
+	<td>
+        <div class="hidden-sm hidden-xs action-buttons">
+            <a class="green user-edit" href="#" data-yaopingID="{{yaopingID}}"
+ 												data-yaopingBianhao="{{yaoping.yaopingBianhao}}"
+ 												data-yaopingMingzi="{{yaoping.yaopingMingzi}}"
+ 												data-yaopingDanwei="{{yaoping.yaopingDanwei}}"
+ 												data-shuliang="{{shuliang}}"
+                <i class="ace-icon fa fa-pencil bigger-100"></i> 
+            </a>
+        </div>
+    </td>
 </tr>
 {{/userList}}
 </script>

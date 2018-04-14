@@ -54,9 +54,9 @@
 <!--                             <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
                                 状态
                             </th> -->
-<!--                             <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="">
+                            <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="">
                                操作
-                            </th> -->
+                            </th>
                         </tr>
                         </thead>
                         <tbody id="userList"></tbody>
@@ -154,7 +154,7 @@
     <td>{{shuliang}}</td>
 	<td>{{riqi}}</td>
 	<!-- <td>{{#bold}}{{complete}}{{/bold}}</td>	 -->
-    <!-- <td>
+    <td>
         <div class="hidden-sm hidden-xs action-buttons">
             <a class="green user-edit" href="#" data-yaopingID="{{yaopingID}}"
  												data-yaopingMingzi="{{yaoping.yaopingMingzi}}"
@@ -171,7 +171,7 @@
                 <i class="ace-icon fa fa-pencil bigger-100"></i> 
             </a>
         </div>
-    </td>-->
+    </td>
 </tr>
 {{/userList}}
 </script>

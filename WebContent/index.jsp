@@ -89,22 +89,22 @@
 
 				<li class="laoban xiaoshouyuan caiwu caigourenyuan"><a href="" class="dropdown-toggle"> <i
 						class="menu-icon fa fa-desktop"></i> <span class="menu-text">
-							库存管理 </span> <b class="arrow fa fa-angle-down"></b>
+							药箱管理 </span> <b class="arrow fa fa-angle-down"></b>
 				</a>
 
 					<ul class="submenu">
 						<li class=""><a class="popstyle" href="kucun.jsp"
 							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
-								库存查询
+								药箱查询
 						</a> <b class="arrow"></b></li>
 
 						<li class=""><a class="popstyle" href="cangkushezi.jsp"
 							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
-								库存预警设置
+								药箱预警设置
 						</a> <b class="arrow"></b></li>
 						<li class=""><a class="popstyle" href="kucunyujing.jsp"
 							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
-								库存预警
+								药箱预警
 
 						</a> <b class="arrow"></b></li>
 					</ul></li>
