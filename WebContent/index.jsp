@@ -284,7 +284,7 @@ $this 只是个变量名，加$是为说明其是个jquery对象。
 			var url = location.search; //获取url中"?"符后的字串 ('?nolook=1') 
 			var str = url.substring(8);
 			// 0：老板，1：采购员，2：销售员，3：财务，4：仓管员
-			if(str == "0") {
+			/* if(str == "0") {
 				$(".laoban").hide();
 			} else if(str == "1") {
 				$(".caigourenyuan").hide();
@@ -294,7 +294,7 @@ $this 只是个变量名，加$是为说明其是个jquery对象。
 				$(".caiwu").hide();
 			} else if(str == "4") {
 				$(".cangguanyuan").hide();
-			}
+			} */
 			
 			$(".popstyle").removeAttr("target");
 			$(".popstyle").each(function() {

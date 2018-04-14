@@ -13,7 +13,6 @@
 	</div>
 	<div class="main-content-inner">
 
-<<<<<<< HEAD
 		<form id="searchForm" class="form-inline" role="form"
 			onsubmit="return false">
 			<div class="form-group">
@@ -33,24 +32,6 @@
 			</div>
 			<button id="search" class="btn1 btn-primary1">查询</button>
 		</form>
-=======
-		<form id="searchForm" class="form-inline" role="form" onsubmit="return false">
-            <div class="form-group">
-                <label class="form-label">药品名字:</label>
-                <input type="text" class="form-control" id="searchyaopingMingzi" name="yaopingMingzi">
-            </div>
-            <div class="form-group">
-                <label class="form-label">供应商:</label>
-                <select class="gongyingshang-list" id="searchgongyingshangMingzi" name="searchgongyingshangMingzi" data-placeholder="选择供应商" style="width: 170px;"></select>
-            </div>
-            <div class="form-group">
-                <label class="form-label">总价:</label>
-                <input type="text" class="form-control" id="searchqishiZongjia" name="qishiZongjia" placeholder="请输入起始总价">~
-                <input type="text" class="form-control" id="searchjieshuZongjia" name="jieshuZongjia" placeholder="请输入终止总价">
-            </div>
-            <button id="search" class="btn1 btn-primary1">查询</button>
-        </form>
->>>>>>> 2fa60000029f193b9b0c2207827308e0d08e4ebc
 
 		<div class="col-xs-12">
 			<div class="table-header">
@@ -125,9 +106,9 @@
 						data-placeholder="选择药品" style="width: 170px;"></select></td>
 				</tr>
 				<tr>
-					<td><label for="yaoxiangID">仓库</label></td>
+					<td><label for="yaoxiangID">药箱</label></td>
 					<td><select class="yaoxiang-list" name="yaoxiangID"
-						data-placeholder="选择仓库" style="width: 170px;"></select></td>
+						data-placeholder="选择药箱" style="width: 170px;"></select></td>
 				</tr>
 				<tr>
 					<td><label for="danjia">单价</label></td>
@@ -225,78 +206,44 @@
 {{/userList}}
 </script>
 
-	<!-- 供应商下拉列表 -->
-	<script id="Template" type="x-tmpl-mustache">
+<!-- 供应商下拉列表 -->
+<script id="Template" type="x-tmpl-mustache">
 {{#businessList}}
 <option value="{{gongyingshangID}}">{{gongyingshangMingzi}}</option>
 {{/businessList}}
 </script>
 
-	<!-- 药品下拉列表 -->
-	<script id="yaopingTemplate" type="x-tmpl-mustache">
+<!-- 药品下拉列表 -->
+<script id="yaopingTemplate" type="x-tmpl-mustache">
 {{#yaopingList}}
 <option value="{{yaopingID}}">{{yaopingMingzi}}</option>
 {{/yaopingList}}
 </script>
 
-<<<<<<< HEAD
-	<!-- 仓库下拉列表 -->
-	<script id="yaoxiangTemplate" type="x-tmpl-mustache">
-=======
-<!-- 供应商下拉列表 -->
-<script id="gongyingshangTemplate" type="x-tmpl-mustache">
-{{#gongyingshangList}}
-<option value="{{gongyingshangID}}">{{gongyingshangMingzi}}</option>
-{{/gongyingshangList}}
-</script>
-
 <!-- 仓库下拉列表 -->
 <script id="yaoxiangTemplate" type="x-tmpl-mustache">
->>>>>>> 2fa60000029f193b9b0c2207827308e0d08e4ebc
 {{#yaoxiangList}}
 <option value="{{yaoxiangID}}">{{yaoxiangMingzi}}</option>
 {{/yaoxiangList}}
 </script>
-
 	<script type="text/javascript">
 		$(function() {
 
-<<<<<<< HEAD
 			var userListTemplate = $('#userListTemplate').html();
 			Mustache.parse(userListTemplate);
-=======
-    var Template = $('#Template').html();
-    Mustache.parse(Template);
-    var yaopingTemplate = $('#yaopingTemplate').html();
-    Mustache.parse(yaopingTemplate);
-    var yaoxiangTemplate = $('#yaoxiangTemplate').html();
-    Mustache.parse(yaoxiangTemplate);
-    var gongyingshangTemplate = $('#gongyingshangTemplate').html();
-    Mustache.parse(gongyingshangTemplate);
-    loadUserList();
-    // 加载信息,并渲染
-    function loadUserList() {
-        var url = "${pageContext.request.contextPath }/cs";
-        $.ajax({
-        	url: url,
-        	data:{cls:'CaigoushouhuoController',mtd:'findAll'},            
-            success: function (result) {            	
-                renderUserListAndPage(result);
-                gongyingshangSelect();
-            }
-        });
-    }
->>>>>>> 2fa60000029f193b9b0c2207827308e0d08e4ebc
-
-			var Template = $('#Template').html();
-			Mustache.parse(Template);
-			var yaopingTemplate = $('#yaopingTemplate').html();
-			Mustache.parse(yaopingTemplate);
-			var yaoxiangTemplate = $('#yaoxiangTemplate').html();
-			Mustache.parse(yaoxiangTemplate);
-			gongyingshangSelect(1);
-			loadUserList();
-
+			
+		    var Template = $('#Template').html();
+		    Mustache.parse(Template);
+		    
+		    var yaopingTemplate = $('#yaopingTemplate').html();
+		    Mustache.parse(yaopingTemplate);
+		    
+		    var yaoxiangTemplate = $('#yaoxiangTemplate').html();
+		    Mustache.parse(yaoxiangTemplate);
+		    var gongyingshangTemplate = $('#gongyingshangTemplate').html();
+		    Mustache.parse(gongyingshangTemplate);
+		    loadUserList();
+		    gongyingshangSelect(1);
 			$("#search").click(function() {
 				loadUserList();
 			});
@@ -598,60 +545,7 @@
 			}
 
 		});
-<<<<<<< HEAD
 	</script>
-=======
-    }
-  	
-  	//加载保存和修改弹出框的供应商下拉信息 
-    function gongyingshangSelect() {
-		$.ajax({
-			url: "${pageContext.request.contextPath }/cs",
-			data:{cls:'GongyingshangController',mtd:'findAll'},
-			type: 'POST',
-			async: false,
-			success: function (result) {
-				var rendered = Mustache.render(gongyingshangTemplate, {"gongyingshangList": result.gongyingshang});
-		         $('.gongyingshang-list').html(rendered);
-			}
-		});
-    }
-  	
-  	
-  	
-	//搜索 药品名字,供应商名字，金额操作
-	$("#search").click(function(){
-		var yaopingMingzi=$('#searchyaopingMingzi').val();
-		var gongyingshangMingzi=$("#searchgongyingshangMingzi").find("option:selected").text();
-		var qishiZongjia=$('#searchqishiZongjia').val();
-		var jieshuZongjia=$('#searchjieshuZongjia').val();
-		if(yaopingMingzi == null && yaopingMingzi == '' && 
-				gongyingshangMingzi == null && gongyingshangMingzi == '' &&
-				qishiZongjia == null && qishiZongjia == '' &&
-				jieshuZongjia == null && jieshuZongjia == '' ) {
-			loadUserList();
-		} else {
-			loadUserListByParams(yaopingMingzi,gongyingshangMingzi,qishiZongjia,jieshuZongjia)
-		}
-	});
-	
-	
-	
-  	//根据名字查询
-    function loadUserListByParams(yaopingMingzi,gongyingshangMingzi,qishiZongjia,jieshuZongjia) {
-        var url = "${pageContext.request.contextPath }/cs";
-        $.ajax({
-        	 url: url,
-        	data:{cls:'CaigoushouhuoController',mtd:'findAll',yaopingMingzi:yaopingMingzi,gongyingshangMingzi:gongyingshangMingzi
-        		,qishiZongjia:qishiZongjia,jieshuZongjia:jieshuZongjia},
-            success: function (result) {
-            	renderUserListAndPage(result);
-            }
-        });
-    }     
-  
- });
 </script>
->>>>>>> 2fa60000029f193b9b0c2207827308e0d08e4ebc
 </body>
 </html>
