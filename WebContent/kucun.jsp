@@ -150,7 +150,7 @@
     <td>{{yaoping.yaopingBianhao}}</a></td>
     <td>{{yaoping.yaopingMingzi}}</td>
     <td>{{yaoping.yaopingDanwei}}</td>
-	<td>{{cangku.cangkuMingzi}}</td>
+	<td>{{cangku.yaoxiangMingzi}}</td>
     <td>{{shuliang}}</td>
 	<td>{{riqi}}</td>
 	<!-- <td>{{#bold}}{{complete}}{{/bold}}</td>	 -->
@@ -163,7 +163,7 @@
  												data-shuliang="{{shuliang}}"
  												data-riqi="{{riqi}}"
 												data-complete="{{complete}}"
-												data-cangkuMingzi="{{cangku.cangkuMingzi}}"
+												data-yaoxiangMingzi="{{cangku.yaoxiangMingzi}}"
 												data-cangkuID="{{cangku.cangkuID}}"
 												data-dingdanID="{{dingdanID}}"
 												data-kucunID="{{kucun.kucunID}}"
@@ -247,8 +247,8 @@ $(function () {
 							function(e) {
 								var churuku = $(this).attr("data-dingdanleixing") == 2 ? "入库"
 										: "出库";
-								var cangkuMingzi = $(this).attr(
-										"data-cangkuMingzi");
+								var yaoxiangMingzi = $(this).attr(
+										"data-yaoxiangMingzi");
 								var cangkuID = $(this).attr("data-cangkuID");
 								var kucunID = $(this).attr("data-kucunID");
 								var dingdanID = $(this).attr("data-yaopingBianhao");
@@ -276,7 +276,7 @@ $(function () {
 														$("#churuku").val(
 																churuku);
 														$("#cangkuMingzi").val(
-																cangkuMingzi);
+																yaoxiangMingzi);
 														$("#yaopingID").val(
 																yaopingID);
 														$(
