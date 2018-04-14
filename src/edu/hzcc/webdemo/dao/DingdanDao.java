@@ -369,4 +369,49 @@ public class DingdanDao {
 		}
 	}
 
+	//根据条件查询订单
+	public static List<Dingdan> findDingdansByParams(Map<String, Object> params) {
+		try {
+			List<Dingdan> list = new ArrayList<>();
+			//开启数据库链接
+			Connection connection = ProjectShare.getDbPool().getConnection();
+			
+			String sql = "select * from dingdan t1 \r\n" + 
+					"left join yaoping t2 on t1.yaopingID = t2.yaopingID\r\n" + 
+					"left join gongyingshang t3 on t1.gongyingshangID = t3.gongyingshangID\r\n" + 
+					"left join cangku t4 on t1.cangkuID = t4.cangkuID\r\n where 1=1 and t1.dingdanleixing=2 ";
+			if(params.get("yaopingMingzi") != null) {
+				sql += " and t2.yaopingMingzi like '%" + params.get("yaopingMingzi")+"%' ";
+			}
+			if(params.get("gongyingshangMingzi") != null) {
+				sql += " and t3.gongyingshangMingzi like '%" + params.get("gongyingshangMingzi")+"%' ";
+			}
+			if(Integer.parseInt(params.get("qishiZongjia").toString()) > 0 
+					&&Integer.parseInt(params.get("qishiZongjia").toString()) > 0) {
+				sql += "  and t1.zongjia BETWEEN '" + params.get("qishiZongjia")+"' and " + "'" + params.get("jieshuZongjia")+ "' ";
+			}
+			
+			//返回数据库结果集
+			ResultSet rs = ProjectShare.getDbPool().query(connection, sql);
+			//循环结果集，一个个填充入List<Dingdan>
+			while(rs.next()){
+				//把结果集填入Dingdan对象
+				Dingdan dingdan = converDingdan(rs);
+				list.add(dingdan);
+				
+			}
+			//结果集关闭
+			rs.close();
+			//数据量链接关闭
+			ProjectShare.getDbPool().closeConnection(connection);
+			
+			return list;
+			//异常
+		} catch (Exception e) {
+			// TODO: handle exception
+			ProjectShare.log("dingdan.findALL error: "+e.getMessage());
+			return null;
+		}
+	}
+
 }
