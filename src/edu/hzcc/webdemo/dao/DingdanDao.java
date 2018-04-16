@@ -481,6 +481,9 @@ public class DingdanDao {
 					"from dingdan t1 left join yaoping t2 on t1.yaopingID= t2.yaopingID \r\n" + 
 					"where t1.dingdanleixing='" +dingdanleixing +"' "; 
 			switch (searchType) {
+			case 0:
+				sql += " and DATE_SUB(CURDATE(), INTERVAL 1 DAY) <= str_to_date(t1.riqi, '%Y-%m-%d %H:%i:%s') GROUP BY t1.yaopingID";
+				break;
 			case 1:
 				sql += " and DATE_SUB(CURDATE(), INTERVAL 30 DAY) <= str_to_date(t1.riqi, '%Y-%m-%d %H:%i:%s') GROUP BY t1.yaopingID";
 				break;

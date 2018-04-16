@@ -15,6 +15,7 @@
 <div class="main-content-inner">
 
 		<form id="searchForm" class="form-inline" role="form" onsubmit="return false">
+			<button id="search0" class="btn1 btn-primary1" value="0">日查询</button>
             <button id="search1" class="btn1 btn-primary1" value="1">月查询</button>
             <button id="search2" class="btn1 btn-primary1" value="2">季度查询</button>
             <button id="search3" class="btn1 btn-primary1" value="3">年查询</button>
@@ -193,6 +194,17 @@ $(function () {
             }
         });
     }
+    
+    $("#search0").click(function(){
+    	var url = "${pageContext.request.contextPath }/cs";
+        $.ajax({
+        	url: url,
+        	data:{cls:'CaigouhuizongshenheController',mtd:'findAll',searchType:0},            
+            success: function (result) {            	
+                renderUserListAndPage(result);
+            }
+        });
+   	});
     
     
     $("#search1").click(function(){
