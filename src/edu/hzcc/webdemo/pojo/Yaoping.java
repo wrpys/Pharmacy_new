@@ -22,9 +22,9 @@ public class Yaoping {
 	private String yaopingDanwei;
 	
 	/**
-	 * 有效期
+	 * 规格
 	 */
-	private int youxiaoqi;
+	private String guige;
 	/*
 	 * 进价
 	 */
@@ -63,11 +63,12 @@ public class Yaoping {
 	public void setYaopingDanwei(String yaopingDanwei) {
 		this.yaopingDanwei = yaopingDanwei;
 	}
-	public int getYouxiaoqi() {
-		return youxiaoqi;
+	
+	public String getGuige() {
+		return guige;
 	}
-	public void setYouxiaoqi(int youxiaoqi) {
-		this.youxiaoqi = youxiaoqi;
+	public void setGuige(String guige) {
+		this.guige = guige;
 	}
 	public double getJingjia() {
 		return jingjia;
@@ -96,7 +97,7 @@ public class Yaoping {
 	@Override
 	public String toString() {
 		return "Yaoping [yaopingID=" + yaopingID + ", yaopingMingzi=" + yaopingMingzi + ", yaopingDanwei="
-				+ yaopingDanwei + ", youxiaoqi=" + youxiaoqi + ", jingjia=" + jingjia + ", gongyingshangMingzi="
+				+ yaopingDanwei + ", guige=" + guige + ", jingjia=" + jingjia + ", gongyingshangMingzi="
 				+ gongyingshangMingzi + "]";
 	}
 

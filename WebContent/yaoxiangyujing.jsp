@@ -58,7 +58,7 @@
     <td>{{yaoping.yaopingBianhao}}</a></td>
     <td>{{yaoping.yaopingMingzi}}</td>
     <td>{{yaoping.yaopingDanwei}}</td>
-	<td>{{kucun.shuliang}}</td>
+	<td style="color: #FF0000;">{{kucun.shuliang}}</td>
 </tr>
 {{/userList}}
 </script>
@@ -78,7 +78,7 @@ $(function () {
         var url = "${pageContext.request.contextPath }/cs";
         $.ajax({
         	 url: url,
-        	data:{cls:'KucunyujingController',mtd:'findYujing'},
+        	data:{cls:'YaoxiangyujingController',mtd:'findYujing'},
             
             success: function (result) {
             	console.log(result);
@@ -138,7 +138,7 @@ $(function () {
                     $.ajax({
                         url: "${pageContext.request.contextPath }/cs",
                         data: {
-                        	cls:'YaoxiangsheziController',mtd:'delete',
+                        	cls:'YaoxiangyujingsheziController',mtd:'delete',
                         	id: yaoxiangsheziid
                         },
                         success: function () {

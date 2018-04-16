@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import edu.hzcc.webdemo.pojo.Kuncun;
 import edu.hzcc.webdemo.sys.ProjectShare;
@@ -43,13 +44,19 @@ public class KucunDao {
 	
 	
 	// 查找所有
-	public static List<Kuncun> findALLKucun(){
+	public static List<Kuncun> findALLKucun(Map<String, Object> params){
 		try {
 			List<Kuncun> list = new ArrayList<>();
 			//开启数据库链接
 			Connection connection = ProjectShare.getDbPool().getConnection();
 			
-			String sql = "select * from kucun where 1=1";
+			String sql = "select t.* from kucun t left join yaoping t2 on t.yaopingID = t2.yaopingID where 1=1 ";
+			if(params.get("yaopingMingzi") != null && !"".equals(params.get("yaopingMingzi"))) {
+				sql += " and t2.yaopingMingzi like '%" + params.get("yaopingMingzi") + "%'";
+			}
+			if(params.get("yaoxiangID") != null && (Integer)params.get("yaoxiangID") != 0) {
+				sql += " and t.yaoxiangID="+params.get("yaoxiangID");
+			}
 			//返回数据库结果集
 			ResultSet rs = ProjectShare.getDbPool().query(connection, sql);
 			//循环结果集，一个个填充入List<Dingdan>

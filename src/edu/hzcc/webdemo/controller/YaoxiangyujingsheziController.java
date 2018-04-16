@@ -11,10 +11,10 @@ import net.sf.json.JSONObject;
  * 预警设置
  *
  */
-public class YaoxiangsheziController extends ControllerBase{
+public class YaoxiangyujingsheziController extends ControllerBase{
 
 	public void findAll() {
-		System.out.println("yaoxiangsheziController.getALL()");
+		System.out.println("YaoxiangyujingsheziController.getALL()");
 		//创建Yaoxiangshezi空对象
 		List<Yaoxiangshezi> yaoxiangshezi=new ArrayList<>();
 		//获取yaoxiangshezi列表
@@ -27,14 +27,14 @@ public class YaoxiangsheziController extends ControllerBase{
 	}
 	
 	public void delete() {
-		System.out.println("yaoxiangsheziController.delete()");
+		System.out.println("YaoxiangyujingsheziController.delete()");
 		int id=getParameterInt("id");
 		YaoxiangsheziDao.delete(id);
 		return;
 	}
 	
 	public void save() {
-		System.out.println("yaoxiangsheziController.save()");
+		System.out.println("YaoxiangyujingsheziController.save()");
 		//创建Yaoxiangshezi空对象并设置数据
 		Yaoxiangshezi yaoxiangshezi=new Yaoxiangshezi();
 		yaoxiangshezi.setYaoxiangID(getParameterInt("yaoxiangID"));
@@ -45,7 +45,7 @@ public class YaoxiangsheziController extends ControllerBase{
 	}
 	public void update() {
 		//创建Yaoxiangshezi空对象并设置数据
-		System.out.println("yaoxiangsheziController.save()");
+		System.out.println("YaoxiangyujingsheziController.save()");
 		Yaoxiangshezi yaoxiangshezi=new Yaoxiangshezi();
 		yaoxiangshezi.setYaoxiangID(getParameterInt("yaoxiangID"));
 		yaoxiangshezi.setYaopingID(getParameterInt("yaopingID"));

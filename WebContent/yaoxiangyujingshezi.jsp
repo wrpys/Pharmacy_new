@@ -42,7 +42,7 @@
          药品编号
                             </th>
                             <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
-        最少数量
+        药品下限
                             </th>
                             <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="">操作</th>
                         </tr>
@@ -67,13 +67,13 @@
 	
 			<tr>
                 <td><label for="yaopingID">药品</label></td>
-                 <input type="hidden" name="cls" id="cls" value="YaoxiangsheziController"/>
+                 <input type="hidden" name="cls" id="cls" value="YaoxiangyujingsheziController"/>
                 	<input type="hidden" name="mtd" id="mtd" value="save"/>
                 <td><select class="yaoping-list" name="yaopingID" id="yaopingID"  data-placeholder="选择药品" style="width: 170px;"></select></td>
             </tr>
 
             <tr>
-                <td><label for="zuishaoshuliang">最少数量</label></td>
+                <td><label for="zuishaoshuliang">药品下限</label></td>
                 <td><input type="text" name="zuishaoshuliang" id="zuishaoshuliang" value="" class="text ui-widget-content ui-corner-all"></td>
             </tr>
          
@@ -92,13 +92,13 @@
 	
 			<tr>
                 <td><label for="yaopingID">药品</label></td>
-                 <input type="hidden" name="cls" id="cls" value="YaoxiangsheziController"/>
+                 <input type="hidden" name="cls" id="cls" value="YaoxiangyujingsheziController"/>
                 <input type="hidden" name="mtd" id="mtd" value="update"/>
 				<input type="hidden" name="yaoxiangsheziid" id="yaoxiangsheziid" />
                 <td>
                 <select class="yaoping-list" name="yaopingID" id="updateuseryaopingID"  data-placeholder="选择药品" style="width: 170px;"></select></td>
             </tr>
-                <td><label for="zuishaoshuliang">最少数量</label></td>
+                <td><label for="zuishaoshuliang">药品下限</label></td>
                 <td><input type="text" name="zuishaoshuliang" id="updateuserzuishaoshuliang" value="" class="text ui-widget-content ui-corner-all"></td>
             </tr>
          
@@ -167,7 +167,7 @@ $(function () {
         var url = "${pageContext.request.contextPath }/cs";
         $.ajax({
         	url: url,
-        	data:{cls:'YaoxiangsheziController',mtd:'findAll'},            
+        	data:{cls:'YaoxiangyujingsheziController',mtd:'findAll'},            
             success: function (result) {            	
                 renderUserListAndPage(result);
             }
@@ -245,7 +245,7 @@ $(function () {
                 $.ajax({
                     url: "${pageContext.request.contextPath }/cs",
                     data: {
-                    	cls:'YaoxiangsheziController',mtd:'delete',
+                    	cls:'YaoxiangyujingsheziController',mtd:'delete',
                     	id: yaoxiangsheziid
                     },
                     success: function () {

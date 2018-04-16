@@ -69,8 +69,8 @@
 									colspan="1">日期</th>
 								<th tabindex="0" aria-controls="dynamic-table" rowspan="1"
 									colspan="1">状态</th>
-								<!-- <th class="sorting_disabled" rowspan="1" colspan="1"
-									aria-label="">操作</th> -->
+								<th class="sorting_disabled" rowspan="1" colspan="1"
+									aria-label="">操作</th>
 							</tr>
 						</thead>
 						<tbody id="userList"></tbody>
@@ -129,44 +129,16 @@
 				class="table table-striped table-bordered table-hover dataTable no-footer"
 				role="grid">
 				<tr>
-					<td><label for="dingdanBianhao">采购收货订单编号</label></td>
+					<td><label for="dingdanBianhao">收货</label></td>
 					<input type="hidden" name="cls" id="cls"
 						value="CaigoushouhuoController" />
 					<input type="hidden" name="mtd" id="mtd" value="update" />
 					<input type="hidden" name="dingdanID" id="dingdanID" />
-					<td><input type="text" name="dingdanBianhao"
-						id="dialog-updateuser-formDingdanBianhao" value=""
-						class="text ui-widget-content ui-corner-all"></td>
-				</tr>
-				<tr>
-					<td style="width: 80px;"><label for="gongyingshangID">供应商</label></td>
-					<td><select id='dialog-updateuser-formgongyingshangID'
-						class="gongyingshang-list" name="gongyingshangID"
-						data-placeholder="选择供应商" style="width: 170px;"></select></td>
-				</tr>
-				<tr>
-					<td><label for="yaopingID">药品</label></td>
-					<td><select class="yaoping-list"
-						id="dialog-updateuser-formyaopingID" name="yaopingID"
-						data-placeholder="选择药品" style="width: 170px;"></select></td>
-				</tr>
-				<tr>
-					<td><label for="yaoxiangID">药箱</label></td>
-					<td><select class="yaoxiang-list"
-						id="dialog-updateuser-formyaoxiangID" name="yaoxiangID"
-						data-placeholder="选择药箱" style="width: 170px;"></select></td>
-				</tr>
-				<tr>
-					<td><label for="danjia">单价</label></td>
-					<td><input type="text" name="danjia"
-						id="dialog-updateuser-formdanjia" value=""
-						class="text ui-widget-content ui-corner-all"></td>
-				</tr>
-				<tr>
-					<td><label for="shuliang"> 数量</label></td>
-					<td><input type="text" name="shuliang"
-						id="dialog-updateuser-formshuliang" value=""
-						class="text ui-widget-content ui-corner-all"></td>
+					<td>
+						<select id='dialog-updateuser-formcomplete' name="complete" style="width: 170px;">
+							<option value="1">已收货</option>
+						</select>
+					</td>
 				</tr>
 			</table>
 		</form>
@@ -185,23 +157,17 @@
 	<td>{{yaoxiang.yaoxiangMingzi}}</td>
 	<td>{{riqi}}</td>
 	<td>{{#bold}}{{complete}}{{/bold}}</td>	
-    <!--<td>
+    <td>
         <div class="hidden-sm hidden-xs action-buttons">
             <a class="green user-edit" href="#" data-id="{{dingdanID}}"
-												data-dingdanBianhao="{{dingdanBianhao}}"
-												data-yaopingID="{{yaopingID}}"
-												data-danjia="{{danjia}}"
-												data-shuliang="{{shuliang}}"	
-												data-yaoxiangID="{{yaoxiangID}}"	
-												data-complete="{{complete}}"
-												data-gongyingshangID="{{gongyingshangID}}">
-                <!-- <i class="ace-icon fa fa-pencil bigger-100"></i> -->
+												data-complete="{{complete}}">
+                <i class="ace-icon fa fa-pencil bigger-100"></i>
             </a>
              <a class="red user-delete" href="#" data-id="{{dingdanID}}" data-complete="{{complete}}" >
                     <i class="ace-icon fa fa-trash-o bigger-100"></i>
              </a>
         </div>
-    </td> -->
+    </td>
 </tr>
 {{/userList}}
 </script>
@@ -288,9 +254,9 @@
 										return function(text, render) {
 											var status = render(text); // 获取出渲染后的值
 											if (status == '1') {
-												return "<span class='label label-sm label-success'>结算</span>";
+												return "<span class='label label-sm label-success'>已收货</span>";
 											} else if (status == '0') {
-												return "<span class='label label-sm label-success'>未结算</span>";
+												return "<span class='label label-sm label-success'>未收货</span>";
 											}
 										}
 									}
@@ -330,75 +296,26 @@
 			// 绑定相关点击事件
 			function bindUserClick() {
 				// 处理点击按钮
-				$(".user-edit")
-						.click(
-								function(e) {
-									var complete = $(this)
-											.attr("data-complete");
+				$(".user-edit").click(function(e) {
+									var complete = $(this).attr("data-complete");
 									if (complete != "0") {
-										alert("该订单已经结算，无法修改！");
+										alert("该订单已经收货，无法再次收货！");
 										return;
 									}
 									var dingdanID = $(this).attr("data-id"); // 选中的id
-									var dingdanBianhao = $(this).attr(
-											"data-dingdanBianhao");
-									var yaopingID = $(this).attr(
-											"data-yaopingID");
-									var danjia = $(this).attr("data-danjia");
-									var shuliang = $(this)
-											.attr("data-shuliang");
-									var yaoxiangID = $(this).attr(
-											"data-yaoxiangID");
-									var gongyingshangID = $(this).attr(
-											"data-gongyingshangID");
-									$("#dialog-updateuser-form")
-											.dialog(
+									$("#dialog-updateuser-form").dialog(
 													{
 														height : 450,
 														width : 450,
 														modal : true,
 														title : "修改采购收货订单",
-														open : function(event,
-																ui) {
-															gongyingshangSelect(2);
-															yaopingSelect();
-															yaoxiangSelect();
-															$("#updateuserForm")[0]
-																	.reset();
-															$(
-																	".ui-dialog-titlebar-close",
-																	$(this)
-																			.parent())
-																	.hide(); // 点开时隐藏关闭按钮
-															$("#dingdanID")
-																	.val(
-																			dingdanID);
-															$(
-																	"#dialog-updateuser-formDingdanBianhao")
-																	.val(
-																			dingdanBianhao);
-															$(
-																	"#dialog-updateuser-formyaopingID")
-																	.val(
-																			yaopingID);
-															$(
-																	"#dialog-updateuser-formdanjia")
-																	.val(danjia);
-															$(
-																	"#dialog-updateuser-formshuliang")
-																	.val(
-																			shuliang);
-															$(
-																	"#dialog-updateuser-formyaoxiangID")
-																	.val(
-																			yaoxiangID);
-															$(
-																	"#dialog-updateuser-formgongyingshangID")
-																	.val(
-																			gongyingshangID);
+														open : function(event, ui) {
+															$("#updateuserForm")[0].reset();
+															$(".ui-dialog-titlebar-close",$(this).parent()).hide(); // 点开时隐藏关闭按钮
+															$("#dingdanID").val(dingdanID);
 														},
 														buttons : {
-															"更新" : function(e) {
+															"确认" : function(e) {
 																update();
 															},
 															"取消" : function() {
@@ -417,7 +334,7 @@
 					e.stopPropagation(); // 此处必须要取消冒泡,因为是个递归结构,冒泡的话会让一个点击被响应多个
 					var complete = $(this).attr("data-complete");
 					if (complete != "0") {
-						alert("该订单已经结算，无法删除！");
+						alert("该订单已经收货，无法删除！");
 						return;
 					}
 					var dingdanID = $(this).attr("data-id");

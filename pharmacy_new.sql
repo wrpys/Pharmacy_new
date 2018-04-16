@@ -213,3 +213,12 @@ CREATE TABLE `yonghu` (
 -- ----------------------------
 INSERT INTO `yonghu` VALUES ('1', 'ting', 'ting', 'ting', '0', '13527774500');
 INSERT INTO `yonghu` VALUES ('2', 'test1', 'test1', '123456', '0', '13505050523');
+
+ALTER TABLE `yaoping`
+CHANGE COLUMN `youxiaoqi` `guige`  varchar(255) NOT NULL AFTER `yaopingDanwei`;
+
+ALTER TABLE `yonghu`
+MODIFY COLUMN `zhiwu`  int(111) NULL AFTER `miMa`,
+MODIFY COLUMN `shouji`  varchar(111) CHARACTER SET utf8 COLLATE utf8_bin NULL AFTER `zhiwu`;
+
+

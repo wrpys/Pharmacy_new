@@ -13,13 +13,13 @@
 	</div>
 	<div class="main-content-inner">
 		
-		<form id="searchForm" class="form-inline" role="form" onsubmit="return false">
+		<!-- <form id="searchForm" class="form-inline" role="form" onsubmit="return false">
             <div class="form-group">
                 <label class="form-label">用户名:</label>
                 <input type="text" class="form-control" name="yonghuMingzi">
             </div>
             <button id="search" class="btn1 btn-primary1">查询</button>
-        </form>
+        </form> -->
 
 		<div class="col-xs-12">
 			<div class="table-header">
@@ -38,10 +38,10 @@
 							<tr role="row">
 								<th tabindex="0" aria-controls="dynamic-table" rowspan="1"
 									colspan="1">姓名</th>
-								<th tabindex="0" aria-controls="dynamic-table" rowspan="1"
+								<!-- <th tabindex="0" aria-controls="dynamic-table" rowspan="1"
 									colspan="1">职务</th>
 								<th tabindex="0" aria-controls="dynamic-table" rowspan="1"
-									colspan="1">手机号</th>
+									colspan="1">手机号</th> -->
 								<th tabindex="0" aria-controls="dynamic-table" rowspan="1"
 									colspan="1">登录名字</th>
 								<th tabindex="0" aria-controls="dynamic-table" rowspan="1"
@@ -73,11 +73,11 @@
 						id="yonghuupdateyonghuMingzi" value=""
 						class="text ui-widget-content ui-corner-all"></td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<td><label for="yonghuTelephone">电话</label></td>
 					<td><input type="text" name="shouji" id="yonghuupdateshouji"
 						value="" class="text ui-widget-content ui-corner-all"></td>
-				</tr>
+				</tr> -->
 				<tr>
 					<td><label for="yonghuMingzi">登录名字</label></td>
 					<td><input type="text" name="dengluMingzi"
@@ -106,11 +106,11 @@
 					<td><input type="text" name="yonghuMingzi" id="yonghuMingzi"
 						value="" class="text ui-widget-content ui-corner-all"></td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<td><label for="yonghuTelephone">电话</label></td>
 					<td><input type="text" name="shouji" id="shouji" value=""
 						class="text ui-widget-content ui-corner-all"></td>
-				</tr>
+				</tr> -->
 				<tr>
 					<td><label for="yonghuMingzi">登录名字</label></td>
 					<td><input type="text" name="dengluMingzi" id="dengluMingzi"
@@ -130,8 +130,8 @@
 {{#yonghuList}}
 <tr role="row" class="yonghu-name odd" data-id="{{yonghuID}}"><!--even -->
     <td>{{yonghuMingzi}}</td>
-	<td>{{#bold}}{{zhiwu}}{{/bold}}</td> <!-- 此处套用函数对status做特殊处理 -->
-    <td>{{shouji}}</td>
+	<!--<td>{{#bold}}{{zhiwu}}{{/bold}}</td> --> <!-- 此处套用函数对status做特殊处理 -->
+    <!--<td>{{shouji}}</td> -->
     <td>{{dengluMingzi}}</td>
     <td>{{miMa}}</td>
     
@@ -189,19 +189,22 @@
 			});
 			
 			function loadyonghuList() {
-				var searchForm = $("#searchForm");
+				/* var searchForm = $("#searchForm");
 				var searchParam = {
 					yonghuMingzi: searchForm.find("input[name='yonghuMingzi']").val()
 				};
 				var mtd = {
 					cls : 'YonghuController',
 					mtd : 'getAll'
-				}
-				var params = $.extend({},searchParam,mtd);
+				} */
+				//var params = $.extend({},searchParam,mtd);
 				var url = "${pageContext.request.contextPath }/cs";
 				$.ajax({
 					url : url,
-					data : params,
+					data : {
+						cls : 'YonghuController',
+						mtd : 'getAll'
+					},
 					success : function(result) {
 						renderyonghuListAndPage(result);
 					}
@@ -243,9 +246,9 @@
 				// 处理点击[编辑用户]按钮
 				$(".yonghu-edit").click(function(e) {
 					var yonghuId = $(this).attr("data-id");
-					var zhiwu = $(this).attr("data-zhiwu");
+					//var zhiwu = $(this).attr("data-zhiwu");
 					var yonghuMingzi = $(this).attr("data-yonghuMingzi");
-					var shouji = $(this).attr("data-shouji");
+					//var shouji = $(this).attr("data-shouji");
 					var dengluMingzi = $(this).attr("data-dengluMingzi");
 					var miMa = $(this).attr("data-miMa");
 					$("#dialog-yonghuupdate-form").dialog({
@@ -257,9 +260,9 @@
 							$("#yonghuupdateForm")[0].reset();
 							$(".ui-dialog-titlebar-close",$(this).parent()).hide(); // 点开时隐藏关闭按钮                 
 							$("#yonghuID").val(yonghuId);
-							$("#yonghuupdateyonghuZhiwu").val(zhiwu);
+							//$("#yonghuupdateyonghuZhiwu").val(zhiwu);
 							$("#yonghuupdateyonghuMingzi").val(yonghuMingzi);
-							$("#yonghuupdateshouji").val(shouji);
+							//$("#yonghuupdateshouji").val(shouji);
 							$("#yonghuupdatedengluMingzi").val(dengluMingzi);
 							$("#yonghuupdatemiMa").val(miMa);
 						},

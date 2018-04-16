@@ -45,7 +45,7 @@
                         </th>
 
                         <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
-                             有效期/天
+                             规格
                         </th>
                        <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
                             进价
@@ -88,8 +88,8 @@
             </tr>
 
             <tr>
-                <td><label for="youxiaoqi"> 有效期</label></td>
-                <td><input type="text" name="youxiaoqi" id="youxiaoqi" value="" class="text ui-widget-content ui-corner-all"></td>
+                <td><label for="guige"> 规格</label></td>
+                <td><input type="text" name="guige" id="guige" value="" class="text ui-widget-content ui-corner-all"></td>
             </tr>
              <tr>
                 <td><label for="jingjia"> 进价</label></td>
@@ -133,8 +133,8 @@
             </tr>
 
             <tr>
-                <td><label for="youxiaoqi"> 有效期</label></td>
-                <td><input type="text" name="youxiaoqi" id="updateuseryouxiaoqi" value="" class="text ui-widget-content ui-corner-all"></td>
+                <td><label for="guige"> 规格</label></td>
+                <td><input type="text" name="guige" id="updateuserguige" value="" class="text ui-widget-content ui-corner-all"></td>
             </tr>
              <tr>
                 <td><label for="jingjia"> 进价</label></td>
@@ -164,7 +164,7 @@
     <td>{{yaopingMingzi}}</td>
     <td>{{yaopingDanwei}}</td>
 
-    <td>{{youxiaoqi}}</td>
+    <td>{{guige}}</td>
 	<td>{{jingjia}}</td>
 
  	<td>{{gongyingshangMingzi}}</td>
@@ -174,7 +174,7 @@
             <a class="green user-edit" href="#" data-id="{{yaopingID}}"
 			data-yaopingMingzi="{{yaopingMingzi}}"
 			data-yaopingDanwei="{{yaopingDanwei}}"
-			data-youxiaoqi="{{youxiaoqi}}"
+			data-guige="{{guige}}"
 			data-jingjia="{{jingjia}}"
 			data-yaopingBianhao="{{yaopingBianhao}}"
 			data-yaoxiangID="{{yaoxiang.yaoxiangID}}"
@@ -294,7 +294,7 @@ $(function () {
             var yaopingID = $(this).attr("data-id"); // 选中的部门id
 			var yaopingMingzi = $(this).attr("data-yaopingMingzi");
 			var yaopingDanwei = $(this).attr("data-yaopingDanwei");
-			var youxiaoqi = $(this).attr("data-youxiaoqi");
+			var guige = $(this).attr("data-guige");
 			var jingjia = $(this).attr("data-jingjia");
 			var yaopingBianhao = $(this).attr("data-yaopingBianhao");
 			var gongyingshangMingzi = $(this).attr("data-gongyingshangMingzi");
@@ -312,7 +312,7 @@ $(function () {
                         $("#updateuseryaopingBianhao").val(yaopingBianhao);
 						 $("#updateuseryaopingMingzi").val(yaopingMingzi);
 						  $("#updateuseryaopingDanwei").val(yaopingDanwei);
-						   $("#updateuseryouxiaoqi").val(youxiaoqi);
+						   $("#updateuserguige").val(guige);
 						    $("#updateuserjingjia").val(jingjia);
 							 $("#updateusergongyingshangMingzi").val(gongyingshangMingzi);
 							 $("#updateuseryaoxiangMingzi").val(yaoxiangID);

@@ -49,7 +49,7 @@ public class YaopingController extends ControllerBase{
 		 // "yaopingMingzi"要和页面的Input的name="yaopingMingzi"一样
 		yaoping.setYaopingMingzi(getParameter("yaopingMingzi"));
 		yaoping.setYaopingDanwei(getParameter("yaopingDanwei"));
-		yaoping.setYouxiaoqi(getParameterInt("youxiaoqi"));
+		yaoping.setGuige(getParameter("guige"));
 		yaoping.setJingjia(getParameterDouble("jingjia"));
 		yaoping.setGongyingshangMingzi(getParameter("gongyingshangMingzi"));
 		yaoping.setYaopingBianhao(getParameter("yaopingBianhao"));
@@ -65,7 +65,7 @@ public class YaopingController extends ControllerBase{
 		 // "yaopingMingzi"要和页面的Input的name="yaopingMingzi"一样
 		yaoping.setYaopingMingzi(getParameter("yaopingMingzi"));
 		yaoping.setYaopingDanwei(getParameter("yaopingDanwei"));
-		yaoping.setYouxiaoqi(getParameterInt("youxiaoqi"));
+		yaoping.setGuige(getParameter("guige"));
 		yaoping.setJingjia(getParameterDouble("jingjia"));
 		yaoping.setGongyingshangMingzi(getParameter("gongyingshangMingzi"));
 		yaoping.setYaopingID(getParameterInt("yaopingID"));

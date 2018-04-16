@@ -68,7 +68,7 @@ public class DingdanDao {
 			Connection connection = ProjectShare.getDbPool().getConnection();
 			
 			String sql = "select * from dingdan where 1=1";
-			if(params.getDingdanleixing() != null) {
+			if(params.getDingdanID() != null) {
 				sql += " and dingdanID=" + params.getDingdanID();
 			}
 			//返回数据库结果集

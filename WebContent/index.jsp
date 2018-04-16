@@ -93,16 +93,16 @@
 				</a>
 
 					<ul class="submenu">
-						<li class=""><a class="popstyle" href="kucun.jsp"
+						<li class=""><a class="popstyle" href="yaoxiangchaxun.jsp"
 							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
 								药箱查询
 						</a> <b class="arrow"></b></li>
 
-						<li class=""><a class="popstyle" href="yaoxiangshezi.jsp"
+						<li class=""><a class="popstyle" href="yaoxiangyujingshezi.jsp"
 							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
 								药箱预警设置
 						</a> <b class="arrow"></b></li>
-						<li class=""><a class="popstyle" href="kucunyujing.jsp"
+						<li class=""><a class="popstyle" href="yaoxiangyujing.jsp"
 							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
 								药箱预警
 
@@ -160,7 +160,7 @@
 
 					<ul class="submenu">
 
-						<li class="laoban"><a class="popstyle nolook" href="rizi.jsp"
+						<li class="laoban"><a class="popstyle nolook" href="caozuorizi.jsp"
 							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
 								操作日志
 						</a> <b class="arrow"></b></li>

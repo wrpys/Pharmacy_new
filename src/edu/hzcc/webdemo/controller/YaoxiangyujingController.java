@@ -14,7 +14,7 @@ import net.sf.json.JSONObject;
 /**
  * 找出所有预警的库存
  */
-public class KucunyujingController extends ControllerBase{
+public class YaoxiangyujingController extends ControllerBase{
 
 	/**
 	 * 找出所有预警的库存
@@ -22,7 +22,7 @@ public class KucunyujingController extends ControllerBase{
 	public void findYujing() {
 		//创建yaoxiangshezi返回的空列表信息
 		List<Yaoxiangshezi> returnYaoxiangshezi=new ArrayList<>();
-		System.out.println("yaoxiangsheziController.getALL()");
+		System.out.println("YaoxiangyujingsheziController.getALL()");
 		//创建yaoxiangshezi的空列表信息，为获取信息
 		List<Yaoxiangshezi> yaoxiangshezi=new ArrayList<>();
 		//查询出yaoxiangshezi列表信息

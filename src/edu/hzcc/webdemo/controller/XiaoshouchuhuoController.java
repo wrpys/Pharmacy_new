@@ -82,22 +82,22 @@ public class XiaoshouchuhuoController extends ControllerBase{
 		caigoudingdan.setYaoxiangID(getParameterInt("yaoxiangID"));
 		caigoudingdan.setDingdanleixing(4);
 		caigoudingdan.setKehuID(getParameterInt("kehuID"));
-		caigoudingdan.setComplete(1);
-		//新增库存
-		xinzengkucun(caigoudingdan);
+		caigoudingdan.setComplete(0);
+		// 在DingdanDao中数据库操作 新增一个订单
+		DingdanDao.save(caigoudingdan);
 	}
 	
 	//新增库存
-	private void xinzengkucun(Dingdan caigoudingdan) {
+	private void xinzengkucun(Dingdan dingdan) {
 		Kuncun kucun=new Kuncun();
 		//获取yaopingID
-		int yaopingID=getParameterInt("yaopingID");
+		int yaopingID=dingdan.getYaopingID();
 		//获取yaoxiangId
-		int yaoxiangID=getParameterInt("yaoxiangID");
+		int yaoxiangID=dingdan.getYaoxiangID();
 		//根据库存ID获取库存实体信息
 		Kuncun cunzaiKucun = KucunDao.findKucunByYaopingkuCunID(yaopingID, yaoxiangID);
 		//获取入库出库的药品数量
-		int shuliang = getParameterInt("shuliang");
+		int shuliang = dingdan.getShuliang();
 		//定义现在要更新库存的药品数量
 		int xianzaishuliang;
 		//定义一个json格式
@@ -114,11 +114,9 @@ public class XiaoshouchuhuoController extends ControllerBase{
 			writeJson(jsonObject.toString());
 			return;
 		}
-		// 在DingdanDao中数据库操作 新增一个订单,返回dingdanID
-		int dingdanID = DingdanDao.saveAndReturnPK(caigoudingdan);
-		kucun.setYaopingID(getParameterInt("yaopingID"));
-		kucun.setYaoxiangID(getParameterInt("yaoxiangID"));
-		kucun.setDingdanID(dingdanID);
+		kucun.setYaopingID(dingdan.getYaopingID());
+		kucun.setYaoxiangID(dingdan.getYaoxiangID());
+		kucun.setDingdanID(dingdan.getDingdanID());
 		kucun.setShuliang(xianzaishuliang);
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -138,22 +136,12 @@ public class XiaoshouchuhuoController extends ControllerBase{
 		Dingdan caigoudingdan=new Dingdan();
 		// 从页面表单中获取。name="dingdanID"
 		caigoudingdan.setDingdanID(getParameterInt("dingdanID"));
-		caigoudingdan.setDingdanBianhao(getParameter("dingdanBianhao"));
-		caigoudingdan.setYaopingID(getParameterInt("yaopingID"));
-		caigoudingdan.setDanjia(getParameterDouble("danjia"));
-		caigoudingdan.setShuliang(getParameterInt("shuliang"));
-		caigoudingdan.setZongjia(caigoudingdan.getDanjia() * caigoudingdan.getShuliang());
-		//创建时间对象，并用caigoudingdan进行格式转换
-		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		caigoudingdan.setRiqi(sdf.format(date));
-		caigoudingdan.setGongyingshangID(0);
-		caigoudingdan.setYaoxiangID(getParameterInt("yaoxiangID"));
-		caigoudingdan.setDingdanleixing(4);
-		caigoudingdan.setKehuID(getParameterInt("kehuID"));
-		caigoudingdan.setComplete(0);
-		// 在DingdanDao中数据库操作 修改一个订单
-		DingdanDao.update(caigoudingdan);
+		caigoudingdan.setComplete(getParameterInt("complete"));
+		// 在DingdanDao中数据库操作 修改一个订单，将状态修改为已收货
+		DingdanDao.updateComplete(caigoudingdan);
+		Dingdan dingdanTmp = DingdanDao.findDingdanByPK(caigoudingdan);
+		// 新增库存
+		xinzengkucun(dingdanTmp);
 	}
 	
 

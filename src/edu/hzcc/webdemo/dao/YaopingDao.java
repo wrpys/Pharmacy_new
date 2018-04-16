@@ -29,7 +29,7 @@ public class YaopingDao {
 		yaoping.setYaopingBianhao(rs.getString("yaopingBianhao"));
 		yaoping.setYaopingMingzi(rs.getString("yaopingMingzi"));
 		yaoping.setYaopingDanwei(rs.getString("yaopingDanwei"));
-		yaoping.setYouxiaoqi(rs.getInt("youxiaoqi"));
+		yaoping.setGuige(rs.getString("guige"));
 		yaoping.setJingjia(rs.getDouble("jingjia"));
 		yaoping.setGongyingshangMingzi(rs.getString("gongyingshangMingzi"));
 		yaoping.setYaoxiangID(rs.getInt("yaoxiangID"));
@@ -43,8 +43,8 @@ public class YaopingDao {
 		try {
 			String sql = null;	
 			//执行新增
-			sql = "insert into yaoping(yaopingBianhao,yaopingMingzi,yaopingDanwei,youxiaoqi,jingjia,gongyingshangMingzi,yaoxiangID)";
-			sql += " values('"+yaoping.getYaopingBianhao()+"','"+yaoping.getYaopingMingzi()+"','"+yaoping.getYaopingDanwei()+"','"+yaoping.getYouxiaoqi()+"','"+yaoping.getJingjia()+"','"
+			sql = "insert into yaoping(yaopingBianhao,yaopingMingzi,yaopingDanwei,guige,jingjia,gongyingshangMingzi,yaoxiangID)";
+			sql += " values('"+yaoping.getYaopingBianhao()+"','"+yaoping.getYaopingMingzi()+"','"+yaoping.getYaopingDanwei()+"','"+yaoping.getGuige()+"','"+yaoping.getJingjia()+"','"
 			+yaoping.getGongyingshangMingzi()+"','" + yaoping.getYaoxiangID() + "')";
 			//System.out.print(sql);
 			//开启数据库链接
@@ -76,7 +76,7 @@ public class YaopingDao {
 			String sql = null;
 			//执行修改
 			sql ="update yaoping set yaopingBianhao= '" + yaoping.getYaopingBianhao() + "', yaopingMingzi= '"+yaoping.getYaopingMingzi()+"',yaopingDanwei='"+yaoping.getYaopingDanwei()
-			+"',youxiaoqi='"+yaoping.getYouxiaoqi()+"',jingjia= '"+yaoping.getJingjia()+"',gongyingshangMingzi='"+yaoping.getGongyingshangMingzi()
+			+"',guige='"+yaoping.getGuige()+"',jingjia= '"+yaoping.getJingjia()+"',gongyingshangMingzi='"+yaoping.getGongyingshangMingzi()
 			+"',yaoxiangID='" + yaoping.getYaoxiangID() + "' where yaopingID= '"+yaoping.getYaopingID()+"'";
 			System.out.print(sql);
 			Connection connection = ProjectShare.getDbPool().getConnection();
@@ -177,7 +177,7 @@ public class YaopingDao {
 	}
 	
 	//什么意思，为什么有两个？？？？？？？？？？？？？？？？？？？？？？？？？？？	
-	//根据药品ID查询   生成库存记录是，根据库存的药品ID，找出yaoping这个类，然后在更新数量    KucunController。save方法调用
+	//根据药品ID查询   生成库存记录是，根据库存的药品ID，找出yaoping这个类，然后在更新数量    YaoxiangchaxunController。save方法调用
 	public static Yaoping findByYaopingID(int yaopingID){
 		Yaoping yaoping = null;
 		try {

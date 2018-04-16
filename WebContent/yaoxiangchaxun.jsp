@@ -17,7 +17,19 @@
 </div>
 <div class="main-content-inner">
     
-    
+    	<form id="searchForm" class="form-inline" role="form" onsubmit="return false">
+            <div class="form-group">
+                <label class="form-label">药品名字:</label>
+                <input type="text" class="form-control" name="yaopingMingzi">
+            </div>
+            <div class="form-group">
+                <label class="form-label">药箱:</label>
+                <select class="yaoxiang-list form-control" name="yaoxiangID"
+						data-placeholder="选择药箱" style="width: 170px;"></select>
+            </div>
+            <button id="search" class="btn1 btn-primary1">查询</button>
+        </form>
+        
         <div class="col-xs-12">
             <div class="table-header">
                 药箱库存列表&nbsp;&nbsp;
@@ -73,7 +85,7 @@
             
             <tr>
                 <td><label for="yaoxiangMingzi">药箱名字</label></td>
-                <input type="hidden" name="cls" id="cls" value="KucunController"/>
+                <input type="hidden" name="cls" id="cls" value="YaoxiangchaxunController"/>
                 <input type="hidden" name="mtd" id="mtd" value="update"/>
                 <input type="hidden" name="yaoxiangID" id="yaoxiangID"/>
                 <input type="hidden" name="kucunID" id="kucunID"/>
@@ -112,7 +124,7 @@
             </tr>
             <tr>
                 <td><label for="yaopingID"> 药品编号</label></td>
-                <input type="hidden" name="cls" id="cls" value="KucunController"/>
+                <input type="hidden" name="cls" id="cls" value="YaoxiangchaxunController"/>
                 <input type="hidden" name="mtd" id="mtd" value="save"/>
                 <td><input type="text" name="yaopingID" id="yaopingID" value="" class="text ui-widget-content ui-corner-all"></td>
             </tr>
@@ -151,16 +163,30 @@
 {{/userList}}
 </script>
 
+<!-- 药箱下拉列表 -->
+<script id="yaoxiangTemplate" type="x-tmpl-mustache">
+{{#yaoxiangList}}
+<option value="{{yaoxiangID}}">{{yaoxiangMingzi}}</option>
+{{/yaoxiangList}}
+</script>
+
 <script type="text/javascript">
 $(function () {
     
 	var userMap = {}; // 存储map格式的用户列表
     var userListTemplate = $('#userListTemplate').html();
     Mustache.parse(userListTemplate);
+    
+    var yaoxiangTemplate = $('#yaoxiangTemplate').html();
+    Mustache.parse(yaoxiangTemplate);
 
     loadUserList();
     
-  
+    $("#search").click(function(){
+    	loadUserList();
+	});
+    
+    yaoxiangSelect();
     
     $(".user-add").click(function () {
         $("#dialog-usersave-form").dialog({
@@ -183,10 +209,19 @@ $(function () {
     });
 
     function loadUserList() {
+    	
+    	var searchForm = $("#searchForm");
+		var searchParam = {
+			yaopingMingzi: searchForm.find("input[name='yaopingMingzi']").val(),
+			yaoxiangID: searchForm.find("select[name='yaoxiangID']").val()
+		};
+		var mtd = {cls:'YaoxiangchaxunController',mtd:'findAll'};
+		var params = $.extend({},searchParam,mtd);
+    	
         var url = "${pageContext.request.contextPath }/cs";
         $.ajax({
         	 url: url,
-        	data:{cls:'KucunController',mtd:'findAll'},
+        	data: params,
             
             success: function (result) {
             	console.log(result);
@@ -307,7 +342,7 @@ $(function () {
 					$.ajax({
 						url : "${pageContext.request.contextPath }/cs",
 						data : {
-							cls : 'KucunController',
+							cls : 'YaoxiangchaxunController',
 							mtd : 'delete',
 							userID : kucunID
 						},
@@ -343,6 +378,32 @@ $(function () {
 					alert(data.message);
 					$("#dialog-userupdate-form").dialog("close");
 					loadUserList();
+				}
+			});
+		}
+		
+		//加载保存和修改弹出框的药箱下拉信息 
+		function yaoxiangSelect() {
+			$.ajax({
+				url : "${pageContext.request.contextPath }/cs",
+				data : {
+					cls : 'YaoxiangController',
+					mtd : 'findAll'
+				},
+				type : 'POST',
+				async : false,
+				success : function(result) {
+					var list = [ {
+						yaoxiangID : "",
+						yaoxiangMingzi : "请选择"
+					} ];
+					for (var i = 0; i < result.yaoxiang.length; i++) {
+						list.push(result.yaoxiang[i]);
+					}
+					var rendered = Mustache.render(yaoxiangTemplate, {
+						"yaoxiangList" : list
+					});
+					$('.yaoxiang-list').html(rendered);
 				}
 			});
 		}
