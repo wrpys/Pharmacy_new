@@ -353,13 +353,13 @@ $(function () {
 
     function save() {
  		var data = $("#saveuserForm").serializeArray();
- 		console.log(data);
+ 		/* console.log(data);
  		for(var i=0;i<data.length; i++) {
     		if(data[i]["name"] == "guige" && data[i]["value"] == "") {
     			alert("规格不能为空！");
     			return ;
     		}
-    	}
+    	} */
         $.ajax({
             url: "${pageContext.request.contextPath }/cs",
             data: data,
@@ -373,12 +373,12 @@ $(function () {
     }
     function update() {
     	var data = $("#updateuserForm").serializeArray();
-    	for(var i=0;i<data.length; i++) {
+    	/* for(var i=0;i<data.length; i++) {
     		if(data[i]["name"] == "guige" && data[i]["value"] == "") {
     			alert("规格不能为空！");
     			return ;
     		}
-    	}
+    	} */
         $.ajax({
             url: "${pageContext.request.contextPath }/cs",
             data: data,
