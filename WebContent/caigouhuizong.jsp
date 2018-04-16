@@ -41,9 +41,9 @@
                             <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
                                         药品名称
                             </th>
-                            <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
+                           <!--  <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
                                        单价
-                            </th>
+                            </th> -->
                             <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
                                       采购数量
                             </th>
@@ -93,7 +93,7 @@
     <td>{{dingdanbianhao}}</td>
     <td>{{yaopingbianhao}}</td>
     <td>{{yaopingMingzi}}</td>
-    <td>{{danjia}}</td>
+    <!-- <td>{{danjia}}</td>   -->
 	<td>{{shuliang}}</td>
 	<td>{{zongjia}}</td>
     <!-- <td>
