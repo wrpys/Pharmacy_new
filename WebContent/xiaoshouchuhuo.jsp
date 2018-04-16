@@ -389,8 +389,8 @@
 					url : "${pageContext.request.contextPath }/cs",
 					data : $("#updateuserForm").serializeArray(),
 					type : 'POST',
-					success : function() {
-						alert("修改成功！");
+					success : function(data) {
+						alert(data.message);
 						$("#dialog-updateuser-form").dialog("close");
 						loadUserList();
 					}

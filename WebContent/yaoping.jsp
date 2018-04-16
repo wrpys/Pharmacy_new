@@ -214,7 +214,7 @@ $(function () {
     
     $(".user-add").click(function () {
         $("#dialog-saveuser-form").dialog({
-        	height: 480,
+        	height: 510,
         	width: 400,
             modal: true,
             title: "新增药品",
@@ -300,7 +300,7 @@ $(function () {
 			var gongyingshangMingzi = $(this).attr("data-gongyingshangMingzi");
 			var yaoxiangID = $(this).attr("data-yaoxiangID");
             $("#dialog-updateuser-form").dialog({
-            	height: 480,
+            	height: 510,
             	width: 400,
                 modal: true,
                 title: "编辑药品",
@@ -352,10 +352,17 @@ $(function () {
     }
 
     function save() {
- 
+ 		var data = $("#saveuserForm").serializeArray();
+ 		console.log(data);
+ 		for(var i=0;i<data.length; i++) {
+    		if(data[i]["name"] == "guige" && data[i]["value"] == "") {
+    			alert("规格不能为空！");
+    			return ;
+    		}
+    	}
         $.ajax({
             url: "${pageContext.request.contextPath }/cs",
-            data: $("#saveuserForm").serializeArray(),
+            data: data,
             type: 'POST',
             success: function () {
             		alert("新增成功！");
@@ -365,9 +372,16 @@ $(function () {
         });
     }
     function update() {
+    	var data = $("#updateuserForm").serializeArray();
+    	for(var i=0;i<data.length; i++) {
+    		if(data[i]["name"] == "guige" && data[i]["value"] == "") {
+    			alert("规格不能为空！");
+    			return ;
+    		}
+    	}
         $.ajax({
             url: "${pageContext.request.contextPath }/cs",
-            data: $("#updateuserForm").serializeArray(),
+            data: data,
             type: 'POST',
             success: function () {
             	   alert("修改成功！");

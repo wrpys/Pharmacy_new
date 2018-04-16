@@ -88,7 +88,7 @@ public class XiaoshouchuhuoController extends ControllerBase{
 	}
 	
 	//新增库存
-	private void xinzengkucun(Dingdan dingdan) {
+	private boolean xinzengkucun(Dingdan dingdan) {
 		Kuncun kucun=new Kuncun();
 		//获取yaopingID
 		int yaopingID=dingdan.getYaopingID();
@@ -112,7 +112,7 @@ public class XiaoshouchuhuoController extends ControllerBase{
 			jsonObject.put("message", "库存不存在或者数量不足!");
 			//原路返回kucun列表，用writeJson返回Json数据名字为kucun
 			writeJson(jsonObject.toString());
-			return;
+			return false;
 		}
 		kucun.setYaopingID(dingdan.getYaopingID());
 		kucun.setYaoxiangID(dingdan.getYaoxiangID());
@@ -127,6 +127,7 @@ public class XiaoshouchuhuoController extends ControllerBase{
 		jsonObject.put("message", "操作成功!");
 		//原路返回kucun列表，用writeJson返回Json数据名字为kucun
 		writeJson(jsonObject.toString());
+		return true;
 	}
 	
 	
@@ -137,11 +138,13 @@ public class XiaoshouchuhuoController extends ControllerBase{
 		// 从页面表单中获取。name="dingdanID"
 		caigoudingdan.setDingdanID(getParameterInt("dingdanID"));
 		caigoudingdan.setComplete(getParameterInt("complete"));
-		// 在DingdanDao中数据库操作 修改一个订单，将状态修改为已收货
-		DingdanDao.updateComplete(caigoudingdan);
 		Dingdan dingdanTmp = DingdanDao.findDingdanByPK(caigoudingdan);
 		// 新增库存
-		xinzengkucun(dingdanTmp);
+		boolean flag = xinzengkucun(dingdanTmp);
+		if(flag) {
+			// 在DingdanDao中数据库操作 修改一个订单，将状态修改为已收货
+			DingdanDao.updateComplete(caigoudingdan);
+		}
 	}
 	
 

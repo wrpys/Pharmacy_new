@@ -186,7 +186,7 @@ $(function () {
             url: "${pageContext.request.contextPath }/cs",
             data: $("#updateuserForm").serializeArray(),
             type: 'POST',
-            success: function () {
+            success: function (result) {
             		alert("修改成功！");
             	   $("#dialog-updateuser-form").dialog("close");
             	   loadUserList();
