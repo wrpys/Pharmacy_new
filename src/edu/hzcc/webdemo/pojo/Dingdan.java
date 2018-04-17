@@ -16,7 +16,7 @@ public class Dingdan {
 	private Integer gongyingshangID;
 	private Integer kehuID;
 	private Integer yaoxiangID;
-	private Integer complete;//0未完成，1已完成
+	private Integer zhuangtai;//0未完成，1已完成
 	
 	private Yaoping yaoping;
 	private Gongyingshang gongyingshang;
@@ -94,11 +94,11 @@ public class Dingdan {
 	public void setYaoxiangID(Integer yaoxiangID) {
 		this.yaoxiangID = yaoxiangID;
 	}
-	public Integer getComplete() {
-		return complete;
+	public Integer getZhuangtai() {
+		return zhuangtai;
 	}
-	public void setComplete(Integer complete) {
-		this.complete = complete;
+	public void setZhuangtai(Integer zhuangtai) {
+		this.zhuangtai = zhuangtai;
 	}
 	public Yaoping getYaoping() {
 		return yaoping;

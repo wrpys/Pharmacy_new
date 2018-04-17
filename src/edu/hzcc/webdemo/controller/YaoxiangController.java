@@ -3,11 +3,10 @@ package edu.hzcc.webdemo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sf.json.JSONObject;
-import edu.hzcc.webdemo.dao.KucunDao;
 import edu.hzcc.webdemo.dao.YaoxiangDao;
 import edu.hzcc.webdemo.pojo.Yaoxiang;
 import edu.hzcc.webdemo.util.ControllerBase;
+import net.sf.json.JSONObject;
 
 /**
  * 

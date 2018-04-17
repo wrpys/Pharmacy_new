@@ -227,7 +227,7 @@ $(function () {
             e.stopPropagation(); // 此处必须要取消冒泡,因为是个递归结构,冒泡的话会让一个点击被响应多个
             var kehuID = $(this).attr("data-id");// 选中的客户id
             var kehuMingzi = $(this).attr("data-name");// 选中的客户
-            if (confirm("确定要删除[" + kehuMingzi + "]吗?")) {
+            if (confirm("警告，请不要随便删除基础信息！")) {
                 $.ajax({
                     url: "${pageContext.request.contextPath }/cs",
                     data: {

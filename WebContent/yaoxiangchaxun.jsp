@@ -33,9 +33,6 @@
         <div class="col-xs-12">
             <div class="table-header">
                 药箱库存列表&nbsp;&nbsp;
-                <!-- <a class="green" href="#">
-                    <i class="ace-icon fa fa-plus-circle orange bigger-130 user-add"></i>
-                </a> -->
             </div>
             <div>
                 <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline no-footer">

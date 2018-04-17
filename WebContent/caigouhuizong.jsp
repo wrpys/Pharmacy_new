@@ -68,7 +68,7 @@
         <table class="table table-striped table-bordered table-hover dataTable no-footer" role="grid">
              <tr>
                 <td><label for="dingdanBianhao">采购订单编号</label></td>
-                <input type="hidden" name="cls" id="cls" value="CaigouhuizongshenheController"/>
+                <input type="hidden" name="cls" id="cls" value="CaigouhuizongController"/>
                 <input type="hidden" name="mtd" id="mtd" value="update"/>
 				<input type="hidden" name="dingdanID" id="dingdanID"/>
                 <td><input type="text" name="dingdanBianhao" readonly="readonly" id="dialog-updateuser-formDingdanBianhao" value="" class="text ui-widget-content ui-corner-all"></td>
@@ -122,7 +122,7 @@ $(function () {
         var url = "${pageContext.request.contextPath }/cs";
         $.ajax({
         	url: url,
-        	data:{cls:'CaigouhuizongshenheController',mtd:'findAll'},            
+        	data:{cls:'CaigouhuizongController',mtd:'findAll'},            
             success: function (result) {            	
                 renderUserListAndPage(result);
             }
@@ -199,7 +199,7 @@ $(function () {
     	var url = "${pageContext.request.contextPath }/cs";
         $.ajax({
         	url: url,
-        	data:{cls:'CaigouhuizongshenheController',mtd:'findAll',searchType:0},            
+        	data:{cls:'CaigouhuizongController',mtd:'findAll',searchType:0},            
             success: function (result) {            	
                 renderUserListAndPage(result);
             }
@@ -211,7 +211,7 @@ $(function () {
     	var url = "${pageContext.request.contextPath }/cs";
         $.ajax({
         	url: url,
-        	data:{cls:'CaigouhuizongshenheController',mtd:'findAll',searchType:1},            
+        	data:{cls:'CaigouhuizongController',mtd:'findAll',searchType:1},            
             success: function (result) {            	
                 renderUserListAndPage(result);
             }
@@ -222,7 +222,7 @@ $(function () {
     	var url = "${pageContext.request.contextPath }/cs";
         $.ajax({
         	url: url,
-        	data:{cls:'CaigouhuizongshenheController',mtd:'findAll',searchType:2},            
+        	data:{cls:'CaigouhuizongController',mtd:'findAll',searchType:2},            
             success: function (result) {            	
                 renderUserListAndPage(result);
             }
@@ -233,7 +233,7 @@ $(function () {
     	var url = "${pageContext.request.contextPath }/cs";
         $.ajax({
         	url: url,
-        	data:{cls:'CaigouhuizongshenheController',mtd:'findAll',searchType:3},            
+        	data:{cls:'CaigouhuizongController',mtd:'findAll',searchType:3},            
             success: function (result) {            	
                 renderUserListAndPage(result);
             }

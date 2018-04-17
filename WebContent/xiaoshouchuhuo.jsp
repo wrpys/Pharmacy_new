@@ -132,7 +132,7 @@
 					<input type="hidden" name="mtd" id="mtd" value="update" />
 					<input type="hidden" name="dingdanID" id="dingdanID" />
 					<td>
-						<select id='dialog-updateuser-formcomplete' name="complete" style="width: 170px;">
+						<select id='dialog-updateuser-formcomplete' name="zhuangtai" style="width: 170px;">
 							<option value="1">已出货</option>
 						</select>
 					</td>
@@ -153,14 +153,14 @@
 	<td>{{kehu.kehuMingzi}}</td>
 	<td>{{yaoxiang.yaoxiangMingzi}}</td>
 	<td>{{riqi}}</td>
-	<td>{{#bold}}{{complete}}{{/bold}}</td>	
+	<td>{{#bold}}{{zhuangtai}}{{/bold}}</td>	
     <td>
         <div class="hidden-sm hidden-xs action-buttons">
             <a class="green user-edit" href="#" data-id="{{dingdanID}}"
-												data-complete="{{complete}}">
+												data-zhuangtai="{{zhuangtai}}">
                 	<i class="ace-icon fa fa-pencil bigger-100"></i>
             </a>
-            <a class="red user-delete" href="#" data-id="{{dingdanID}}" data-complete="{{complete}}" >
+            <a class="red user-delete" href="#" data-id="{{dingdanID}}" data-zhuangtai="{{zhuangtai}}" >
                     <i class="ace-icon fa fa-trash-o bigger-100"></i>
              </a> 
         </div>
@@ -290,9 +290,9 @@
 			function bindUserClick() {
 				// 处理点击按钮
 			$(".user-edit").click(function(e) {
-					var complete = $(this)
-							.attr("data-complete");
-					if (complete != "0") {
+					var zhuangtai = $(this)
+							.attr("data-zhuangtai");
+					if (zhuangtai != "0") {
 						alert("该订单已经发货，无法再次发货！");
 						return;
 					}
@@ -335,8 +335,8 @@
 				$(".user-delete").click(function(e) {
 					e.preventDefault();
 					e.stopPropagation(); // 此处必须要取消冒泡,因为是个递归结构,冒泡的话会让一个点击被响应多个
-					var complete = $(this).attr("data-complete");
-					if (complete != "0") {
+					var zhuangtai = $(this).attr("data-zhuangtai");
+					if (zhuangtai != "0") {
 						alert("该订单已经发货，无法删除！");
 						return;
 					}

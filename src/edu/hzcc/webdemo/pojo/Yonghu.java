@@ -10,11 +10,6 @@ public class Yonghu {
 	private String dengluMingzi;
 	//密码
 	private String miMa;
-	/**
-	 * 职务
-	 */
-	private int zhiwu;
-	private String shouji;
 	public int getYonghuID() {
 		return yonghuID;
 	}
@@ -39,22 +34,10 @@ public class Yonghu {
 	public void setMiMa(String miMa) {
 		this.miMa = miMa;
 	}
-	public int getZhiwu() {
-		return zhiwu;
-	}
-	public void setZhiwu(int zhiwu) {
-		this.zhiwu = zhiwu;
-	}
-	public String getShouji() {
-		return shouji;
-	}
-	public void setShouji(String shouji) {
-		this.shouji = shouji;
-	}
 	@Override
 	public String toString() {
 		return "Yonghu [yonghuID=" + yonghuID + ", yonghuMingzi=" + yonghuMingzi + ", dengluMingzi=" + dengluMingzi
-				+ ", miMa=" + miMa + ", zhiwu=" + zhiwu + ", shouji=" + shouji + "]";
+				+ ", miMa=" + miMa + "]";
 	}
 	
 	

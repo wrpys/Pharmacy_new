@@ -10,20 +10,19 @@ import edu.hzcc.webdemo.util.ControllerBase;
 import net.sf.json.JSONObject;
 
 /**
- * 
- * 销售订单审核汇总的交互，页面根据cls:'XiaoshouhuizongshenheController',mtd:'findAll'来调用 结果返回页面
+ * 采购订单审核汇总的交互，页面根据cls:'CaigouhuizongshenheController',mtd:'findAll'来调用 结果返回页面
  */
-public class XiaoshouhuizongshenheController extends ControllerBase {
+public class CaigouhuizongController extends ControllerBase {
 
-	// 查找所有销售订单
+	// 查找所有采购订单
 	public void findAll() {
 		System.out.println("CaigouhuizongshenheController.findALL()");
 		// 定义一个空的dingdanList列表
 		List<CangkuHuizongbiao> dingdanList = new ArrayList<>();
 		//获取查询类型：1：月查询   2：季度查询   3：年查询
 		int searchType = getParameterInt("searchType");
-		//4为销售订单类型
-		int dingdanleixing = 4;
+		//2位采购订单类型
+		int dingdanleixing = 2;
 		// 在DingdanDao中数据库操作 找出所有的dingdanlist列表
 		dingdanList = DingdanDao.findCaigouHuizongList(searchType,dingdanleixing);
 		// 定义一个json格式
@@ -34,16 +33,13 @@ public class XiaoshouhuizongshenheController extends ControllerBase {
 		writeJson(jsonObject.toString());
 		return;
 	}
-	
-	
-	
 
-	// 审核销售订单 
+	// 审核 修改采购订单的状态
 	public void update() {
 		Dingdan dingdan = new Dingdan();
 		// 从页面表单中获取。name="dingdanID"
 		dingdan.setDingdanID(getParameterInt("dingdanID"));
-		dingdan.setComplete(getParameterInt("complete"));
+		dingdan.setZhuangtai(getParameterInt("complete"));
 		// 在DingdanDao中数据库操作 修改一个订单
 		DingdanDao.updateComplete(dingdan);
 	}

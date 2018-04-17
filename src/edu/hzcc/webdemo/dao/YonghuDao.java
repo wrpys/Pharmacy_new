@@ -19,8 +19,6 @@ public class YonghuDao {
 		yonghu.setYonghuMingzi(rs.getString("yonghuMingzi"));
 		yonghu.setDengluMingzi(rs.getString("dengluMingzi"));
 		yonghu.setMiMa(rs.getString("miMa"));
-		yonghu.setZhiwu(rs.getInt("zhiwu"));
-		yonghu.setShouji(rs.getString("shouji"));
 		return yonghu;
 	}
 	
@@ -30,12 +28,12 @@ public class YonghuDao {
 			String sql = null;
 			if(yonghu.getYonghuID()>0){
 				//执行修改
-				sql ="update yonghu set yonghuMingzi= '"+yonghu.getYonghuMingzi()+"',dengluMingzi='"+yonghu.getDengluMingzi()+"',miMa='"+yonghu.getMiMa()+"',zhiwu='"+yonghu.getZhiwu()+
-						"',shouji='"+yonghu.getShouji()+"' where yonghuID="+yonghu.getYonghuID();
+				sql ="update yonghu set yonghuMingzi= '"+yonghu.getYonghuMingzi()+"',dengluMingzi='"+yonghu.getDengluMingzi()
+				+"',miMa='"+yonghu.getMiMa()+ "' where yonghuID="+yonghu.getYonghuID();
 			}else {
 				//执行新增
-				sql = "insert into yonghu(yonghuMingzi,dengluMingzi,miMa,zhiwu,shouji)";
-				sql += " values('"+yonghu.getYonghuMingzi()+"','"+yonghu.getDengluMingzi()+"','"+yonghu.getMiMa()+"','"+yonghu.getZhiwu()+"','"+yonghu.getShouji()+"')";
+				sql = "insert into yonghu(yonghuMingzi,dengluMingzi,miMa)";
+				sql += " values('"+yonghu.getYonghuMingzi()+"','"+yonghu.getDengluMingzi()+"','"+yonghu.getMiMa()+"')";
 				
 			}
 			//System.out.print(sql);

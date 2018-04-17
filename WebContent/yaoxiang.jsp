@@ -164,7 +164,7 @@ $(function () {
 				e.stopPropagation(); // 此处必须要取消冒泡,因为是个递归结构,冒泡的话会让一个点击被响应多个
 				var yaoxiangID = $(this).attr("data-id");
 				var yaoxiangMingzi = $(this).attr("data-yaoxiangMingzi");
-				if (confirm("确定要删除[" + yaoxiangMingzi + "]吗?")) {
+				if (confirm("警告，请不要随便删除基础信息！")) {
 					$.ajax({
 						url : "${pageContext.request.contextPath }/cs",
 						data : {

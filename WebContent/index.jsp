@@ -50,7 +50,6 @@
 			<ul class="nav nav-list">
 				<li class="active">
 					<a href="javascript:location.reload()"> 
-						<!-- <i class="menu-icon fa fa-tachometer"></i>  -->
 						<span class="menu-text"> &nbsp;&nbsp;首页 </span>
 					</a> 
 					<b class="arrow"></b>
@@ -77,10 +76,6 @@
 				</a> <b class="arrow"></b>
 
 					<ul class="submenu">
-						<!-- <li class=""><a class="popstyle"
-							href="xiaoshoudingdan.jsp" target="_blank"> <i
-								class="menu-icon fa fa-caret-right"></i> 销售订单
-						</a> <b class="arrow"></b></li> -->
 						<li class=""><a class="popstyle"
 							href="xiaoshouchuhuo.jsp" target="_blank"> <i
 								class="menu-icon fa fa-caret-right"></i> 销售出货
@@ -174,10 +169,6 @@
 						</a> <b class="arrow"></b></li>
 					</ul></li>
 			</ul>
-			<!-- /.nav-list -->
-
-
-
 			<script type="text/javascript">
 				try {
 					ace.settings.check('sidebar', 'collapsed')
@@ -189,26 +180,10 @@
 		<div class="main-content">
 			<iframe id="innerFrame" src="" width="100%" style="min-height: 768px;"></iframe>
 		</div>
-		<!-- /.main-content -->
-
 	</div>
 
-	<!-- /.main-container -->
-
-
-	<!-- basic scripts -->
-
-	<!--[if !IE]> -->
 	<script
 		src="${pageContext.request.contextPath }/assets/js/jquery-2.1.0.min.js"></script>
-
-	<!-- <![endif]-->
-
-	<!--[if IE]>
-<script src="${pageContext.request.contextPath }/assets/js/jquery-1.11.0.min.js"></script>
-<![endif]-->
-
-	<!--[if !IE]> -->
 	<script type="text/javascript">
 		window.jQuery
 				|| document
@@ -216,23 +191,8 @@
 								+ "<" + "/script>");
 	</script>
 
-	<!-- <![endif]-->
-
-	<!--[if IE]>
-<script type="text/javascript">
-    window.jQuery || document.write("<script src='${pageContext.request.contextPath }/assets/js/jquery1x.min.js'>" + "<" + "/script>");
-</script>
-<![endif]-->
-
-
 	<script
 		src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-
-	<!-- page specific plugin scripts -->
-
-	<!--[if lte IE 8]>
-<script src="${pageContext.request.contextPath }/assets/js/excanvas.min.js"></script>
-<![endif]-->
 	<script
 		src="${pageContext.request.contextPath }/assets/js/jquery-ui.custom.min.js"></script>
 	<script
@@ -264,19 +224,6 @@ $this 只是个变量名，加$是为说明其是个jquery对象。
 			// 权限控制
 			var url = location.search; //获取url中"?"符后的字串 ('?nolook=1') 
 			var str = url.substring(8);
-			// 0：老板，1：采购员，2：销售员，3：财务，4：仓管员
-			/* if(str == "0") {
-				$(".laoban").hide();
-			} else if(str == "1") {
-				$(".caigourenyuan").hide();
-			} else if(str == "2") {
-				$(".xiaoshouyuan").hide();
-			} else if(str == "3") {
-				$(".caiwu").hide();
-			} else if(str == "4") {
-				$(".cangguanyuan").hide();
-			} */
-			
 			$(".popstyle").removeAttr("target");
 			$(".popstyle").each(function() {
 				var $this = $(this)

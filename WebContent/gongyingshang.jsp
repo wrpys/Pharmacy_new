@@ -1,12 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-<!--动态地把页面包含进来--><!-- 两个jsp里的内容太多能不能，不需要的都删了？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？-->
     <jsp:include page="common/backend_common.jsp"/>
     <jsp:include page="common/page.jsp"/>
 </head>
-<!--这个位置用于存放网页上所有要显示的内容     youdao     设置所有的背景属性-->
-<!-- youdao干什么用的？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？-->
 <body class="no-skin" youdao="bind" style="background: white">
 <!--输入-->
 <input id="gritter-light" checked="" type="checkbox" class="ace ace-switch ace-switch-5"/>
@@ -37,7 +34,6 @@
                         <thead>
                         <tr role="row">
 <!--键盘中的TAB键在控件中的移动顺，aria-controls="dynamic-table"，行跨度 1 列跨度1-->
-<!--aria-controls="dynamic-table"，什么意思？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？-->
                             <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
                                供应商
                             </th>
@@ -54,7 +50,6 @@
 <!--HTML 表格的主体内容列表-->  
                         <tbody id="userList"></tbody>
                     </table>
-<!--userPage什么用，没有用就删？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？-->  
                     <div class="row" id="userPage">
                     </div>
                 </div>
@@ -112,7 +107,6 @@
         </table>
     </form>
 </div>
- <!--模板每段都写下，写的详细点？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？-->
  <!--脚本模板，每个"{{}}"中的值是GongyingshangController返回的json存储和交换文本信息         表格，使用html写了一个表头--> 
 <script id="userListTemplate" type="x-tmpl-mustache">
 {{#userList}}
@@ -234,7 +228,7 @@ $(function () {
             e.stopPropagation(); // 此处必须要取消冒泡,因为是个递归结构,冒泡的话会让一个点击被响应多个
             var userID = $(this).attr("data-id");//获取这一列的值， 选中id
             var userName = $(this).attr("data-gongyingshangMingzi");// 选中gongyingshangMingzi
-            if (confirm("确定要删除[" + userName + "]吗?")) {
+            if (confirm("警告，请不要随便删除基础信息！")) {
                 $.ajax({
                     url: "${pageContext.request.contextPath }/cs",//被web.xml拦截后，使用cls:'GongyingshangController',mtd:'delete'进入GongyingshangController的delete方法
                     data: {

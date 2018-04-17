@@ -336,7 +336,7 @@ $(function () {
             e.stopPropagation(); // 此处必须要取消冒泡,因为是个递归结构,冒泡的话会让一个点击被响应多个
             var yaopingID = $(this).attr("data-id");
             var yaopingMingzi = $(this).attr("data-yaopingMingzi");
-            if (confirm("确定要删除[" + yaopingMingzi + "]吗?")) {
+            if (confirm("警告，请不要随便删除基础信息！")) {
                 $.ajax({
                     url: "${pageContext.request.contextPath }/cs",
                     data: {
@@ -353,13 +353,6 @@ $(function () {
 
     function save() {
  		var data = $("#saveuserForm").serializeArray();
- 		/* console.log(data);
- 		for(var i=0;i<data.length; i++) {
-    		if(data[i]["name"] == "guige" && data[i]["value"] == "") {
-    			alert("规格不能为空！");
-    			return ;
-    		}
-    	} */
         $.ajax({
             url: "${pageContext.request.contextPath }/cs",
             data: data,
@@ -373,12 +366,6 @@ $(function () {
     }
     function update() {
     	var data = $("#updateuserForm").serializeArray();
-    	/* for(var i=0;i<data.length; i++) {
-    		if(data[i]["name"] == "guige" && data[i]["value"] == "") {
-    			alert("规格不能为空！");
-    			return ;
-    		}
-    	} */
         $.ajax({
             url: "${pageContext.request.contextPath }/cs",
             data: data,

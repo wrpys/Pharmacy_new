@@ -29,9 +29,6 @@
                            aria-describedby="dynamic-table_info" style="font-size:14px">
                         <thead>
                         <tr role="row">
-<!--                             <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
-         ID
-                            </th> -->
                            <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
         药箱
                             </th>
@@ -238,10 +235,8 @@ $(function () {
 
         // 处理点击[删除部门]按钮
         $(".user-delete").click(function (e) {
-            //e.preventDefault();
-            //e.stopPropagation(); // 此处必须要取消冒泡,因为是个递归结构,冒泡的话会让一个点击被响应多个
             var yaoxiangsheziid = $(this).attr("data-id");
-            if (confirm("确定要删除[" + yaoxiangsheziid + "]吗?")) {
+            if (confirm("是否确认删除此条预警信息?")) {
                 $.ajax({
                     url: "${pageContext.request.contextPath }/cs",
                     data: {
@@ -249,7 +244,6 @@ $(function () {
                     	id: yaoxiangsheziid
                     },
                     success: function () {
-                            //showMessage("删除[" + yaoxiangsheziid + "]", "操作成功", true);
                             loadUserList();
                         
                     }

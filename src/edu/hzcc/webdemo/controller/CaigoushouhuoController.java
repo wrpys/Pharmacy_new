@@ -78,7 +78,7 @@ public class CaigoushouhuoController extends ControllerBase{
 		caigoudingdan.setYaoxiangID(getParameterInt("yaoxiangID"));
 		caigoudingdan.setDingdanleixing(2);
 		caigoudingdan.setKehuID(0);
-		caigoudingdan.setComplete(0);
+		caigoudingdan.setZhuangtai(0);
 		// 在DingdanDao中数据库操作 新增一个订单
 		DingdanDao.save(caigoudingdan);
 	}
@@ -121,7 +121,7 @@ public class CaigoushouhuoController extends ControllerBase{
 		Dingdan caigoudingdan=new Dingdan();
 		// 从页面表单中获取。name="dingdanID"
 		caigoudingdan.setDingdanID(getParameterInt("dingdanID"));
-		caigoudingdan.setComplete(getParameterInt("complete"));
+		caigoudingdan.setZhuangtai(getParameterInt("complete"));
 		// 在DingdanDao中数据库操作 修改一个订单，将状态修改为已收货
 		DingdanDao.updateComplete(caigoudingdan);
 		Dingdan dingdanTmp = DingdanDao.findDingdanByPK(caigoudingdan);

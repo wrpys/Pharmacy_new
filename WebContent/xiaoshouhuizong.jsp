@@ -41,9 +41,6 @@
                             <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
                                         药品名称
                             </th>
-                            <!-- <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
-                                       单价
-                            </th> -->
                             <th tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1">
                                      销售数量
                             </th>
@@ -68,7 +65,7 @@
         <table class="table table-striped table-bordered table-hover dataTable no-footer" role="grid">
              <tr>
                 <td><label for="dingdanBianhao">销售订单编号</label></td>
-                <input type="hidden" name="cls" id="cls" value="XiaoshouhuizongshenheController"/>
+                <input type="hidden" name="cls" id="cls" value="XiaoshouhuizongController"/>
                 <input type="hidden" name="mtd" id="mtd" value="update"/>
 				<input type="hidden" name="dingdanID" id="dingdanID"/>
                 <td><input type="text" name="dingdanBianhao" id="dialog-updateuser-formDingdanBianhao" readonly="readonly" value="" class="text ui-widget-content ui-corner-all"></td>
@@ -120,7 +117,7 @@ $(function () {
         var url = "${pageContext.request.contextPath }/cs";
         $.ajax({
         	url: url,
-        	data:{cls:'XiaoshouhuizongshenheController',mtd:'findAll'},            
+        	data:{cls:'XiaoshouhuizongController',mtd:'findAll'},            
             success: function (result) {            	
                 renderUserListAndPage(result);
             }
@@ -196,7 +193,7 @@ $(function () {
     	var url = "${pageContext.request.contextPath }/cs";
         $.ajax({
         	url: url,
-        	data:{cls:'CaigouhuizongshenheController',mtd:'findAll',searchType:0},            
+        	data:{cls:'XiaoshouhuizongController',mtd:'findAll',searchType:0},            
             success: function (result) {            	
                 renderUserListAndPage(result);
             }
@@ -208,7 +205,7 @@ $(function () {
     	var url = "${pageContext.request.contextPath }/cs";
         $.ajax({
         	url: url,
-        	data:{cls:'XiaoshouhuizongshenheController',mtd:'findAll',searchType:1},            
+        	data:{cls:'XiaoshouhuizongController',mtd:'findAll',searchType:1},            
             success: function (result) {            	
                 renderUserListAndPage(result);
             }
@@ -219,7 +216,7 @@ $(function () {
     	var url = "${pageContext.request.contextPath }/cs";
         $.ajax({
         	url: url,
-        	data:{cls:'XiaoshouhuizongshenheController',mtd:'findAll',searchType:2},            
+        	data:{cls:'XiaoshouhuizongController',mtd:'findAll',searchType:2},            
             success: function (result) {            	
                 renderUserListAndPage(result);
             }
@@ -230,17 +227,12 @@ $(function () {
     	var url = "${pageContext.request.contextPath }/cs";
         $.ajax({
         	url: url,
-        	data:{cls:'XiaoshouhuizongshenheController',mtd:'findAll',searchType:3},            
+        	data:{cls:'XiaoshouhuizongController',mtd:'findAll',searchType:3},            
             success: function (result) {            	
                 renderUserListAndPage(result);
             }
         });
    	});
-    
-    
-    
-    
-  	
  });
 </script>
 </body>

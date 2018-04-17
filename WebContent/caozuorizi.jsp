@@ -91,11 +91,6 @@
         var rendered = Mustache.render(logListTemplate, {"logList": result.rizhiList});
         $('#logList').html(rendered);
     } 
-         
-    
-
-
-   
         
     });
 </script>

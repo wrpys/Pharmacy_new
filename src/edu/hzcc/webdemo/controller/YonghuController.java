@@ -91,8 +91,6 @@ public class YonghuController extends ControllerBase {
 			JSONObject jsonObject = new JSONObject();
 			// 告诉页面登录成功
 			jsonObject.put("falseMe", true);
-			// 告诉页面登录的权限
-			jsonObject.put("duties", yonghu.getZhiwu());
 			// 记录登录登出日志
 			Rizhi rizhi = new Rizhi();
 			rizhi.setYonghuID(loginyonghuID);

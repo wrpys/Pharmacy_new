@@ -36,7 +36,7 @@ public class DingdanDao {
 		dingdan.setKehuID(rs.getInt("kehuID"));
 		dingdan.setDingdanleixing(rs.getInt("dingdanleixing"));
 		dingdan.setYaoxiangID(rs.getInt("yaoxiangID"));
-		dingdan.setComplete(rs.getInt("complete"));
+		dingdan.setZhuangtai(rs.getInt("zhuangtai"));
 		// 药品详情
 		if(dingdan.getYaopingID() != null) {
 			dingdan.setYaoping(YaopingDao.findByYaopingID(dingdan.getYaopingID()));
@@ -149,10 +149,10 @@ public class DingdanDao {
 				//执行新增
 				sql = "insert into dingdan(dingdanBianhao,yaopingID,danjia,"
 											+ "shuliang,zongjia,dingdanleixing,"
-											+ "riqi,gongyingshangID,kehuID,yaoxiangID,complete)";
+											+ "riqi,gongyingshangID,kehuID,yaoxiangID,zhuangtai)";
 				sql += " values('"+dingdan.getDingdanBianhao()+"','"+dingdan.getYaopingID()+"','"+dingdan.getDanjia()+"','"+
 						dingdan.getShuliang()+"','"+dingdan.getZongjia()+"','"+dingdan.getDingdanleixing()+"','"+
-						dingdan.getRiqi()+"','"+dingdan.getGongyingshangID()+"','"+dingdan.getKehuID()+"','"+dingdan.getYaoxiangID()+"','"+dingdan.getComplete()+"')";
+						dingdan.getRiqi()+"','"+dingdan.getGongyingshangID()+"','"+dingdan.getKehuID()+"','"+dingdan.getYaoxiangID()+"','"+dingdan.getZhuangtai()+"')";
 			System.out.print(sql);
 			//开启数据库链接
 			Connection connection = ProjectShare.getDbPool().getConnection();
@@ -182,10 +182,10 @@ public class DingdanDao {
 				//执行新增
 				sql = "insert into dingdan(dingdanBianhao,yaopingID,danjia,"
 											+ "shuliang,zongjia,dingdanleixing,"
-											+ "riqi,gongyingshangID,kehuID,yaoxiangID,complete)";
+											+ "riqi,gongyingshangID,kehuID,yaoxiangID,zhuangtai)";
 				sql += " values('"+dingdan.getDingdanBianhao()+"','"+dingdan.getYaopingID()+"','"+dingdan.getDanjia()+"','"+
 						dingdan.getShuliang()+"','"+dingdan.getZongjia()+"','"+dingdan.getDingdanleixing()+"','"+
-						dingdan.getRiqi()+"','"+dingdan.getGongyingshangID()+"','"+dingdan.getKehuID()+"','"+dingdan.getYaoxiangID()+"','"+dingdan.getComplete()+"')";
+						dingdan.getRiqi()+"','"+dingdan.getGongyingshangID()+"','"+dingdan.getKehuID()+"','"+dingdan.getYaoxiangID()+"','"+dingdan.getZhuangtai()+"')";
 			System.out.print(sql);
 			
 			//开启数据库链接
@@ -228,7 +228,7 @@ public class DingdanDao {
 			sql = "update dingdan " + "set danjia='" + dingdan.getDanjia() + "',shuliang='" + dingdan.getShuliang()
 					+ "',zongjia='" + dingdan.getZongjia() + "',riqi='" + dingdan.getRiqi() + "',gongyingshangID='"
 					+ dingdan.getGongyingshangID() + "',kehuID='" + dingdan.getKehuID() + "',yaoxiangID='"
-					+ dingdan.getYaoxiangID() + "',complete='" + dingdan.getComplete() + "' where dingdanID="
+					+ dingdan.getYaoxiangID() + "',zhuangtai='" + dingdan.getZhuangtai() + "' where dingdanID="
 					+ dingdan.getDingdanID();
 			System.out.print(sql);
 			// 开启数据库链接
@@ -259,7 +259,7 @@ public class DingdanDao {
 			String sql = null;
 				//执行修改
 				sql ="update dingdan "
-						+ "set complete= '"+dingdan.getComplete()+
+						+ "set zhuangtai= '"+dingdan.getZhuangtai()+
 						"' where dingdanID="+dingdan.getDingdanID();
 			System.out.print(sql);
 			//开启数据库链接
@@ -479,7 +479,7 @@ public class DingdanDao {
 			
 			String sql = "select t1.dingdanBianhao,t1.danjia,SUM(t1.shuliang) as 'shuliang',SUM(t1.zongjia) as 'zongjia',t2.yaopingBianhao,t2.yaopingMingzi \r\n" + 
 					"from dingdan t1 left join yaoping t2 on t1.yaopingID= t2.yaopingID \r\n" + 
-					"where t1.complete = 1 and t1.dingdanleixing='" +dingdanleixing +"' "; 
+					"where t1.zhuangtai = 1 and t1.dingdanleixing='" +dingdanleixing +"' "; 
 			switch (searchType) {
 			case 0:
 				sql += " and DATE_SUB(CURDATE(), INTERVAL 1 DAY) <= str_to_date(t1.riqi, '%Y-%m-%d %H:%i:%s') GROUP BY t1.yaopingID";

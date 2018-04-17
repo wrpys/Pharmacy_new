@@ -39,7 +39,7 @@ public class YaoxianghuizongController extends ControllerBase{
 		dingdan.setGongyingshangID(getParameterInt("gongyingshangID"));
 		dingdan.setKehuID(getParameterInt("kehuID"));
 		dingdan.setYaoxiangID(getParameterInt("yaoxiangID"));
-		dingdan.setComplete(getParameterInt("complete"));
+		dingdan.setZhuangtai(getParameterInt("complete"));
 		//调用Dao更新dingdan对象
 		DingdanDao.update(dingdan);
 	}
