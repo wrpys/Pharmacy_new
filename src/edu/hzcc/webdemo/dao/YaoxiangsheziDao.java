@@ -103,7 +103,6 @@ public class YaoxiangsheziDao {
 	 * Yaoping.shuliang<yaoxiangshezi.zuishaoshuliang找出所有的yaopingID
 	 * @return  被kucunDao，findAllMinshuliang调用
 	 */
-//写详细点，不明白，上面说的意思？？？？？？？获取药品的总数量小于设置的数量的所有药品ｉｄ
 	public static List<Integer> findZuishaoshuliangOfYaopingID(){
 		try {
 			List<Integer> list = new ArrayList<>();

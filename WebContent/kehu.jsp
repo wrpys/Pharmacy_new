@@ -147,7 +147,7 @@ $(function () {
     $(".user-add").click(function () {
         $("#dialog-usersave-form").dialog({
             modal: true,
-            title: "新增药箱预警设置",
+            title: "新增客户",
             open: function (event, ui) {
                 $(".ui-dialog-titlebar-close", $(this).parent()).hide(); // 点开时隐藏关闭按钮
                
@@ -198,7 +198,7 @@ $(function () {
             var kehuQQ= $(this).attr("data-kehuQQ");
             $("#dialog-userupdate-form").dialog({
                 modal: true,
-                title: "编辑药箱预警设置",
+                title: "编辑客户",
                 open: function (event, ui) {
                     $("#userupdateForm")[0].reset();
                     $(".ui-dialog-titlebar-close", $(this).parent()).hide(); // 点开时隐藏关闭按钮

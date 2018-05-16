@@ -69,7 +69,6 @@ public class YaopingDao {
 		}
 	}
 	
-	//为什么修改和新增分开写，与之前的格式不同？？？？？？？？？？？？？？？？？？？？？？？？？？
 	//药品ID是自己编写的 ，不是自动生成，保存和修改都有，所以分开写
 	public static boolean update(Yaoping yaoping){
 		try {
@@ -176,7 +175,6 @@ public class YaopingDao {
 		}
 	}
 	
-	//什么意思，为什么有两个？？？？？？？？？？？？？？？？？？？？？？？？？？？	
 	//根据药品ID查询   生成库存记录是，根据库存的药品ID，找出yaoping这个类，然后在更新数量    YaoxiangchaxunController。save方法调用
 	public static Yaoping findByYaopingID(int yaopingID){
 		Yaoping yaoping = null;

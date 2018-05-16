@@ -201,7 +201,6 @@
 $(function () {
     
     
-	var userMap = {}; // 存储map格式的用户列表	
     var userListTemplate = $('#userListTemplate').html();
     Mustache.parse(userListTemplate);
     var yaoxiangTemplate = $('#yaoxiangTemplate').html();

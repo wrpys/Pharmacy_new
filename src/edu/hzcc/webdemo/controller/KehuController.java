@@ -8,7 +8,7 @@ import edu.hzcc.webdemo.pojo.Kehu;
 import edu.hzcc.webdemo.util.ControllerBase;
 import net.sf.json.JSONObject;
 /**
-  * 客户的页面交互，页面根据cls:'KehuController',mtd:'findAll'来调用结果返回页面
+  * 客户控制器
  */
 public class KehuController extends ControllerBase{
 
@@ -58,8 +58,7 @@ public class KehuController extends ControllerBase{
 	public void update() {
 		System.out.println("kehuController.update()");
 		Kehu kehu=new Kehu();
-		//getParameter("KehuMingzi")获取页面的传来值KehuMingzi
-		 // "KehuMingzi"要和页面的Input的name="KehuMingzi"一样
+		// "KehuMingzi"要和页面的Input的name="KehuMingzi"一样
 		kehu.setKehuMingzi(getParameter(  "kehuMingzi"));
 		kehu.setKehuShouji(getParameter("kehuShouji"));
 		kehu.setKehuQQ(getParameter(   "kehuQQ"));

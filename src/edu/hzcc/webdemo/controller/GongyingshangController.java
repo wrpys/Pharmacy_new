@@ -10,7 +10,7 @@ import edu.hzcc.webdemo.util.ControllerBase;
 
 /**
  * 
- * 供应商的页面交互，页面根据cls:'GongyingshangController',mtd:'findAll'来调用 结果返回页面
+ * 供应商控制器
  */
 public class GongyingshangController extends ControllerBase {
 
@@ -48,14 +48,9 @@ public class GongyingshangController extends ControllerBase {
 	public void save() {
 		System.out.println("GongyingshangController.save()");
 		Gongyingshang Gongyingshang = new Gongyingshang();
-		// getParameter("gongyingshangMingzi")获取页面的传来值gongyingshangMingzi
-		// "gongyingshangMingzi"要和页面的Input的name="gongyingshangMingzi"一样
-		Gongyingshang
-				.setGongyingshangMingzi(getParameter("gongyingshangMingzi"));
-		// getParameter("mingzi")获取页面的传来值mingzi
+		Gongyingshang.setGongyingshangMingzi(getParameter("gongyingshangMingzi"));
 		// "mingzi"要和页面的Input的name="mingzi"一样
 		Gongyingshang.setMingzi(getParameter("mingzi"));
-		// getParameter("dianhua")获取页面的传来值dianhua
 		// "dianhua"要和页面的Input的name="dianhua"一样
 		Gongyingshang.setDianhua(getParameter("dianhua"));
 		System.out.println(Gongyingshang.toString());
@@ -66,17 +61,11 @@ public class GongyingshangController extends ControllerBase {
 	public void update() {
 		System.out.println("BusinessController.update()");
 		Gongyingshang Gongyingshang = new Gongyingshang();
-		// getParameter("gongyingshangMingzi")获取页面的传来值gongyingshangMingzi
-		// "gongyingshangMingzi"要和页面的Input的name="gongyingshangMingzi"一样
-		Gongyingshang
-				.setGongyingshangMingzi(getParameter("gongyingshangMingzi"));
-		// getParameter("mingzi")获取页面的传来值mingzi
+		Gongyingshang.setGongyingshangMingzi(getParameter("gongyingshangMingzi"));
 		// "mingzi"要和页面的Input的name="mingzi"一样
 		Gongyingshang.setMingzi(getParameter("mingzi"));
-		// getParameter("dianhua")获取页面的传来值dianhua
 		// "dianhua"要和页面的Input的name="dianhua"一样
 		Gongyingshang.setDianhua(getParameter("dianhua"));
-		// getParameter("gongyingshangID")获取页面的传来值gongyingshangID
 		// "gongyingshangID"要和页面的Input的name="gongyingshangID"一样
 		Gongyingshang.setGongyingshangID(getParameterInt("gongyingshangID"));
 		System.out.println(Gongyingshang.toString());

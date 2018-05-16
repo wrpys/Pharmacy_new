@@ -170,7 +170,6 @@
 <script type="text/javascript">
 $(function () {
     
-	var userMap = {}; // 存储map格式的用户列表
     var userListTemplate = $('#userListTemplate').html();
     Mustache.parse(userListTemplate);
     
@@ -266,7 +265,7 @@ $(function () {
 								var yaopingMingzi = $(this).attr(
 										"data-yaopingMingzi");
 								var riqi = $(this).attr("data-riqi");
-								var complete = $(this).attr("data-complete");
+								var zhuangtai = $(this).attr("data-zhuangtai");
 								$("#dialog-userupdate-form")
 										.dialog(
 												{
@@ -312,7 +311,7 @@ $(function () {
 													},
 													buttons : {
 														"确认" : function(e) {
-															if(complete==1){
+															if(zhuangtai==1){
 																alert("已经完成无法编辑!");
 																$("#dialog-userupdate-form").dialog("close");
 																loadUserList();

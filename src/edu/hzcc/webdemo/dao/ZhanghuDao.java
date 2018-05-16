@@ -99,7 +99,6 @@ public class ZhanghuDao {
 	 *
 	 */
 	//FukuandanController.update()和   RukuandanController的update()调用，就是结算时，修改钱数
-	//被谁调用了，是怎么修改的账户的钱数？？？？？？？？入款单和收款单修改未结算时，更新账户的钱数
 	public static boolean updatezhanghuQianshu(int  ID,double qianshu){
 		try {
 			String sql = null;
@@ -163,7 +162,7 @@ public class ZhanghuDao {
 		}
 	}
 	/*
-	 * 通过账户ID需要一个账户，什么意思？？？？？？？？？？？？？？？----->根据账户ID找到账户，用于付款和收款时，修改账户余款
+	 * 通过账户ID需要一个账户
 	 */
 	public static Zhanghu findOne(int ID){
 		Zhanghu zhanghu=new Zhanghu();

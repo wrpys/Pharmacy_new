@@ -89,7 +89,7 @@ public class GongyingshangDao {
 			int i = ProjectShare.getDbPool().update(connection, sql);
 			// 链接关闭
 			ProjectShare.getDbPool().closeConnection(connection);
-			// 更新一次，表示成功，什么叫更新一次就成功？？？？？？？？？？？？？？？？？？？？？？？？？？？？？
+			// 更新一次，表示成功，
 			if (i == 1)
 				return true;
 			return false;
@@ -114,7 +114,6 @@ public class GongyingshangDao {
 			while (rs.next()) {
 				// 把结果集填入Gongyingshang对象
 				Gongyingshang gongyingshang = converBusiness(rs);
-				// list添加然后去了哪？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？
 				list.add(gongyingshang);
 
 			}
@@ -131,7 +130,6 @@ public class GongyingshangDao {
 		}
 	}
 
-	// 什么意思啊，被谁调用了这个方法？？？？？？？？？？？？？？？？？？？？？？？？？？？？
 	// 订单列表，需要展示供应商，所以到这边查找
 	public static Gongyingshang findByGongyingshangID(int gongyingshangID) {
 		Gongyingshang gongyingshang = null;

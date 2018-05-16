@@ -106,13 +106,11 @@ public class YonghuDao {
  * @param yonghuID
  * @return 该ID的用户明细
  */
-	//干什么用的，被谁调用，返回到哪里？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？
 	//	被rizhidao调用，返回到rizhidao，因为rizhi这张表只有yonghuID，用yonghuID来找到yonghu这个类，得出名字
 	public static Yonghu findByYonghuID(int yonghuID){
 		Yonghu yonghu = null;
 		try {
 			Connection connection = ProjectShare.getDbPool().getConnection();
-			//下面的什么意思？？？？？？？？？？？？？？用yonghuID来找到yonghu这个类
 			String sql = "select * from yonghu where yonghuID="+yonghuID;
 			ResultSet rs = ProjectShare.getDbPool().query(connection, sql);
 			if(rs.next()){
@@ -137,11 +135,9 @@ public class YonghuDao {
 	 * @return
 	 */
 	 //YonghuController的login()调用
-	//下面所有，都写下，是怎么验证的？？？？？？？？？dengluMingzi和miMa一致的yonghu有几条记录，大于一条就登录成功
 	public static Integer findByDengluMingziAndMiMa(String dengluMingzi,String miMa){
 		try {
 			Connection connection = ProjectShare.getDbPool().getConnection();
-			//下面这句话是什么意思？？？？？？？dengluMingzi和miMa一致的yonghu有几条记录，大于一条就登录成功
 			String sql = "select count(*) record_ from yonghu where dengluMingzi='"+dengluMingzi+"' and miMa='"+miMa+"'";
 			ResultSet rs = ProjectShare.getDbPool().query(connection, sql);
 			int rowCount=0;

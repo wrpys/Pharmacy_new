@@ -10,7 +10,7 @@ import net.sf.json.JSONObject;
 
 /**
  * 
- * 药箱的页面交互，页面根据cls:'yaoxiangController',mtd:'findAll'来调用 结果返回页面
+ * 药箱的页面交互，页面根据cls:'YaoxiangController',mtd:'findAll'来调用 结果返回页面
  */
 public class YaoxiangController extends ControllerBase {
 

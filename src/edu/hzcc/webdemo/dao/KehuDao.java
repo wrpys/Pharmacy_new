@@ -108,7 +108,6 @@ public class KehuDao {
 			while(rs.next()){
 				//把结果集填入Kehu对象
 				Kehu kehu = converkehu(rs);
-				//list添加然后去了哪？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？--->在return中返回出去
 				list.add(kehu);
 				
 			}
@@ -126,7 +125,6 @@ public class KehuDao {
 		}
 	}
 	
-	//什么意思啊，方法被谁调用了，kehuControler中没有这个方法？？？？？？？？？？？
 	//xiaoshoudingdan和xiaoshoufahuo表只有kehuID，没有客户名字，用来获取用户名字的，返回到xiaoshoudingdanDao和xiaoshoufahuoDao，用在表格显示客户名字
 	//订单列表，需要展示客户，所以到这边查找
 	public static Kehu findBykehuID(int kehuID){

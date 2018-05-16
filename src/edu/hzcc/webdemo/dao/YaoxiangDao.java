@@ -80,7 +80,6 @@ public class YaoxiangDao {
 				Yaoxiang yaoxiang = new Yaoxiang();
 				yaoxiang.setYaoxiangID(rs.getInt("yaoxiangID"));
 				yaoxiang.setYaoxiangMingzi(rs.getString("yaoxiangMingzi"));
-				// list添加然后去了哪？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？
 				list.add(yaoxiang);
 			}
 			// 结果集关闭

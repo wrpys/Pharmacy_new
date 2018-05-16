@@ -8,7 +8,6 @@ import java.util.List;
 import edu.hzcc.webdemo.pojo.Rizhi;
 import edu.hzcc.webdemo.sys.ProjectShare;
 
-//日志是怎么实现的，在哪获取时间和登入登出状态的？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？
 public class RizhiDao {
 
 	private static Rizhi converrizhi(ResultSet rs) throws Exception {
@@ -17,7 +16,7 @@ public class RizhiDao {
 		rizhi.setYonghuID(rs.getInt("yonghuID"));
 		rizhi.setRiqi(rs.getString("riqi"));
 		rizhi.setNeirong(rs.getString("neirong"));
-		// 下面这个是什么意思？？？？？？因为rizhi这张表只有yonghuID，用yonghuID来找到yonghu这个类，得出名字
+		//rizhi这张表只有yonghuID，用yonghuID来找到yonghu这个类，得出名字
 		// 小于0 就是没有这个数啊
 		if (rizhi.getYonghuID() > 0) {
 			rizhi.setDengluMingzi(YonghuDao.findByYonghuID(rizhi.getYonghuID())

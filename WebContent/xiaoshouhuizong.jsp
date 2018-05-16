@@ -95,7 +95,7 @@
         <div class="hidden-sm hidden-xs action-buttons">
             <a class="green user-edit" href="#" data-id="{{dingdanID}}"
 												data-dingdanBianhao="{{dingdanBianhao}}"
-												data-complete="{{complete}}">
+												data-zhuangtai="{{zhuangtai}}">
                 <i class="ace-icon fa fa-pencil bigger-100"></i> -->
             </a>
         </div>
@@ -146,8 +146,8 @@ $(function () {
         $(".user-edit").click(function (e) {
         	var dingdanID = $(this).attr("data-id"); // 选中的id
 			var dingdanBianhao = $(this).attr("data-dingdanBianhao"); 
-			var complete = $(this).attr("data-complete"); 
-			if(complete != "0") {
+			var zhuangtai = $(this).attr("data-zhuangtai"); 
+			if(zhuangtai != "0") {
         		alert("该订单已经审核，无法再次审核！");
         		return ;
         	}
@@ -160,7 +160,7 @@ $(function () {
                     $("#updateuserForm")[0].reset();
                     $(".ui-dialog-titlebar-close", $(this).parent()).hide(); // 点开时隐藏关闭按钮
                     $("#dingdanID").val(dingdanID);
-                    $("#dialog-updateuser-formcomplete").val(complete);
+                    $("#dialog-updateuser-formcomplete").val(zhuangtai);
  				   $("#dialog-updateuser-formDingdanBianhao").val(dingdanBianhao);
                 },
                 buttons: {

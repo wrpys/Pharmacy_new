@@ -10,7 +10,7 @@ import edu.hzcc.webdemo.util.ControllerBase;
 import net.sf.json.JSONObject;
 
 /**
- * 采购订单审核汇总的交互，页面根据cls:'CaigouhuizongshenheController',mtd:'findAll'来调用 结果返回页面
+ * 采购汇总控制器
  */
 public class CaigouhuizongController extends ControllerBase {
 
@@ -39,9 +39,9 @@ public class CaigouhuizongController extends ControllerBase {
 		Dingdan dingdan = new Dingdan();
 		// 从页面表单中获取。name="dingdanID"
 		dingdan.setDingdanID(getParameterInt("dingdanID"));
-		dingdan.setZhuangtai(getParameterInt("complete"));
+		dingdan.setZhuangtai(getParameterInt("zhuangtai"));
 		// 在DingdanDao中数据库操作 修改一个订单
-		DingdanDao.updateComplete(dingdan);
+		DingdanDao.updateZhuangtai(dingdan);
 	}
 
 }

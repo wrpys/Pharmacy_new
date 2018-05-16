@@ -51,8 +51,6 @@ public class YonghuController extends ControllerBase {
 		yonghu.setYonghuMingzi(getParameter("yonghuMingzi"));
 		yonghu.setDengluMingzi(getParameter("dengluMingzi"));
 		yonghu.setMiMa(getParameter("miMa"));
-//		yonghu.setShouji(getParameter("shouji"));
-//		yonghu.setZhiwu(getParameterInt("zhiwu"));
 		YonghuDao.save(yonghu);
 	}
 
@@ -63,8 +61,6 @@ public class YonghuController extends ControllerBase {
 		yonghu.setYonghuMingzi(getParameter("yonghuMingzi"));
 		yonghu.setDengluMingzi(getParameter("dengluMingzi"));
 		yonghu.setMiMa(getParameter("miMa"));
-//		yonghu.setShouji(getParameter("shouji"));
-//		yonghu.setZhiwu(getParameterInt("zhiwu"));
 		yonghu.setYonghuID(getParameterInt("yonghuID"));
 		YonghuDao.save(yonghu);
 	}

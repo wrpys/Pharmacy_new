@@ -16,7 +16,6 @@ public class YaopingController extends ControllerBase{
 	public void findAll() {
 		System.out.println("YaopingController.getALL()");
 		Yaoping yaopingParam=new Yaoping();
-		//getParameter("yaopingMingzi")获取页面的传来值yaopingMingzi
 		 // "yaopingMingzi"要和页面的Input的name="yaopingMingzi"一样
 		yaopingParam.setYaopingMingzi(getParameter("yaopingMingzi"));
 		//定义一个空的yaoping列表
@@ -45,7 +44,6 @@ public class YaopingController extends ControllerBase{
 		System.out.println("yaopingController.save()");
 		//创建yaoping实例对象，并设置对象信息
 		Yaoping yaoping=new Yaoping();
-		//getParameter("yaopingMingzi")获取页面的传来值yaopingMingzi
 		 // "yaopingMingzi"要和页面的Input的name="yaopingMingzi"一样
 		yaoping.setYaopingMingzi(getParameter("yaopingMingzi"));
 		yaoping.setYaopingDanwei(getParameter("yaopingDanwei"));
@@ -61,7 +59,6 @@ public class YaopingController extends ControllerBase{
 		System.out.println("yaopingController.update()");
 		//创建yaoping实例对象，并设置对象信息
 		Yaoping yaoping=new Yaoping();
-		//getParameter("yaopingMingzi")获取页面的传来值yaopingMingzi
 		 // "yaopingMingzi"要和页面的Input的name="yaopingMingzi"一样
 		yaoping.setYaopingMingzi(getParameter("yaopingMingzi"));
 		yaoping.setYaopingDanwei(getParameter("yaopingDanwei"));

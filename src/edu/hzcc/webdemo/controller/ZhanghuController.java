@@ -43,7 +43,6 @@ public class ZhanghuController extends ControllerBase {
 	// 新增账户
 	public void save() {
 		Zhanghu zhanghu = new Zhanghu();
-		// getParameter("mingzi")获取页面的传来值mingzi
 		// "mingzi"要和页面的Input的name="mingzi"一样
 		zhanghu.setMingzi(getParameter("mingzi"));
 		zhanghu.setQianshu(getParameterDouble("qianshu"));

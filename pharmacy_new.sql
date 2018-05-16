@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50625
 File Encoding         : 65001
 
-Date: 2018-04-14 22:00:25
+Date: 2018-05-16 16:00:34
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,13 +31,16 @@ CREATE TABLE `dingdan` (
   `gongyingshangID` int(111) NOT NULL,
   `kehuID` int(11) DEFAULT NULL,
   `yaoxiangID` int(111) DEFAULT NULL,
-  `complete` int(11) NOT NULL DEFAULT '0',
+  `zhuangtai` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`dingdanID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of dingdan
 -- ----------------------------
+INSERT INTO `dingdan` VALUES ('1', '1', '6', '1.00000000000', '10', '10.00000000000', '2', '2018-04-18 12:49:16', '1', '0', '1', '1');
+INSERT INTO `dingdan` VALUES ('2', '1', '6', '1.00000000000', '5', '5.00000000000', '4', '2018-04-18 12:49:49', '0', '1', '1', '1');
+INSERT INTO `dingdan` VALUES ('3', '2', '6', '2.00000000000', '2', '4.00000000000', '2', '2018-04-18 13:30:06', '1', '0', '1', '0');
 
 -- ----------------------------
 -- Table structure for gongyingshang
@@ -49,16 +52,15 @@ CREATE TABLE `gongyingshang` (
   `mingzi` varchar(111) COLLATE utf8_bin NOT NULL,
   `dianhua` varchar(111) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`gongyingshangID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of gongyingshang
 -- ----------------------------
-INSERT INTO `gongyingshang` VALUES ('1', '供应商1', '33', '32');
-INSERT INTO `gongyingshang` VALUES ('2', '供应商2', '2', '2');
-INSERT INTO `gongyingshang` VALUES ('3', '供应商3', '33', '32');
-INSERT INTO `gongyingshang` VALUES ('4', '供应商4', '2', '2');
-INSERT INTO `gongyingshang` VALUES ('5', '板蓝根', '2', '2');
+INSERT INTO `gongyingshang` VALUES ('1', '富阳市百合医药零售有限公司', '张三', '13888888888');
+INSERT INTO `gongyingshang` VALUES ('2', '同春堂医药零售有限公司', '李四', '15055555555');
+INSERT INTO `gongyingshang` VALUES ('3', '华东医药供应有限公司', '王五', '15085426666');
+INSERT INTO `gongyingshang` VALUES ('4', '百姓药品批发', '赵六', '18988888888');
 
 -- ----------------------------
 -- Table structure for kehu
@@ -70,15 +72,19 @@ CREATE TABLE `kehu` (
   `kehuShouji` varchar(111) COLLATE utf8_bin NOT NULL,
   `kehuQQ` varchar(111) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`kehuID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of kehu
 -- ----------------------------
-INSERT INTO `kehu` VALUES ('1', '客户1', '142', '142');
-INSERT INTO `kehu` VALUES ('2', '客户2', '15', '15');
-INSERT INTO `kehu` VALUES ('3', '客户3', '142', '142');
-INSERT INTO `kehu` VALUES ('4', '客户4', '15', '15');
+INSERT INTO `kehu` VALUES ('1', '赵刚', '18989471085', '745104248');
+INSERT INTO `kehu` VALUES ('2', '钱卫国', '18067871727', '852392586');
+INSERT INTO `kehu` VALUES ('3', '孙芳', '15088763595', '102354621');
+INSERT INTO `kehu` VALUES ('4', '李萍', '13058341245', '658258364');
+INSERT INTO `kehu` VALUES ('5', '周军', '15023235843', '236548956');
+INSERT INTO `kehu` VALUES ('6', '吴县平', '13058085698', '365965423');
+INSERT INTO `kehu` VALUES ('7', '郑新', '18989471056', '102123546');
+INSERT INTO `kehu` VALUES ('8', '王飞', '18055343662', '586543284');
 
 -- ----------------------------
 -- Table structure for kucun
@@ -93,11 +99,12 @@ CREATE TABLE `kucun` (
   `riqi` varchar(111) COLLATE utf8_bin NOT NULL,
   `zhuangtai` int(111) NOT NULL,
   PRIMARY KEY (`kucunID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of kucun
 -- ----------------------------
+INSERT INTO `kucun` VALUES ('1', '6', '1', '1', '5', '2018-04-18 12:49:54', '1');
 
 -- ----------------------------
 -- Table structure for rizhi
@@ -109,29 +116,15 @@ CREATE TABLE `rizhi` (
   `riqi` varchar(111) COLLATE utf8_bin NOT NULL,
   `neirong` varchar(111) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`rizhiID`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of rizhi
 -- ----------------------------
-INSERT INTO `rizhi` VALUES ('1', '1', '2018-04-12 10:59:59', 'ting登录');
-INSERT INTO `rizhi` VALUES ('2', '0', '2018-04-12 11:18:00', 'null退出');
-INSERT INTO `rizhi` VALUES ('3', '1', '2018-04-12 11:18:06', 'ting登录');
-INSERT INTO `rizhi` VALUES ('4', '0', '2018-04-14 13:40:36', 'null退出');
-INSERT INTO `rizhi` VALUES ('5', '1', '2018-04-14 13:40:42', 'ting登录');
-INSERT INTO `rizhi` VALUES ('6', '1', '2018-04-14 13:40:44', 'ting退出');
-INSERT INTO `rizhi` VALUES ('7', '1', '2018-04-14 13:40:59', 'ting登录');
-INSERT INTO `rizhi` VALUES ('8', '1', '2018-04-14 13:56:33', 'ting退出');
-INSERT INTO `rizhi` VALUES ('9', '1', '2018-04-14 13:56:34', 'ting登录');
-INSERT INTO `rizhi` VALUES ('10', '1', '2018-04-14 14:17:25', 'ting退出');
-INSERT INTO `rizhi` VALUES ('11', '1', '2018-04-14 14:17:27', 'ting登录');
-INSERT INTO `rizhi` VALUES ('12', '0', '2018-04-14 14:35:44', 'null退出');
-INSERT INTO `rizhi` VALUES ('13', '1', '2018-04-14 14:35:45', 'ting登录');
-INSERT INTO `rizhi` VALUES ('14', '1', '2018-04-14 14:42:18', 'ting退出');
-INSERT INTO `rizhi` VALUES ('15', '1', '2018-04-14 14:42:19', 'ting登录');
-INSERT INTO `rizhi` VALUES ('16', '1', '2018-04-14 14:47:54', 'ting登录');
-INSERT INTO `rizhi` VALUES ('17', '1', '2018-04-14 19:49:06', 'ting登录');
-INSERT INTO `rizhi` VALUES ('18', '1', '2018-04-14 20:43:33', 'ting登录');
+INSERT INTO `rizhi` VALUES ('1', '1', '2018-04-18 12:24:48', 'ting登录');
+INSERT INTO `rizhi` VALUES ('2', '1', '2018-04-18 13:25:54', 'ting登录');
+INSERT INTO `rizhi` VALUES ('3', '1', '2018-04-18 14:08:47', 'ting登录');
+INSERT INTO `rizhi` VALUES ('4', '1', '2018-04-19 23:28:29', 'ting登录');
 
 -- ----------------------------
 -- Table structure for yaoping
@@ -142,21 +135,28 @@ CREATE TABLE `yaoping` (
   `yaopingBianhao` varchar(255) COLLATE utf8_bin NOT NULL,
   `yaopingMingzi` varchar(111) COLLATE utf8_bin NOT NULL,
   `yaopingDanwei` varchar(111) COLLATE utf8_bin NOT NULL,
-  `youxiaoqi` int(111) NOT NULL,
+  `guige` varchar(255) COLLATE utf8_bin NOT NULL,
   `jingjia` double(111,11) NOT NULL,
   `gongyingshangMingzi` varchar(111) COLLATE utf8_bin NOT NULL,
   `yaoxiangID` int(11) NOT NULL,
   PRIMARY KEY (`yaopingID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of yaoping
 -- ----------------------------
-INSERT INTO `yaoping` VALUES ('1', '1001', 'ceshi1', '单位1', '11', '10.00000000000', '供应商1', '1');
-INSERT INTO `yaoping` VALUES ('2', '1002', 'ceshi4', '单位2', '1', '1.00000000000', '供应商2', '2');
-INSERT INTO `yaoping` VALUES ('3', '1003', 'ceshi2', '单位3', '1', '1.00000000000', '供应商3', '3');
-INSERT INTO `yaoping` VALUES ('4', '1004', 'ceshi3', '单位4', '1', '1.00000000000', '供应商4', '1');
-INSERT INTO `yaoping` VALUES ('5', '1005', '头孢', '1盒', '1000', '1.00000000000', '供应商1', '1');
+INSERT INTO `yaoping` VALUES ('6', '1001', '快克复方氨酚烷胺胶囊', '盒', '10s', '12.00000000000', '富阳市百合医药零售有限公司', '6');
+INSERT INTO `yaoping` VALUES ('7', '1002', '白云山板蓝根颗粒', '盒', '10g*20s', '13.00000000000', '同春堂医药零售有限公司', '6');
+INSERT INTO `yaoping` VALUES ('8', '1003', '阿莫西林胶囊', '盒', '0.25g', '12.00000000000', '华东医药供应有限公司', '7');
+INSERT INTO `yaoping` VALUES ('9', '1004', '藿香正气水', '盒', '10ml', '13.00000000000', '富阳市百合医药零售有限公司', '6');
+INSERT INTO `yaoping` VALUES ('10', '1005', '六味地黄丸', '盒', '1.44g', '57.00000000000', '百姓药品批发', '3');
+INSERT INTO `yaoping` VALUES ('11', '1006', '云南白药气雾剂', '盒', '85g', '49.00000000000', '华东医药供应有限公司', '1');
+INSERT INTO `yaoping` VALUES ('12', '1007', '江中健胃消食片', '盒', '0.8g', '48.00000000000', '百姓药品批发', '1');
+INSERT INTO `yaoping` VALUES ('13', '1008', '云南白药创可贴', '盒', '1.5cm*2.3cm', '25.00000000000', '百姓药品批发', '1');
+INSERT INTO `yaoping` VALUES ('14', '1009', '感冒灵颗粒', '盒', '10g*9s', '10.00000000000', '富阳市百合医药零售有限公司', '6');
+INSERT INTO `yaoping` VALUES ('15', '1010', '非洛地平缓释片', '盒', '5mg', '11.00000000000', '同春堂医药零售有限公司', '1');
+INSERT INTO `yaoping` VALUES ('16', '1011', '足光散', '盒', '40g', '15.00000000000', '富阳市百合医药零售有限公司', '7');
+INSERT INTO `yaoping` VALUES ('17', '1012', '医用冷敷贴', '盒', '9cm*12cm', '89.00000000000', '富阳市百合医药零售有限公司', '1');
 
 -- ----------------------------
 -- Table structure for yaoxiang
@@ -166,15 +166,18 @@ CREATE TABLE `yaoxiang` (
   `yaoxiangID` int(111) NOT NULL AUTO_INCREMENT,
   `yaoxiangMingzi` varchar(111) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`yaoxiangID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of yaoxiang
 -- ----------------------------
-INSERT INTO `yaoxiang` VALUES ('1', '药箱1');
-INSERT INTO `yaoxiang` VALUES ('2', '药箱2');
-INSERT INTO `yaoxiang` VALUES ('3', '药箱3');
-INSERT INTO `yaoxiang` VALUES ('4', '药箱3');
+INSERT INTO `yaoxiang` VALUES ('1', '药箱(感冒类)');
+INSERT INTO `yaoxiang` VALUES ('2', '药箱(消炎类)');
+INSERT INTO `yaoxiang` VALUES ('3', '药箱(滋阴补肾类)');
+INSERT INTO `yaoxiang` VALUES ('4', '药箱(跌打损伤类)');
+INSERT INTO `yaoxiang` VALUES ('5', '药箱(补益安神类)');
+INSERT INTO `yaoxiang` VALUES ('6', '药箱(消化不良类)');
+INSERT INTO `yaoxiang` VALUES ('7', '药箱(高血压类)');
 
 -- ----------------------------
 -- Table structure for yaoxiangshezi
@@ -186,13 +189,12 @@ CREATE TABLE `yaoxiangshezi` (
   `yaopingID` int(111) NOT NULL,
   `zuishaoshuliang` int(111) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of yaoxiangshezi
 -- ----------------------------
-INSERT INTO `yaoxiangshezi` VALUES ('1', '1', '5', '10000000');
-INSERT INTO `yaoxiangshezi` VALUES ('2', '1', '4', '100');
+INSERT INTO `yaoxiangshezi` VALUES ('1', '1', '6', '15');
 
 -- ----------------------------
 -- Table structure for yonghu
@@ -203,22 +205,13 @@ CREATE TABLE `yonghu` (
   `yonghuMingzi` varchar(111) COLLATE utf8_bin NOT NULL,
   `dengluMingzi` varchar(111) COLLATE utf8_bin DEFAULT NULL,
   `miMa` varchar(111) COLLATE utf8_bin DEFAULT NULL,
-  `zhiwu` int(111) NOT NULL,
-  `shouji` varchar(111) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`yonghuID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of yonghu
 -- ----------------------------
-INSERT INTO `yonghu` VALUES ('1', 'ting', 'ting', 'ting', '0', '13527774500');
-INSERT INTO `yonghu` VALUES ('2', 'test1', 'test1', '123456', '0', '13505050523');
-
-ALTER TABLE `yaoping`
-CHANGE COLUMN `youxiaoqi` `guige`  varchar(255) NOT NULL AFTER `yaopingDanwei`;
-
-ALTER TABLE `yonghu`
-MODIFY COLUMN `zhiwu`  int(111) NULL AFTER `miMa`,
-MODIFY COLUMN `shouji`  varchar(111) CHARACTER SET utf8 COLLATE utf8_bin NULL AFTER `zhiwu`;
-
-
+INSERT INTO `yonghu` VALUES ('1', 'ting', 'ting', 'ting');
+INSERT INTO `yonghu` VALUES ('2', 'test1', 'test1', '123456');
+INSERT INTO `yonghu` VALUES ('3', '1', '1', '1');
+INSERT INTO `yonghu` VALUES ('4', 'c', 'c', 'c');

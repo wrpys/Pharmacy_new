@@ -14,7 +14,7 @@ import edu.hzcc.webdemo.pojo.Dingdan;
 import edu.hzcc.webdemo.pojo.Kuncun;
 import edu.hzcc.webdemo.util.ControllerBase;
 /**
- * 采购收货订单汇总的交互，页面根据cls:'CaigoushouhuoController',mtd:'findAll'来调用结果返回页面
+ * 采购收货控制器
  */
 public class CaigoushouhuoController extends ControllerBase{
 
@@ -121,9 +121,9 @@ public class CaigoushouhuoController extends ControllerBase{
 		Dingdan caigoudingdan=new Dingdan();
 		// 从页面表单中获取。name="dingdanID"
 		caigoudingdan.setDingdanID(getParameterInt("dingdanID"));
-		caigoudingdan.setZhuangtai(getParameterInt("complete"));
+		caigoudingdan.setZhuangtai(getParameterInt("zhuangtai"));
 		// 在DingdanDao中数据库操作 修改一个订单，将状态修改为已收货
-		DingdanDao.updateComplete(caigoudingdan);
+		DingdanDao.updateZhuangtai(caigoudingdan);
 		Dingdan dingdanTmp = DingdanDao.findDingdanByPK(caigoudingdan);
 		// 新增库存
 		xinzengkucun(dingdanTmp);

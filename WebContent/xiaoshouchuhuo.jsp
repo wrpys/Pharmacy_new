@@ -313,9 +313,9 @@
 													$(this)
 															.parent())
 													.hide(); // 点开时隐藏关闭按钮
-											$("#dingdanID")
-													.val(
-															dingdanID);
+											$("#dingdanID").val(dingdanID);
+											$("#dialog-updateuser-formcomplete").val(zhuangtai);
+											
 										},
 										buttons : {
 											"确认" : function(e) {

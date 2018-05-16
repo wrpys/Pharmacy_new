@@ -112,7 +112,7 @@
 {{#userList}}
 <tr role="row" class="user-name odd" data-id="{{gongyingshangID}}"><!--even -->
     <td>{{gongyingshangMingzi}}</td>
-    <td>{{mingzi}}</td>                          <!-- 此处套用函数对status做特殊处理？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？ -->
+    <td>{{mingzi}}</td>                          <!-- 此处套用函数对status做特殊处理 -->
     <td>{{dianhua}}</td>
     
     <td>

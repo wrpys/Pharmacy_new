@@ -185,25 +185,7 @@
 						.render(
 								yonghuListTemplate,
 								{
-									"yonghuList" : result.yonghuList,
-									"bold" : function() { // 对展示做特殊处理
-										return function(text, render) {
-											var status = render(text); // 获取出渲染后的值
-											if (status == '0') {
-												return "<span class='label label-sm label-success'>管理员</span>";
-											} else if (status == '1') {
-												return "<span class='label label-sm label-success'>采购员</span>";
-											} else if (status == '2') {
-												return "<span class='label label-sm label-success'>销售员</span>";
-											} else if (status == '3') {
-												return "<span class='label label-sm label-success'>财务</span>";
-											} else if (status == '4') {
-												return "<span class='label label-sm label-success'>仓管员</span>";
-											} else {
-												return "<span class='label'>-</span>";
-											}
-										}
-									}
+									"yonghuList" : result.yonghuList
 								});
 				$('#yonghuList').html(rendered);
 				bindyonghuClick()

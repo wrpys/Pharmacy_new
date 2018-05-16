@@ -15,7 +15,7 @@ import edu.hzcc.webdemo.util.ControllerBase;
 import net.sf.json.JSONObject;
 /**
 
- * 销售订单汇总的交互，页面根据cls:'XiaoshouchuhuoController',mtd:'findAll'来调用
+ * 销售出货控制器
  * 结果返回页面
  */
 public class XiaoshouchuhuoController extends ControllerBase{
@@ -27,8 +27,6 @@ public class XiaoshouchuhuoController extends ControllerBase{
 		//定义一个空的caigoushouhuo列表
 		List<Dingdan> caigoudingdanList=new ArrayList<>();
 		//在DingdanDao中数据库操作 找出所有的caigoushouhuolist列表
-		//Dingdan dingdan = new Dingdan();
-		//dingdan.setDingdanleixing(4);	// 查找订单为：销售出货订单
 		caigoudingdanList=DingdanDao.findDingdansByParams(params);
 		//定义一个json格式
 		JSONObject jsonObject = new JSONObject();
@@ -137,13 +135,13 @@ public class XiaoshouchuhuoController extends ControllerBase{
 		Dingdan caigoudingdan=new Dingdan();
 		// 从页面表单中获取。name="dingdanID"
 		caigoudingdan.setDingdanID(getParameterInt("dingdanID"));
-		caigoudingdan.setZhuangtai(getParameterInt("complete"));
+		caigoudingdan.setZhuangtai(getParameterInt("zhuangtai"));
 		Dingdan dingdanTmp = DingdanDao.findDingdanByPK(caigoudingdan);
 		// 新增库存
 		boolean flag = xinzengkucun(dingdanTmp);
 		if(flag) {
 			// 在DingdanDao中数据库操作 修改一个订单，将状态修改为已收货
-			DingdanDao.updateComplete(caigoudingdan);
+			DingdanDao.updateZhuangtai(caigoudingdan);
 		}
 	}
 	

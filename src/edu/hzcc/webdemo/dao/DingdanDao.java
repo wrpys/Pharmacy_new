@@ -254,7 +254,7 @@ public class DingdanDao {
 	}
 	
 	// 修改状态
-	public static boolean updateComplete(Dingdan dingdan){
+	public static boolean updateZhuangtai(Dingdan dingdan){
 		try {
 			String sql = null;
 				//执行修改
@@ -294,7 +294,7 @@ public class DingdanDao {
 			int i=ProjectShare.getDbPool().update(connection, sql);
 			//链接关闭
 			ProjectShare.getDbPool().closeConnection(connection);
-			//更新一次，表示成功，这里为什么更新了就是成功了？？？？？表示操作完成
+			//更新一次，表示操作完成
 			if(i==1)
 				return true;
 			return false;

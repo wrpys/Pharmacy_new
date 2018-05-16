@@ -85,7 +85,7 @@ public class KucunDao {
 	 * @param yaoxiangID 
 	 * @return 数据少于预警设置数量的库存列表
 	 */
-	//详细写一下？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？-->每一句注解我都写出来：主要是根据药箱ID和yaopingID获取库存中对应的信息
+	//主要是根据药箱ID和yaopingID获取库存中对应的信息
 	public static  Kuncun findAllMinshuliang(int yaoxiangID, int yaopingID){
 		try {
 			//创建kucun实例
@@ -117,7 +117,6 @@ public class KucunDao {
 	
 	}
 	
-	// 没有实现数据库数量操作以及状态？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？
 	public static boolean save(Kuncun kucun) {
 		try {
 			String sql = null;
@@ -263,7 +262,7 @@ public class KucunDao {
 		List<Kuncun> list = new ArrayList<>();
 		try {
 			Connection connection = ProjectShare.getDbPool().getConnection();
-			// 主要是状态是怎么，下面这句话解释下？？？？？？？？1入库2出库 数据库中zhuangtai 1是入库 2是出库 在保存的时候 生成
+			//1入库2出库 数据库中zhuangtai 1是入库 2是出库 在保存的时候 生成
 
 			String sql = "select * from kucun where zhuangtai in (1,2)";
 			ResultSet rs = ProjectShare.getDbPool().query(connection, sql);
@@ -284,42 +283,5 @@ public class KucunDao {
 			return list;
 		}
 	}
-
-
-	/*
-	 * 汇总表
-	 */
-	// 为什么库存调拨单里面有汇总，分开写？？汇总表和挑拨单都是在kucun这张表操作的
-	/*public static List<KucunJisuang> findSum() {
-		try {
-			List<KucunJisuang> list = new ArrayList<>();
-			Connection connection = ProjectShare.getDbPool().getConnection();
-
-			String sql = "SELECT ininven.yaopingID,ininven.yaopingMingzi,ininven.yaopingDanwei,ininven.ininvensum,outinven.outinvensum,ininven.ininvensum-outinven.outinvensum as inoutinven FROM "
-					+ "(SELECT kucun.yaopingID,kucun.yaopingMingzi,kucun.yaopingDanwei,SUM(kucun.shuliang) as ininvensum FROM kucun WHERE kucun.zhuangtai=1 group by kucun.yaopingID) as ininven "
-					+ "JOIN (SELECT kucun.yaopingID, SUM(kucun.shuliang)  as outinvensum FROM kucun WHERE kucun.zhuangtai=2 group by kucun.yaopingID) as outinven ON outinven.yaopingID=ininven.yaopingID";
-			ResultSet rs = ProjectShare.getDbPool().query(connection, sql);
-			while (rs.next()) {
-				KucunJisuang kucunSum = new KucunJisuang();
-				kucunSum.setYaopingID(rs.getInt("yaopingID"));
-				kucunSum.setYaopingMingzi(rs.getString("yaopingMingzi"));
-				kucunSum.setYaopingDanwei(rs.getString("yaopingDanwei"));
-				kucunSum.setZongruku(rs.getInt("ininvensum"));
-				kucunSum.setZongchuku(rs.getInt("outinvensum"));
-				kucunSum.setShengyushu(rs.getInt("inoutinven"));
-				list.add(kucunSum);
-			}
-			rs.close();
-
-			ProjectShare.getDbPool().closeConnection(connection);
-
-			return list;
-
-		} catch (Exception e) {
-			// TODO: handle exception
-			ProjectShare.log("kucun.findSum error: " + e.getMessage());
-			return null;
-		}
-	}*/
 
 }

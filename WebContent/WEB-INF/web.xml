@@ -3,7 +3,7 @@
 xmlns="http://xmlns.jcp.org/xml/ns/javaee"
  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
  http://xmlns.jcp.org/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-  <display-name>Airport</display-name>
+  <display-name>Pharmacy</display-name>
   <welcome-file-list>
  
     <welcome-file>login.jsp</welcome-file>
